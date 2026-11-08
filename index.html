@@ -3653,5 +3653,151 @@ new MutationObserver(sch).observe(document.body,{childList:true,subtree:true,cha
 setTimeout(run,450);setTimeout(run,1500);
 })();
 </script>
+<style id="mr-robot2-css">/* ===== Robô 2.0: materiais, braços, pescoço, propulsor e animação ===== */
+.dm{filter:drop-shadow(0 7px 7px rgba(0,0,0,.55)) drop-shadow(0 0 10px color-mix(in srgb,var(--ac) 18%,transparent))}
+/* bordas mais lisas nas camadas 3D */
+.rh>i,.rt>i{outline:1px solid transparent}
+/* cabeça: brilho especular que acompanha a inclinação, frisos e luz de contorno */
+.rh>i:last-of-type{background:radial-gradient(120% 90% at 30% 8%,#fff 0,#e4edf3 22%,#b3c3ce 55%,#6d8190 100%);border-color:rgba(255,255,255,.55)}
+.rh>i:last-of-type::before{content:"";position:absolute;left:5px;right:5px;top:2px;height:36%;border-radius:14px 14px 50% 50%;background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,0));opacity:.6;translate:calc(var(--gx,0)*6px) 0;pointer-events:none}
+.rh>i:last-of-type::after{content:"";position:absolute;left:8px;right:8px;bottom:1px;height:3px;border-radius:3px;background:linear-gradient(90deg,transparent,var(--ac),transparent);opacity:.8;box-shadow:0 0 6px var(--ac);pointer-events:none}
+.rh>i:nth-last-of-type(2){box-shadow:0 0 0 1px color-mix(in srgb,var(--ac) 35%,transparent),0 0 10px color-mix(in srgb,var(--ac) 28%,transparent)}
+/* visor: vidro com linhas de varredura e reflexo em movimento */
+.rv{background:radial-gradient(ellipse at 50% 18%,#0f3a29,#020a06 78%);animation:rvg 3.2s var(--e-io) infinite}
+@keyframes rvg{0%,100%{box-shadow:inset 0 0 8px color-mix(in srgb,var(--ac) 30%,transparent),0 0 7px color-mix(in srgb,var(--ac) 30%,transparent)}50%{box-shadow:inset 0 0 12px color-mix(in srgb,var(--ac) 50%,transparent),0 0 12px color-mix(in srgb,var(--ac) 55%,transparent)}}
+.rv::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.22) 50%,transparent 60%) -120% 0/60% 100% no-repeat,repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0 1px,transparent 1px 3px);animation:rvs 5.5s var(--e-io) infinite}
+@keyframes rvs{0%,55%{background-position:-120% 0,0 0}100%{background-position:260% 0,0 0}}
+.rv b{width:9px;height:12px;border-radius:5px/6px;translate:calc(var(--lx,0)*2.4px) calc(var(--ly,0)*1.8px);transition:translate .12s linear}
+.rv b::after{content:"";position:absolute;left:2px;top:2px;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.9}
+.rv b{position:relative}
+/* orelhas com luz de status */
+.re::after{content:"";position:absolute;left:1px;right:1px;top:3px;height:3px;border-radius:2px;background:var(--ac);box-shadow:0 0 5px var(--ac);animation:reb 2.4s var(--e-io) infinite}
+.re.r::after{animation-delay:-1.2s}
+@keyframes reb{0%,100%{opacity:.35}50%{opacity:1}}
+/* pescoço */
+.rb::before{content:"";position:absolute;left:36px;top:67px;width:12px;height:7px;border-radius:3px;background:repeating-linear-gradient(0deg,#3a4954 0 2px,#6a7d8a 2px 3px);box-shadow:0 0 0 1px rgba(0,0,0,.3);transform:translateZ(0)}
+/* propulsor sob o corpo (hover) */
+.rb::after{content:"";position:absolute;left:29px;top:92px;width:26px;height:12px;border-radius:50%;background:radial-gradient(ellipse at 50% 15%,#fff 0,var(--ac) 28%,transparent 72%);filter:blur(1.6px);opacity:.75;transform:translateZ(-4px);transform-origin:50% 0;animation:rfl .16s linear infinite alternate;pointer-events:none}
+@keyframes rfl{from{scale:.82 .8;opacity:.6}to{scale:1.05 1.2;opacity:.9}}
+.rj{background:radial-gradient(ellipse at 50% 0,#fff 0,#fff 10%,var(--ac) 32%,color-mix(in srgb,var(--ac) 50%,transparent) 52%,transparent 74%)}
+/* torso: ombros, núcleo de energia e friso */
+.rt>i:last-of-type{background:linear-gradient(160deg,#c3d1da,#6f8290 52%,#3d4c57);box-shadow:inset 0 2px 2px rgba(255,255,255,.5),inset 0 -4px 5px rgba(0,0,0,.35)}
+.rt>i:last-of-type::after{content:"";position:absolute;left:5px;right:5px;bottom:4px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--ac),transparent);opacity:.85;box-shadow:0 0 5px var(--ac)}
+.rt::before,.rt::after{content:"";position:absolute;top:2px;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f2f7fa,#9db0bc 45%,#4c5d69);box-shadow:0 2px 3px rgba(0,0,0,.4);transform:translateZ(1px)}
+.rt::before{left:-6px}.rt::after{right:-6px}
+.rc{box-shadow:0 0 8px var(--ac),0 0 0 2px color-mix(in srgb,var(--ac) 35%,transparent),0 0 14px color-mix(in srgb,var(--ac) 45%,transparent)}
+/* braços ligados às mãos */
+.rh1::before,.rh2::before{content:"";position:absolute;left:3px;top:-8.5px;width:5px;height:14px;border-radius:3px;background:linear-gradient(90deg,#4a5a66,#c3d1da 45%,#4a5a66);transform-origin:50% 100%;box-shadow:0 1px 2px rgba(0,0,0,.35);z-index:-1;transition:height .25s var(--e-out)}
+.rh1::before{rotate:66deg}.rh2::before{rotate:-66deg}
+.dm.wave .rh2::before{height:24px;rotate:-150deg}
+.rh1,.rh2{background:radial-gradient(circle at 35% 28%,#fff 0 10%,#dfe8ee 28%,#9db0bc 58%,#4c5d69);box-shadow:0 2px 4px rgba(0,0,0,.45),0 0 0 1px color-mix(in srgb,var(--ac) 25%,transparent)}
+/* antena com mola */
+.ra{transform-origin:50% 100%;animation:rawob 4.4s var(--e-io) infinite}
+@keyframes rawob{0%,100%{transform:translateZ(16px) rotate(-2.5deg)}30%{transform:translateZ(16px) rotate(3deg)}55%{transform:translateZ(16px) rotate(-1deg)}80%{transform:translateZ(16px) rotate(2deg)}}
+.ra::before{box-shadow:0 0 6px var(--ac),0 0 12px var(--ac)}
+/* respiração do torso mais suave e cabeça com leve atraso (inércia) */
+.rt{animation-name:rts2;animation-duration:3.4s}
+@keyframes rts2{0%,100%{transform:scale(1,1)}50%{transform:scale(1.05,.96)}}
+/* acessibilidade e economia */
+html.noanim .rb::after,html.eco .rb::after,html.noanim .rv,html.eco .rv,html.noanim .rv::before,html.eco .rv::before,html.noanim .ra,html.eco .ra,html.noanim .re::after,html.eco .re::after{animation:none}
+html.eco .dm{filter:none}
+@media (prefers-reduced-motion:reduce){.rb::after,.rv,.rv::before,.ra,.re::after{animation:none}}
+</style><script id="mr-robot2-js">(function(){
+/* Os olhos e a cabeça seguem o dedo/mouse com suavidade */
+var d=document.querySelector("body>.dm")||document.querySelector(".dm");if(!d)return;
+var tx=0,ty=0,cx=0,cy=0,raf=0,idle=0,last=0;
+function off(){var c=document.documentElement.classList;return c.contains("noanim")||c.contains("eco")||(window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches)||d.classList.contains("sleep");}
+function aim(x,y){var r=d.getBoundingClientRect(),dx=x-(r.left+r.width/2),dy=y-(r.top+r.height*.4),k=Math.max(1,Math.hypot(dx,dy)/160);tx=Math.max(-1,Math.min(1,dx/160/k*Math.min(k,1.8)));ty=Math.max(-1,Math.min(1,dy/160/k*Math.min(k,1.8)));last=performance.now();kick();}
+function frame(){raf=0;var s=off();if(s){tx=ty=0;}
+ var n=performance.now();if(n-last>2600){tx=ty=0;}
+ cx+=(tx-cx)*.14;cy+=(ty-cy)*.14;
+ d.style.setProperty("--lx",cx.toFixed(3));d.style.setProperty("--ly",cy.toFixed(3));
+ if(Math.abs(tx-cx)>.004||Math.abs(ty-cy)>.004)raf=requestAnimationFrame(frame);}
+function kick(){if(!raf)raf=requestAnimationFrame(frame);}
+window.addEventListener("pointermove",function(e){if(off())return;aim(e.clientX,e.clientY);},{passive:true});
+window.addEventListener("pointerdown",function(e){if(off())return;aim(e.clientX,e.clientY);},{passive:true});
+/* de vez em quando, dá uma olhadela curiosa para os lados */
+function glance(){if(!off()&&performance.now()-last>4000){var a=(Math.random()<.5?-1:1);tx=a*(.5+Math.random()*.5);ty=(Math.random()-.5)*.8;last=performance.now()-1800;kick();setTimeout(function(){tx=-a*.4;kick();},700);}
+ setTimeout(glance,6000+Math.random()*7000);}
+setTimeout(glance,5000);
+})();
+</script>
+<style id="mr-robot3-css">/* ===== Robô 3.0: braços articulados em 3D e corpo refinado ===== */
+.rh1::before,.rh2::before,.dm.wave .rh2::before{content:none}
+/* mãos em posição de descanso mais baixa e para fora, com anel de luz */
+.rh1,.rh2{top:85px;width:12px;height:12px}
+.rh1{left:4px}.rh2{right:4px}
+.rh1::after,.rh2::after{content:"";position:absolute;inset:3px;border-radius:50%;border:1px solid color-mix(in srgb,var(--ac) 55%,transparent);box-shadow:0 0 4px color-mix(in srgb,var(--ac) 45%,transparent);opacity:.7}
+/* braço segmentado */
+.rarm{position:absolute;left:0;top:0;width:0;height:0;transform-style:preserve-3d;transform:translateZ(2px);pointer-events:none}
+.rseg{position:absolute;left:0;top:0;width:6px;margin-left:-3px;height:10px;transform-origin:50% 0;transform-style:preserve-3d}
+.rseg i{position:absolute;top:0;bottom:0;border-radius:3px}
+.rseg i:nth-child(1){left:.5px;right:.5px;transform:translateZ(-1.6px);background:#2f3d47}
+.rseg i:nth-child(2){left:0;right:0;background:linear-gradient(90deg,#3a4954,#cfdbe3 30%,#f7fbfd 44%,#a9bac5 64%,#45555f)}
+.rseg i:nth-child(3){left:1.2px;right:1.2px;transform:translateZ(1.6px);background:linear-gradient(90deg,transparent,rgba(255,255,255,.6) 38%,rgba(255,255,255,.1) 70%,transparent)}
+.rseg.fa{width:5px;margin-left:-2.5px}
+.rseg.fa::after{content:"";position:absolute;left:-.5px;right:-.5px;bottom:3px;height:2px;border-radius:2px;background:var(--ac);box-shadow:0 0 4px var(--ac);transform:translateZ(2.2px)}
+.rseg.ua::after{content:"";position:absolute;left:0;right:0;top:3px;height:1px;background:rgba(0,0,0,.28);transform:translateZ(2px)}
+.rel{position:absolute;left:0;top:0;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#fff 0 10%,#e3ebf0 28%,#9db0bc 58%,#4c5d69);box-shadow:0 1px 2px rgba(0,0,0,.45);transform:translateZ(3px)}
+/* corpo: mais largo nos ombros, painel de vidro no peito, ventilações e bico do propulsor */
+.rt{left:22px;top:71px;width:40px;height:26px}
+.rt>i{border-radius:13px 13px 18px 18px}
+.rt>i:last-of-type{background:linear-gradient(160deg,#d4e0e7 0,#8497a4 48%,#46555f 100%)}
+.rt>i:last-of-type::before{content:"";position:absolute;left:6px;right:6px;top:4px;height:12px;border-radius:7px;background:linear-gradient(180deg,#183039,#071116);border:1px solid color-mix(in srgb,var(--ac) 50%,transparent);box-shadow:inset 0 0 7px color-mix(in srgb,var(--ac) 35%,transparent),0 1px 0 rgba(255,255,255,.25)}
+.rt>i:last-of-type::after{left:8px;right:8px;bottom:3px}
+.rc{left:15px;top:5px}
+.rt::before,.rt::after{top:3px}
+.rvt{position:absolute;top:17.5px;width:8px;height:3px;border-radius:1px;background:repeating-linear-gradient(90deg,#1c2b32 0 1px,transparent 1px 2px);opacity:.75;transform:translateZ(6.5px)}
+.rvt.l{left:6px}.rvt.r{right:6px}
+.rnz{position:absolute;left:31px;top:96px;width:22px;height:7px;clip-path:polygon(0 0,100% 0,84% 100%,16% 100%);background:linear-gradient(180deg,#6b7f8c,#2a363f);transform:translateZ(-2px)}
+.rnz::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,transparent,var(--ac),transparent);box-shadow:0 0 5px var(--ac)}
+.rb::after{top:98px}
+.rj{top:99px}
+html.eco .rnz::after{box-shadow:none}
+/* núcleo do peito: anula a margem herdada de uma regra antiga ".rc" */
+.rt .rc{margin:0;color:inherit;font-size:0;left:15px;top:5px;transform:translateZ(9px)}
+.rt .rc::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:1px solid color-mix(in srgb,var(--ac) 55%,transparent);animation:rap 1.8s var(--e-io) infinite}
+/* visor e boca mais afastados da face: evita o corte diagonal da ordenação 3D */
+.rv{transform:translateZ(18px)}
+.rm{transform:translateZ(18px)}
+@media (prefers-reduced-motion:reduce){.rt .rc::after{animation:none}}
+html.noanim .rt .rc::after,html.eco .rt .rc::after{animation:none}
+/* o pulso antigo ("rap") sobrescrevia o translateZ e escondia o núcleo atrás do peito */
+@keyframes rcp{0%,100%{transform:translateZ(9px) scale(1);opacity:1}50%{transform:translateZ(9px) scale(.82);opacity:.78}}
+.rt .rc{animation:rcp 1.8s var(--e-io) infinite}
+@media (prefers-reduced-motion:reduce){.rt .rc{animation:none}}
+html.noanim .rt .rc,html.eco .rt .rc{animation:none}
+</style><script id="mr-robot3-js">(function(){
+/* Braços articulados: cinemática de 2 ossos, o cotovelo reage ao movimento das mãos */
+var d=document.querySelector("body>.dm")||document.querySelector(".dm"),rb=d&&d.querySelector(".rb"),rt=rb&&rb.querySelector(".rt"),h1=rb&&rb.querySelector(".rh1"),h2=rb&&rb.querySelector(".rh2");
+if(!rb||!rt||!h1||!h2||rb.querySelector(".rarm"))return;
+function seg(c){var s=document.createElement("u");s.className="rseg "+c;s.innerHTML="<i></i><i></i><i></i>";return s;}
+function arm(side){var a=document.createElement("div");a.className="rarm "+side;var u=seg("ua"),f=seg("fa"),e=document.createElement("u");e.className="rel";a.appendChild(u);a.appendChild(f);a.appendChild(e);rb.insertBefore(a,h1);return {u:u,f:f,e:e,side:side==="l"?-1:1,k:""};}
+var A=[arm("l"),arm("r")];
+["l","r"].forEach(function(s){var v=document.createElement("u");v.className="rvt "+s;rt.appendChild(v);});
+var nz=document.createElement("u");nz.className="rnz";rb.appendChild(nz);
+function hp(h){var t=getComputedStyle(h).translate,x=0,y=0;if(t&&t!=="none"){t=t.split(" ");x=parseFloat(t[0])||0;y=parseFloat(t[1])||0;}return [h.offsetLeft+h.offsetWidth/2+x,h.offsetTop+h.offsetHeight/2+y];}
+function put(el,x,y,len,ang){el.style.transform="translate("+x.toFixed(2)+"px,"+y.toFixed(2)+"px) rotate("+ang.toFixed(2)+"deg)";el.style.height=len.toFixed(2)+"px";}
+function upd(a,S,H){
+ var dx=H[0]-S[0],dy=H[1]-S[1],dist=Math.hypot(dx,dy)||1,L=Math.max(9.5,dist/2*1.03),hh=Math.sqrt(Math.max(0,L*L-dist*dist/4)),nx=-dy/dist,ny=dx/dist;
+ if(nx*a.side*.6+ny*.8<0){nx=-nx;ny=-ny;}
+ var E=[S[0]+dx/2+nx*hh,S[1]+dy/2+ny*hh],ux=E[0]-S[0],uy=E[1]-S[1],fx=H[0]-E[0],fy=H[1]-E[1];
+ var k=[S[0].toFixed(1),H[0].toFixed(1),H[1].toFixed(1),S[1].toFixed(1)].join();if(k===a.k)return;a.k=k;
+ put(a.u,S[0],S[1],Math.hypot(ux,uy)+1,Math.atan2(-ux,uy)*180/Math.PI);
+ put(a.f,E[0],E[1],Math.hypot(fx,fy)+3,Math.atan2(-fx,fy)*180/Math.PI);
+ a.e.style.transform="translate("+E[0].toFixed(2)+"px,"+E[1].toFixed(2)+"px)";
+}
+function step(){
+ var l=rt.offsetLeft,t=rt.offsetTop,w=rt.offsetWidth;
+ upd(A[0],[l-1,t+8],hp(h1));upd(A[1],[l+w+1,t+8],hp(h2));
+}
+var raf=0,iv=0;
+function loop(){raf=0;if(document.hidden)return;try{step();}catch(e){}raf=requestAnimationFrame(loop);}
+function calm(){var c=document.documentElement.classList;return c.contains("eco")||c.contains("noanim")||(window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches);}
+function go(){if(raf||iv)return;if(calm()){iv=setInterval(function(){try{step();}catch(e){}},250);step();}else raf=requestAnimationFrame(loop);}
+document.addEventListener("visibilitychange",function(){if(!document.hidden){if(iv){clearInterval(iv);iv=0;}go();}});
+step();go();
+})();
+</script>
 </body>
 </html>
