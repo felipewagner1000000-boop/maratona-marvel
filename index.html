@@ -332,7 +332,7 @@ html.noanim .c3w *,html.eco .c3w *,html.noanim .c3f,html.eco .c3f,html.noanim .r
 html.noanim .c3ms,html.eco .c3ms,html.noanim .c3nm,html.eco .c3nm{animation:none!important}
 @media (prefers-reduced-motion:reduce){.c3ms,.c3nm,.c3fc{animation:none!important}}
 </style>
-</head>
+<style>.hgr{margin:0 0 6px;font-size:.95rem;color:var(--muted)}.hwk{margin:12px 0;padding:10px 14px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--card) 88%,transparent);text-align:left;font-size:.85rem}.hwk div{display:flex;gap:6px;margin-top:8px}.hwk i{flex:1;font-style:normal;text-align:center;border:1px solid var(--line);border-radius:10px;padding:4px 0;color:var(--muted);font-size:.8rem}.hwk i b{display:block;font-size:.65rem;opacity:.8}.hwk i.on{background:var(--ac);color:var(--ak);border-color:var(--ac)}.hwk i.td{outline:2px solid var(--ac);outline-offset:1px}</style></head>
 <body>
 <a class="skip" href="#list">Pular para a lista</a>
 <div id="mpb" hidden aria-hidden="true"><i></i><span></span></div>
@@ -347,12 +347,10 @@ localStorage.setItem(KEY,String(SCHEMA));}catch(e){}})();</script>
 <main>
   <header class="ph"><h1>Maratona Marvel</h1>
   <button id="hb" type="button" class="mini" style="margin:0 0 6px">🏠 Tela de início</button></header>
-  <section class="d3" id="d3" tabindex="0" role="img" aria-label="Emblema 3D girando do Doutor Destino, de Vingadores: Doutor Destino. Toque para disparar a energia">
-<h3>⚡ Doomsday 3D</h3><div class="d3w" aria-hidden="true"><div class="d3sw" id="d3sw"><div class="d3k"></div><div class="d3r r1"></div><div class="d3r r2"></div><div class="d3r r3"></div><div class="d3o" id="d3o"></div></div></div><p id="d3p">Arraste para girar · toque no D para liberar energia</p></section>
-  <section class="mission" aria-live="polite">
+    <section class="mission" aria-live="polite">
     <h2>Missão: ver tudo antes de Vingadores: Doutor Destino</h2>
     <span class="big" id="mdays"></span>
-    <small id="mpace"></small><div id="fc" class="fc" aria-live="polite" hidden></div><details class="mm"><summary>⏱️ Ver horas e sequência</summary><small id="tm"></small></details><section class="next" id="next"></section><button id="ess" type="button" class="mini" style="margin-top:8px"></button><button id="prb" type="button" class="mini" style="margin-top:8px">📖 Resumo pré-Doomsday</button>
+    <details class="mm mm2" id="mrpace"><summary>📈 Ritmo, previsão e horas</summary><small id="mpace"></small><div id="fc" class="fc" aria-live="polite" hidden></div><details class="mm"><summary>⏱️ Ver horas e sequência</summary><small id="tm"></small></details></details><section class="next" id="next"></section><button id="ess" type="button" class="mini" style="margin-top:8px"></button><button id="prb" type="button" class="mini" style="margin-top:8px">📖 Resumo pré-Doomsday</button>
     <button class="again" id="again" type="button" hidden>Soltar fogos de novo 🎆</button>
   </section>
   <div class="top">
@@ -361,7 +359,10 @@ localStorage.setItem(KEY,String(SCHEMA));}catch(e){}})();</script>
     <button id="nowbar" type="button" hidden></button>
     <div class="sq"><input id="q" type="search" placeholder="Buscar título..." aria-label="Buscar título"><div class="chips"><button type="button" data-f="all" class="on">Todos</button><button type="button" data-f="todo">Faltam</button><button type="button" data-f="done">Já vi</button><button type="button" data-f="path">🛤️ Caminho</button><button type="button" data-f="fav">❤️ Favoritos</button></div></div>
   </div>
-  <details class="plan2" id="mx"><summary>📊 Extras: sagas, ritmo, imagem e lembrete</summary>
+  <div class="filters"><select id="fase" aria-label="Filtrar por fase"></select><button id="cont" type="button">▶ Continuar de onde parei</button><nav class="ochips" id="ordem" aria-label="Ordem da lista"><button type="button" data-o="rel" class="on">Lançamento</button><button type="button" data-o="cron">Cronológica</button><button type="button" data-o="dur">Mais curtos</button></nav></div>
+  <details class="plan2" id="mrmore"><summary>🧰 Mais recursos</summary><section class="d3" id="d3" tabindex="0" role="img" aria-label="Emblema 3D girando do Doutor Destino, de Vingadores: Doutor Destino. Toque para disparar a energia">
+<h3>⚡ Doomsday 3D</h3><div class="d3w" aria-hidden="true"><div class="d3sw" id="d3sw"><div class="d3k"></div><div class="d3r r1"></div><div class="d3r r2"></div><div class="d3r r3"></div><div class="d3o" id="d3o"></div></div></div><p id="d3p">Arraste para girar · toque no D para liberar energia</p></section>
+<details class="plan2" id="mx"><summary>📊 Extras: sagas, ritmo, imagem e lembrete</summary>
 <div id="mxs"></div><div id="mxr" class="mxr" aria-live="polite"></div><div id="mxg"></div>
 <button id="mxsh" type="button" class="mini">🖼️ Compartilhar progresso (imagem)</button>
 <label class="ostl">⏰ Lembrete diário às <input id="mxt" type="time" value="20:00"></label>
@@ -381,14 +382,14 @@ localStorage.setItem(KEY,String(SCHEMA));}catch(e){}})();</script>
   <details class="plan" id="cena"><summary>🎨 Personalização</summary>
   <section class="art"><details class="plan"><summary>🎨 Cores do tema</summary><div class="vib"><span id="temas"><button type="button" data-t="esm">🟢 Esmeralda</button><button type="button" data-t="ouro">🟡 Ouro</button><button type="button" data-t="prata">🔵 Prata</button><button type="button" data-t="rubi">🔴 Rubi</button><button type="button" data-t="roxo">🟣 Roxo</button><button type="button" data-t="rosa">🩷 Rosa</button><button type="button" data-t="laranja">🟠 Laranja</button><button type="button" data-t="ciano">🩵 Ciano</button></span></div></details><details class="plan"><summary>🔤 Fonte da letra</summary><div class="fsel"><label for="fts">🔤 Fonte da letra (7 opções)<select id="fts"></select></label><div class="fp" id="fsm">Maratona Marvel — Vingadores: Doutor Destino 0123456789<small id="fnm"></small></div></div></details><details class="plan"><summary>🔊 Som e vibração</summary><div class="vib"><button id="an" type="button">✨ Animações: <span id="ans"></span></button><button id="eco" type="button">🔋 Economia: <span id="ecos"></span></button><button id="gl" type="button">🧊 Gráficos 3D: <span id="gls"></span></button><button id="ost" type="button">🎵 Trilha sonora: <span id="osts">desligada</span></button><label class="ostl">Música <select id="ostm"><option value="0">Trilha original</option><option value="1">Love Me Tender — Elvis Presley</option><option value="2">In the Closet — Michael Jackson</option><option value="3">You — Lloyd, Lil Wayne</option><option value="4">Pon de Replay — Rihanna</option><option value="5">Maniac — Michael Sembello</option></select></label><div class="ostl"><span id="ostn" aria-live="polite">♪ Trilha original</span><button id="ostx" type="button" class="mini">⏭ Próxima</button></div><button id="osta" type="button" class="mini" aria-pressed="false">🔁 Alternar músicas automaticamente: desligado</button><label class="ostl">Volume da trilha <input id="ostv" type="range" min="0" max="100" value="60"></label><button id="sm" type="button">🔊 Som</button><button id="vo" type="button"></button><button id="vt" type="button">Testar vibração 📳</button><span id="vs"></span></div></details></section>
   </details>
-  <div class="filters"><select id="fase" aria-label="Filtrar por fase"></select><button id="cont" type="button">▶ Continuar de onde parei</button><nav class="ochips" id="ordem" aria-label="Ordem da lista"><button type="button" data-o="rel" class="on">Lançamento</button><button type="button" data-o="cron">Cronológica</button><button type="button" data-o="dur">Mais curtos</button></nav></div>
-  <ul id="list"></ul>
+  </details>
+<ul id="list"></ul>
   </main>
 <footer class="pf"><small>Maratona Marvel · versão <span id="appv"></span></small><small>Projeto de fã, sem fins lucrativos. Marvel e Vingadores são marcas da Marvel/Disney.</small></footer>
 <div id="sum" class="modal" hidden><div class="sbox"><h2>Seu resumo 🎬</h2><div id="sbody"></div><button id="sh" type="button">📤 Compartilhar progresso</button><button id="sx" type="button">Fechar</button></div></div>
 <div id="pre" class="modal" role="dialog" aria-label="Resumo pré-Doomsday" hidden><div class="sbox"><div id="prbody"></div><button id="prs" type="button">📤 Compartilhar resumo</button><button id="prx" type="button">Fechar</button></div></div>
 <div id="qz" class="modal" hidden><div class="sbox"><div id="qbody"></div><button id="qx" type="button">Fechar</button></div></div>
-<div id="home" class="home" role="dialog" aria-label="Tela de início"><canvas id="hbg" aria-hidden="true"></canvas><div class="hin"><canvas id="hban" width="480" height="165" aria-hidden="true"></canvas><span class="k" id="hk">Maratona Marvel</span><h2>Vingadores: Doutor Destino</h2><p id="hmsg"></p><div class="cd"><div><b id="cd-d">--</b><span>dias</span></div><div><b id="cd-h">--</b><span>horas</span></div><div><b id="cd-m">--</b><span>min</span></div><div><b id="cd-s" class="odm"><u class="odc" aria-hidden="true"></u></b><span>seg</span></div></div><div class="hph" id="hph"></div><div class="hpr" id="hpr"><div class="hprw"><svg viewBox="0 0 64 64" aria-hidden="true"><circle class="bg" cx="32" cy="32" r="27"/><circle class="fg" id="hprf" cx="32" cy="32" r="27" pathLength="100"/></svg><b id="hprp">0%</b></div><div class="hprt"><b id="hpr1"></b><span id="hpr2"></span></div></div><div class="hc" id="hnx"></div><button id="hgo" class="go" type="button">Entrar na maratona →</button><div class="hch"><span id="hstk"></span><span id="hday"></span><span id="hdb"></span></div><button id="hbk" class="hc hbk" type="button" hidden></button><div class="hsw" id="hsw"><div class="hseg" id="hseg"></div><i class="tk" data-p="25" style="left:25%"></i><i class="tk" data-p="50" style="left:50%"></i><i class="tk" data-p="75" style="left:75%"></i></div><div class="pg" id="hpg"></div><span id="hbi" hidden></span><div class="hsc"><button type="button" data-a="quiz"><span class="ic">🧠</span>Quiz</button><button type="button" data-a="plan"><span class="ic">📅</span>Plano</button><button type="button" data-a="ses"><span class="ic">⏱️</span>Sessão</button><button type="button" data-a="sum"><span class="ic">📊</span>Resumo</button></div><details class="hc" id="hmais"><summary>📊 Mais detalhes</summary><div class="hc" id="hrank"></div><div class="hc" id="hmis"></div><div class="hsl" id="hsl"></div><div class="hc" id="hpace"></div><details class="hc" id="hcalw"><summary>📆 Atividade das últimas 4 semanas</summary><div class="hcal" id="hcal"></div></details><div class="hc hrot" id="hrot" tabindex="0"><div id="hqa" class="on"></div><div id="hfact"></div></div></details><div class="hth" id="hth"></div></div></div>
+<div id="home" class="home" role="dialog" aria-label="Tela de início"><canvas id="hbg" aria-hidden="true"></canvas><div class="hin"><canvas id="hban" width="480" height="165" aria-hidden="true"></canvas><span class="k" id="hk">Maratona Marvel</span><p class="hgr" id="hgr"></p><h2>Vingadores: Doutor Destino</h2><p id="hmsg"></p><div class="cd"><div><b id="cd-d">--</b><span>dias</span></div><div><b id="cd-h">--</b><span>horas</span></div><div><b id="cd-m">--</b><span>min</span></div><div><b id="cd-s" class="odm"><u class="odc" aria-hidden="true"></u></b><span>seg</span></div></div><div class="hph" id="hph"></div><div class="hpr" id="hpr"><div class="hprw"><svg viewBox="0 0 64 64" aria-hidden="true"><circle class="bg" cx="32" cy="32" r="27"/><circle class="fg" id="hprf" cx="32" cy="32" r="27" pathLength="100"/></svg><b id="hprp">0%</b></div><div class="hprt"><b id="hpr1"></b><span id="hpr2"></span></div></div><div class="hc" id="hnx"></div><button id="hgo" class="go" type="button">Entrar na maratona →</button><div class="hch"><span id="hstk"></span><span id="hday"></span><span id="hdb"></span></div><div class="hwk" id="hwk"></div><button id="hbk" class="hc hbk" type="button" hidden></button><div class="hsw" id="hsw"><div class="hseg" id="hseg"></div><i class="tk" data-p="25" style="left:25%"></i><i class="tk" data-p="50" style="left:50%"></i><i class="tk" data-p="75" style="left:75%"></i></div><div class="pg" id="hpg"></div><span id="hbi" hidden></span><div class="hsc"><button type="button" data-a="quiz"><span class="ic">🧠</span>Quiz</button><button type="button" data-a="plan"><span class="ic">📅</span>Plano</button><button type="button" data-a="ses"><span class="ic">⏱️</span>Sessão</button><button type="button" data-a="sum"><span class="ic">📊</span>Resumo</button></div><details class="hc" id="hmais"><summary>📊 Mais detalhes</summary><div class="hc" id="hrank"></div><div class="hc" id="hmis"></div><div class="hsl" id="hsl"></div><div class="hc" id="hpace"></div><details class="hc" id="hcalw"><summary>📆 Atividade das últimas 4 semanas</summary><div class="hcal" id="hcal"></div></details><div class="hc hrot" id="hrot" tabindex="0"><div id="hqa" class="on"></div><div id="hfact"></div></div></details></div></div>
 <svg id="lt" class="lt" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline fill="none" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg><div id="md3" aria-hidden="true"></div>
 <div id="c3" class="c3" hidden><button type="button" id="c3x" aria-label="Fechar">✕</button><div class="cds"><div class="cdc" id="c3c"><div class="cdi" id="c3i"><div class="cda" id="c3f"></div><div class="cda cdz" id="c3b"></div></div></div></div><p>Toque no cartão para virar</p></div>
 <div id="toast" role="status"></div>
@@ -1054,19 +1055,24 @@ else if(pt===2){for(k=1;k<6;k++){g.beginPath();g.arc(12,14,k*3.2,0,7);g.stroke()
 else{for(k=0;k<40;k++){g.beginPath();g.arc(1+(k%8)*3.2,2+Math.floor(k/8)*3.4,.18,0,7);g.fill();}}
 g.restore();
 g.save();g.translate(12,14);g.rotate(((h>>>5)%9-4)*.05);var zs=.9+((h>>>9)%5)*.035;g.scale(zs,zs);g.translate(-12,-14);
-if(/ferro|iron/.test(n)){orb(12,14,8.5,"#ffe08a","#b87a14");ring(12,14,6.4,.7,"#7a4a08");orb(12,14,5.4,"#16384a","#04101a");g.shadowOffsetY=0;g.shadowColor="#6fe3ff";g.shadowBlur=26;orb(12,14,3.2,"#fff","#37c3ff");}
-else if(/capit[aã]o am|america|am[eé]rica|soldado/.test(n)){orb(12,14,8.6,"#e04855","#7a0f18");orb(12,14,6.8,"#fff","#b9c4cc");orb(12,14,5,"#d63a48","#7a0f18");orb(12,14,3.5,"#3b78b8","#12345a");g.shadowColor="transparent";star(12,14,3,1.3,"#fff");}
-else if(/thor|ragnar|trov/.test(n)){g.shadowOffsetY=0;g.shadowColor="#6fe3ff";g.shadowBlur=22;poly([15,2,10,10,13,10,9,19,17,8,13.5,8],"#bff3ff");g.shadowOffsetY=9;g.shadowColor="rgba(0,0,0,.7)";g.shadowBlur=16;g.fillStyle=lg(13,24,"#9a6a3a","#4a2c14");g.fillRect(11,13,2,11);g.fillStyle=lg(6,13,"#e8f0f5","#6f7d88");g.fillRect(6,6.5,12,6.5);g.fillStyle="#fff";g.fillRect(6,6.5,12,.8);}
-else if(/hulk/.test(n)){orb(12,14.5,8,"#8ee08f","#1d6a28");g.shadowColor="transparent";g.fillStyle="#0f3d16";g.fillRect(7,12,10,1.4);g.fillStyle="#d7ffb0";g.fillRect(8.5,13.4,2.5,1);g.fillRect(13,13.4,2.5,1);g.fillStyle="#0f3d16";g.fillRect(8.5,18.5,7,1.2);}
-else if(/vi[uú]va/.test(n)){poly([6,6,18,6,12,14],lg(6,14,"#ff4b57","#8e0f1b"));poly([12,14,6,22,18,22],lg(14,22,"#8e0f1b","#ff4b57"));}
-else if(/pantera|wakanda/.test(n)){orb(12,14,8,"#5a3a98","#1b0f38");g.shadowColor="transparent";g.strokeStyle="#d9b8ff";g.lineWidth=.9;for(k=0;k<3;k++){g.beginPath();g.moveTo(8+k*3.2,8);g.lineTo(11+k*3.2,20);g.stroke();}}
-else if(/aranha|spider/.test(n)){g.shadowBlur=8;g.shadowOffsetY=2;for(k=0;k<8;k++){a=k*Math.PI/4;g.strokeStyle="rgba(240,248,255,.9)";g.lineWidth=.35;g.beginPath();g.moveTo(12,14);g.lineTo(12+Math.cos(a)*9,14+Math.sin(a)*9);g.stroke();}ring(12,14,3,.35,"#eef");ring(12,14,5.5,.35,"#eef");ring(12,14,8,.35,"#eef");orb(12,14,2.4,"#ff4b57","#8e0f1b");}
-else if(/formiga|ant-man|ant man|vespa/.test(n)){g.globalAlpha=.55;orb(7,14,3,"#fff","#8cf");orb(17,14,3,"#fff","#8cf");g.globalAlpha=1;orb(12,20,3.4,"#e04855","#7a0f18");orb(12,14.5,2.6,"#e04855","#7a0f18");orb(12,10,2,"#e04855","#7a0f18");}
-else if(/guardi/.test(n)){star(12,14.5,8.5,3.6,lg(6,23,"#ffe58a","#c8891a"));}
-else if(/estranho|strange|multiverso/.test(n)){g.shadowOffsetY=0;g.shadowColor="#ff9b2f";g.shadowBlur=24;ring(12,14,8,1.2,"#ffb347");g.setLineDash([1.2,.8]);ring(12,14,6,.9,"#ff9b2f");g.setLineDash([]);ring(12,14,4,.8,"#ffd08a");ring(12,14,2,.7,"#ff9b2f");}
-else if(/vingadores|avengers/.test(n)){orb(12,14,8.6,"#4f8fd0","#12345a");orb(12,14,6.6,"#0c1c2c","#050b12");g.shadowColor="transparent";g.fillStyle="#f2f7fa";g.font="800 9px Georgia,serif";g.textAlign="center";g.fillText("A",12,17.4);}
-else if(/marvel|capit[aã]/.test(n)){poly([12,5,20,21,4,21],lg(5,21,"#ffe58a","#c8891a"));}
-else if(/x-men|wolverine|deadpool|logan/.test(n)){g.strokeStyle=lg(6,22,"#ffe58a","#c8891a");g.lineWidth=2.4;g.beginPath();g.moveTo(6,7);g.lineTo(18,21);g.moveTo(18,7);g.lineTo(6,21);g.stroke();}
+function glow(c,b){g.shadowOffsetY=0;g.shadowColor=c;g.shadowBlur=b;}
+function drop(){g.shadowOffsetY=9;g.shadowColor="rgba(0,0,0,.7)";g.shadowBlur=16;}
+function none(){g.shadowColor="transparent";}
+function rr(x,y,w,h,r,f){g.beginPath();if(g.roundRect)g.roundRect(x,y,w,h,r);else g.rect(x,y,w,h);g.fillStyle=f;g.fill();}
+function halo(c){none();orb(12,14,10.5,c+".38)",c+"0)");drop();}
+if(/ferro|iron/.test(n)){halo("rgba(255,200,90,");orb(12,14,8.8,"#ffe08a","#b87a14");ring(12,14,7.7,.45,"#fff2c4");g.strokeStyle="#16384a";g.lineWidth=1.3;for(k=0;k<10;k++){a=k*.6283+.1;g.beginPath();g.arc(12,14,6.2,a,a+.42);g.stroke();}orb(12,14,4.4,"#16384a","#04101a");glow("#6fe3ff",26);orb(12,14,3,"#fff","#37c3ff");none();poly([12,11.7,14.2,15.5,9.8,15.5],"rgba(255,255,255,.92)");}
+else if(/capit[aã]o am|america|am[eé]rica|soldado/.test(n)){halo("rgba(80,140,255,");orb(12,14,8.8,"#e8505e","#7a0f18");orb(12,14,7,"#fff","#b9c4cc");orb(12,14,5.3,"#d63a48","#7a0f18");orb(12,14,3.8,"#3b78b8","#12345a");none();star(12,14.1,3.3,1.35,"#fff");ring(12,14,8.7,.3,"rgba(255,255,255,.55)");g.fillStyle="rgba(255,255,255,.16)";g.beginPath();g.ellipse(9.4,10.2,3.2,1.5,-.7,0,7);g.fill();}
+else if(/thor|ragnar|trov/.test(n)){halo("rgba(111,227,255,");glow("#6fe3ff",24);poly([17,1.5,11,10,14,10,8.5,20,18.5,8,14.6,8],"#d6f7ff");poly([4.5,3,8,8.5,6.2,9,3,14],"#9fe9ff");drop();g.fillStyle=lg(12.5,24,"#a87646","#4a2c14");g.fillRect(11,12.5,2.2,11);g.strokeStyle="#2a170a";g.lineWidth=.25;for(k=0;k<5;k++){g.beginPath();g.moveTo(11,14.6+k*1.7);g.lineTo(13.2,15.3+k*1.7);g.stroke();}ring(12.1,23.4,.9,.4,"#c9a06a");rr(5.5,5.5,13,7.5,.8,lg(5.5,13,"#f4f8fb","#5d6b77"));none();g.fillStyle="#38444e";g.fillRect(5.5,5.5,1.5,7.5);g.fillRect(17,5.5,1.5,7.5);g.fillStyle="rgba(20,30,40,.5)";g.fillRect(7,8.3,10,.5);g.fillStyle="#fff";g.fillRect(6.4,5.5,11.2,.7);}
+else if(/hulk/.test(n)){halo("rgba(125,255,106,");rr(6.6,10,10.8,10.4,3,lg(10,20.4,"#9be88a","#1d6a28"));for(k=0;k<4;k++)orb(8.4+k*2.4,10,1.5,"#b8f5a5","#2c8a38");rr(5.4,14.6,5.4,2.7,1.35,"#79d36e");none();g.strokeStyle="#0f3d16";g.lineWidth=.28;for(k=0;k<3;k++){g.beginPath();g.moveTo(9.6+k*2.4,10.8);g.lineTo(9.6+k*2.4,14);g.stroke();}g.fillStyle="rgba(0,0,0,.22)";g.fillRect(6.6,18.4,10.8,2);drop();rr(7,20.2,10,2,.6,"#6a3d9a");}
+else if(/vi[uú]va/.test(n)){halo("rgba(255,60,70,");orb(12,14,8.6,"#2a0f14","#0a0305");ring(12,14,8.6,.4,"#ff4b57");glow("#ff4b57",14);poly([7.2,8,16.8,8,13,14,16.8,20,7.2,20,11,14],lg(8,20,"#ff6a74","#a0121f"));none();g.fillStyle="rgba(255,255,255,.7)";g.fillRect(7.2,8,9.6,.5);g.fillRect(7.2,19.5,9.6,.5);}
+else if(/pantera|wakanda/.test(n)){halo("rgba(155,107,255,");glow("#9b6bff",20);poly([6,6.5,9,10,15,10,18,6.5,18.8,14,15.6,20,12,21.8,8.4,20,5.2,14],lg(6,22,"#3a2470","#07030f"));g.strokeStyle="#c9a8ff";g.lineWidth=.35;g.stroke();glow("#e6d4ff",8);poly([8,13,11,14,10,15.2,7.6,14],"#f2e6ff");poly([16,13,13,14,14,15.2,16.4,14],"#f2e6ff");none();poly([10.6,17.6,13.4,17.6,12,19],"#c9a8ff");}
+else if(/aranha|spider/.test(n)){halo("rgba(255,70,80,");glow("rgba(200,225,255,.8)",8);g.strokeStyle="rgba(240,248,255,.92)";g.lineWidth=.32;for(k=0;k<12;k++){a=k*Math.PI/6;g.beginPath();g.moveTo(12,14);g.lineTo(12+Math.cos(a)*9.4,14+Math.sin(a)*9.4);g.stroke();}for(k=1;k<4;k++)ring(12,14,k*2.7+.2,.3,"rgba(240,248,255,.92)");drop();orb(12,14,2.6,"#2a2a36","#000");none();poly([11,13.2,13,13.2,12,14.2],"#ff4b57");poly([11,15.2,13,15.2,12,14.2],"#ff4b57");}
+else if(/formiga|ant-man|ant man|vespa/.test(n)){halo("rgba(255,70,90,");g.globalAlpha=.5;orb(7.6,13,3.6,"#fff","#8cf");orb(16.4,13,3.6,"#fff","#8cf");g.globalAlpha=1;g.strokeStyle="#5a0a14";g.lineWidth=.35;for(k=0;k<3;k++){g.beginPath();g.moveTo(10.6,13.4+k*1.8);g.lineTo(7.2-k*.4,15.2+k*2);g.moveTo(13.4,13.4+k*1.8);g.lineTo(16.8+k*.4,15.2+k*2);g.stroke();}orb(12,20,3.4,"#ec5260","#7a0f18");orb(12,14.8,2.6,"#ec5260","#7a0f18");orb(12,10.6,2.1,"#ec5260","#7a0f18");g.beginPath();g.moveTo(11.2,9);g.lineTo(9.8,6.8);g.moveTo(12.8,9);g.lineTo(14.2,6.8);g.stroke();}
+else if(/guardi/.test(n)){halo("rgba(255,200,90,");g.save();g.translate(12,14);g.rotate(-.45);g.scale(1,.32);ring(0,0,10,.7,"rgba(255,229,138,.8)");g.restore();star(12,14.2,9,3.9,lg(5,23,"#fff0a8","#c8891a"));none();star(12,14.2,5.2,2.3,"rgba(120,70,0,.35)");orb(12,14.2,1.3,"#fff","#ffd36a");}
+else if(/estranho|strange|multiverso/.test(n)){halo("rgba(255,155,47,");glow("#ff9b2f",24);ring(12,14,8.4,1.1,"#ffb347");g.setLineDash([1.1,.7]);ring(12,14,6.6,.8,"#ff9b2f");g.setLineDash([]);ring(12,14,4.8,.6,"#ffd08a");poly([12,9.4,16,11.7,16,16.3,12,18.6,8,16.3,8,11.7],"rgba(255,155,47,.18)");g.strokeStyle="#ffd08a";g.lineWidth=.3;g.stroke();for(k=0;k<12;k++){a=k*.5236;g.fillStyle="#ffe2b0";g.beginPath();g.arc(12+Math.cos(a)*8.4,14+Math.sin(a)*8.4,.3+(k%2)*.2,0,7);g.fill();}ring(12,14,1.8,.6,"#ff9b2f");}
+else if(/vingadores|avengers/.test(n)){halo("rgba(90,160,255,");orb(12,14,8.8,"#4f8fd0","#12345a");orb(12,14,7.4,"#0c1c2c","#050b12");none();ring(12,14,7.4,.4,"#8fc4ff");g.strokeStyle=lg(7,20,"#ffffff","#9fb3c4");g.lineWidth=1.6;g.lineCap="round";g.beginPath();g.lineWidth=1.9;g.moveTo(7.2,8.2);g.lineTo(12,19.8);g.lineTo(16.8,8.2);g.stroke();none();star(12,10.9,1.3,.55,"#ffd36a");}
+else if(/marvel|capit[aã]/.test(n)){halo("rgba(255,200,90,");orb(12,14,8.8,"#2a56a8","#0f2350");none();ring(12,14,8.8,.5,"#e04855");glow("#ffc34a",20);var sp=[];for(k=0;k<16;k++){a=-Math.PI/2+k*Math.PI/8;sp.push(12+Math.cos(a)*(k%2?2.6:7.6),14+Math.sin(a)*(k%2?2.6:7.6));}poly(sp,lg(6,22,"#fff0a8","#e0a020"));none();orb(12,14,1.8,"#fff","#ffd36a");}
+else if(/x-men|wolverine|deadpool|logan/.test(n)){halo("rgba(255,200,90,");orb(12,14,8.8,"#2a2a34","#0a0a10");none();ring(12,14,8.8,.5,"#ffd36a");glow("#ffc34a",14);g.strokeStyle=lg(6,22,"#fff0a8","#c8891a");g.lineWidth=2.2;g.beginPath();g.moveTo(7.4,8.4);g.lineTo(16.6,19.6);g.moveTo(16.6,8.4);g.lineTo(7.4,19.6);g.stroke();}
 else{if(h%3===0)poly([12,6,19,21,5,21],rgb(hu,.8,.6));else if(h%3===1)poly([12,5,18,14,12,23,6,14],rgb(hu,.8,.6));else orb(12,14,7,rgb(hu,.8,.75),rgb(hu,.7,.3));}
 g.restore();g.shadowColor="transparent";g.shadowBlur=0;g.shadowOffsetY=0;
 var nd=6+h%7;for(k=0;k<nd;k++){a=k/nd*6.283+(h%10)*.3;g.globalAlpha=.55;g.fillStyle="#e6fbff";g.beginPath();g.arc(12+Math.cos(a)*10.6,14+Math.sin(a)*10.6,.28,0,7);g.fill();}g.globalAlpha=1;
@@ -1198,11 +1204,17 @@ cl=$("hcal");cl.innerHTML="";for(dd=27;dd>=0;dd--){var dy=new Date();dy.setDate(
 Array.prototype.forEach.call($("hsw").querySelectorAll(".tk"),function(t){t.className="tk"+(p100>=+t.getAttribute("data-p")?" on":"");});
 $("hdb").textContent=(days>0&&days<=30&&left>0)?"⏳ Faltam "+days+(days===1?" dia":" dias"):"";
 /* troca rápida de cor */
-el=$("hth");el.innerHTML="";
+try{hxtra();}catch(e){}return;el=null;
 var lb=document.createElement("span");lb.textContent="Cor:";el.appendChild(lb);
 for(k in TEMAS)(function(k){var b=document.createElement("button");b.type="button";b.className="hdot"+(TEMA===k?" on":"");b.style.background=TEMAS[k].ac;b.setAttribute("aria-label","Tema "+(TLAB[k]||k));b.title=TLAB[k]||k;
 b.onclick=function(){TEMA=k;try{localStorage.setItem("maratona-tema",TEMA);}catch(e){}applyTheme();renderHome();};el.appendChild(b);})(k);
 }
+/* extras da tela de início: saudação + semana */
+function hxtra(){var h=new Date().getHours(),g=$("hgr"),w=$("hwk"),i,d,k,c,n=0,s="",nm=["S","T","Q","Q","S","S","D"],t0=new Date(),dw=(t0.getDay()+6)%7,cnt={},kk;
+if(g)g.textContent=(h<5?"🌙 Boa madrugada":h<12?"☀️ Bom dia":h<18?"🌤️ Boa tarde":"🌙 Boa noite")+", herói!";
+if(!w)return;for(kk in dts)if(dts[kk])cnt[dts[kk]]=(cnt[dts[kk]]||0)+1;
+for(i=0;i<7;i++){d=new Date(t0.getFullYear(),t0.getMonth(),t0.getDate()-dw+i);k=d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);c=cnt[k]||0;n+=c;s+='<i class="'+(c?"on":"")+(i===dw?" td":"")+'"><b>'+nm[i]+'</b>'+(c||"·")+'</i>';}
+w.innerHTML='<span>📆 Esta semana: <b>'+n+'</b> '+(n===1?"título":"títulos")+'</span><div>'+s+'</div>';}
 /* fundo animado em pixel art */
 function hbInit(){
 var i,c,nw=Math.max(40,Math.ceil(window.innerWidth*.75)),nh=Math.max(60,Math.ceil(window.innerHeight*.75));if(HW&&Math.abs(nw-HW)<8&&Math.abs(nh-HH)<200)return;HW=nw;HH=nh;HB.width=HW;HB.height=HH;HS=[];c=window.__eco?60:130;
@@ -4167,5 +4179,132 @@ function run(d){var t0=Date.now();while(q.length&&(Date.now()-t0<14)){var im=q.s
 if(q.length)ric(run);else busy=0;}
 new MutationObserver(function(){clearTimeout(scan.t);scan.t=setTimeout(scan,200);}).observe(L,{childList:true,subtree:true});
 setTimeout(scan,1500);})();
-</script></body>
+</script><script>(function(){var L=[].slice.call(document.querySelectorAll("details.plan,details.plan2")).filter(function(d){return !d.parentElement.closest("details");});
+L.forEach(function(d){d.addEventListener("toggle",function(){if(!d.open)return;L.forEach(function(o){if(o!==d&&o.open)o.open=false;});
+setTimeout(function(){try{d.scrollIntoView({behavior:window.__eco?"auto":"smooth",block:"start"});}catch(e){}},80);});});})();</script>
+<style id="mr-robot5-css">/* ===== Robô 5.0: sono refeito (touca, cobertor, travesseiro, bolha), cabeça mais lisa, aceno e espreguiçar ===== */
+@keyframes rhs{0%,100%{transform:rotateY(-6deg) rotateX(1.5deg)}50%{transform:rotateY(6deg) rotateX(-2deg) rotateZ(1deg)}}
+.rh{rotate:y calc(var(--gx,0)*11deg)}
+.rh>i:last-of-type{box-shadow:inset 0 0 0 1px rgba(255,255,255,.4),0 0 9px color-mix(in srgb,var(--ac) 22%,transparent)}
+.rv b::before{border-radius:inherit}
+/* aceno: a mão balança de um lado ao outro com o cotovelo dobrado */
+@keyframes rwv2{0%,100%{translate:0 0}14%,38%,62%{translate:-4px -34px}26%,50%,74%{translate:9px -35px}88%{translate:2px -22px}}
+.dm.wave .rh2{animation:rwv2 1.8s ease-in-out 1}
+/* espreguiçar ao acordar */
+@keyframes rwk{0%{transform:scale(1.02,.94)}35%{transform:scale(.96,1.1) translateY(-4px)}70%{transform:scale(1.03,.97)}100%{transform:none}}
+@keyframes rwk1{0%,100%{translate:0 0}30%,65%{translate:-9px -38px}}
+@keyframes rwk2{0%,100%{translate:0 0}30%,65%{translate:9px -38px}}
+.dm.wk .rb{animation:rwk .8s var(--e-out)}.dm.wk .rh1{animation:rwk1 .8s var(--e-io)}.dm.wk .rh2{animation:rwk2 .8s var(--e-io)}
+.dm.wk .rv b{animation:pzbig .8s var(--e-out)}
+/* ---- peças do sono ---- */
+.dm .pil{left:36px;top:30px;width:52px;height:46px;border-radius:17px 19px 16px 18px;rotate:-9deg;background:linear-gradient(150deg,#c9d0fa,#7e8bd6)!important;box-shadow:0 5px 10px rgba(0,0,0,.5),inset 0 -4px 0 rgba(0,0,0,.14),inset 0 3px 0 rgba(255,255,255,.3)}
+.dm .pil::before{inset:5px;border-radius:14px}
+.rcap{position:absolute;left:3px;top:-22px;width:50px;height:30px;transform:translateZ(22px);transform-origin:50% 100%;rotate:z -10deg;opacity:0;translate:0 -18px;transition:opacity .35s,translate .6s cubic-bezier(.3,1.4,.5,1);pointer-events:none}
+.rcap s{position:absolute;inset:0;background:linear-gradient(160deg,#5b6cea,#2c3794 60%,#1d2570);clip-path:polygon(0 100%,100% 100%,78% 30%,62% 0,38% 26%)}
+.rcap u{position:absolute;left:-2px;right:-2px;bottom:-3px;height:7px;border-radius:5px;background:linear-gradient(180deg,#f3f5ff,#b9c3f2);box-shadow:0 1px 3px rgba(0,0,0,.4)}
+.rcap b{position:absolute;left:calc(62% - 6px);top:-7px;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#e8ebf9 60%,#aab4e0);box-shadow:0 1px 3px rgba(0,0,0,.4);animation:rpom 3.2s ease-in-out infinite}
+@keyframes rpom{50%{translate:-3px 2px}}
+.rsb{position:absolute;left:35px;top:33px;width:12px;height:12px;border-radius:50%;transform:translateZ(20px);transform-origin:0 50%;background:radial-gradient(circle at 32% 28%,#fff 0 12%,rgba(190,255,220,.35) 42%,rgba(120,255,190,.12));border:1px solid rgba(190,255,220,.7);opacity:0;scale:.15;pointer-events:none}
+@keyframes rsb{0%{opacity:0;scale:.15}12%{opacity:.9;scale:.35}70%{opacity:.9;scale:1.5}76%{opacity:.9;scale:1.65}78%{opacity:0;scale:2.1}100%{opacity:0;scale:.15}}
+.rbk{position:absolute;left:13px;top:67px;width:58px;height:38px;transform:translateZ(24px);border-radius:14px 14px 18px 18px;background:radial-gradient(circle at 20% 35%,rgba(255,255,255,.6) 0 1.2px,transparent 2px) 0 0/14px 14px,linear-gradient(180deg,#4a59cc,#28328c 70%,#1c2370);border-top:6px solid #cfd5ff;box-shadow:0 3px 7px rgba(0,0,0,.5),inset 0 -6px 8px rgba(0,0,0,.25);opacity:0;scale:.7 .3;transform-origin:50% 0;transition:opacity .3s,scale .5s cubic-bezier(.3,1.3,.5,1);pointer-events:none}
+@keyframes rbkb{50%{scale:1.03 1.07}}
+.rzz{position:absolute;left:18px;top:-2px;pointer-events:none;opacity:0;transition:opacity .4s}
+.rzz b{position:absolute;left:0;top:0;font:800 14px/1 system-ui,sans-serif;color:var(--ac);text-shadow:0 0 7px var(--ac);opacity:0}
+.rzz b:nth-child(2){font-size:11px;animation-delay:1.2s!important}.rzz b:nth-child(3){font-size:9px;animation-delay:2.4s!important}
+@keyframes rzz{0%{opacity:0;translate:0 8px;scale:.5}20%{opacity:.95}100%{opacity:0;translate:-14px -34px;scale:1.5;rotate:z -14deg}}
+/* ---- pose dormindo: deitado de lado no travesseiro, mãos sob o cobertor ---- */
+.dm.sleep::before{display:none}
+.dm.sleep .rb{transform-origin:50% 52%;rotate:z 90deg;translate:0 4px;animation:rzs 4.8s ease-in-out infinite}
+@keyframes rzs{0%,100%{transform:scale(1)}50%{transform:scale(1.015,1.03)}}
+.dm.sleep .rh{rotate:none;animation:rzh 5s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes rzh{0%,100%{transform:rotateZ(-62deg)}50%{transform:rotateZ(-56deg) rotateX(3deg)}}
+.dm.sleep .rh1,.dm.sleep .rh2{animation:none}.dm.sleep .rh1{translate:17px -8px}.dm.sleep .rh2{translate:-17px -8px}
+.dm.sleep .ra{opacity:0;transition:opacity .3s}
+.dm.sleep .rb::after,.dm.sleep .rnz::after,.dm.sleep .rp{opacity:0;animation:none}
+.dm.sleep .rv span{animation:none;translate:0 2px}
+.dm.sleep .rv{filter:brightness(.75);animation:none}
+.dm.sleep .rv b{animation:none!important;transform:none!important;scale:1!important;width:11px;height:6px;background:none!important;box-shadow:none!important;border:0;border-bottom:2.5px solid var(--ac);border-radius:0 0 12px 12px;filter:drop-shadow(0 1px 3px var(--ac))}
+.dm.sleep .rv b::before,.dm.sleep .rv b::after{display:none}
+.dm.sleep .rm em{animation:none;transform:scaleY(.5)}
+.dm.sleep .rt .rc{animation-duration:4.8s}
+.dm.sleep .rcap{opacity:1;translate:0 0}
+.dm.sleep .rsb{animation:rsb 3.6s ease-in-out infinite .8s}
+.dm.sleep .rbk{opacity:1;scale:1;transition-delay:.9s;animation:rbkb 4.8s ease-in-out 1.8s infinite}
+.dm.sleep .rzz{opacity:1}.dm.sleep .rzz b{animation:rzz 3.6s ease-in infinite}
+html.noanim .rcap b,html.noanim .rsb,html.noanim .rbk,html.noanim .rzz b,html.noanim .dm.sleep .rb,html.noanim .dm.sleep .rh,html.eco .rcap b,html.eco .rsb,html.eco .rbk,html.eco .rzz b,html.eco .dm.sleep .rb,html.eco .dm.sleep .rh{animation:none!important}
+@media (prefers-reduced-motion:reduce){.rcap b,.rsb,.rbk,.rzz b,.dm.sleep .rb,.dm.sleep .rh,.dm.wk .rb,.dm.wk .rh1,.dm.wk .rh2{animation:none!important}}
+</style><script id="mr-robot5-js">(function(){
+var d=document.querySelector("body>.dm")||document.querySelector(".dm"),rb=d&&d.querySelector(".rb"),rh=rb&&rb.querySelector(".rh"),rt=rb&&rb.querySelector(".rt");
+if(!d||!rb||!rh||!rt||rh.querySelector(".rcap"))return;
+/* extrusão mais fina: fatias intermediárias deixam a cabeça e o corpo lisos ao girar */
+function fine(box){var a=[].filter.call(box.children,function(n){return n.tagName==="I"&&n.style.getPropertyValue("--z");}),k,n,z,b;
+ for(k=0;k<a.length-1;k++){z=(parseFloat(a[k].style.getPropertyValue("--z"))+parseFloat(a[k+1].style.getPropertyValue("--z")))/2;b=(parseFloat(a[k].style.getPropertyValue("--b"))+parseFloat(a[k+1].style.getPropertyValue("--b")))/2;
+  n=document.createElement("i");n.style.cssText="--z:"+z+"px;--b:"+b.toFixed(3);box.insertBefore(n,a[k+1]);}}
+fine(rh);fine(rt);
+rh.insertAdjacentHTML("beforeend",'<div class="rcap"><s></s><u></u><b></b></div><s class="rsb"></s>');
+rb.insertAdjacentHTML("beforeend",'<div class="rbk"></div>');
+d.insertAdjacentHTML("beforeend",'<div class="rzz"><b>Z</b><b>z</b><b>z</b></div>');
+/* fala ao dormir e ao acordar */
+var was=d.classList.contains("sleep"),pk=function(a){return a[Math.floor(Math.random()*a.length)];};
+try{new MutationObserver(function(){var s=d.classList.contains("sleep");if(s===was)return;was=s;
+ if(window.MR_SAY){if(s)window.MR_SAY("Boa noite… zzz 😴",1800);else window.MR_SAY(pk(["Hmm? Cochilei 🥱","Já acordei! ☀️","Quase dormi de vez 😅"]),1900);}
+}).observe(d,{attributes:true,attributeFilter:["class"]});}catch(e){}
+})();
+</script>
+<style id="mr-org">
+/* ===== Reorganização das telas 1 (início) e 2 (lista) ===== */
+/* --- Tela 1: início --- */
+html body .hin{display:flex;flex-direction:column;align-items:stretch}
+html body .hin>*{order:50}
+html body .hin>#hban{order:1;width:74%;margin:0 auto 4px}
+html body .hin>#hk{order:2}
+html body .hin>#hgr{order:3;margin:0 0 2px}
+html body .hin>h2{order:4;font-size:1.55rem;margin:4px 0 2px}
+html body .hin>#hmsg{order:5;margin:0 0 10px}
+html body .hin>.cd{order:6;margin-bottom:10px}
+html body .hin>#hph{order:7;margin:0 0 10px}
+html body .hin>#hnx{order:8}
+html body .hin>#hgo{order:9;margin:0 0 12px}
+html body .hin>#hpr{order:10}
+html body .hin>#hch{order:11}
+html body .hin>#hwk{order:12}
+html body .hin>#hbk{order:13}
+html body .hin>#hsw{order:14}
+html body .hin>#hpg{order:15}
+html body .hin>#hbi{order:16}
+html body .hin>.hsc{order:17}
+html body .hin>.d3.hm{order:18;margin:14px 0 0}
+html body .hin>#hmais{order:19}
+/* --- Tela 2: lista --- */
+html body main{padding-top:12px}
+html body .ph{display:flex;align-items:center;gap:10px;margin:0 0 6px}
+html body .ph h1{flex:none;margin:0;font-size:1.3rem}
+html body .ph #hb{flex:1;width:auto;min-width:0;margin:0;min-height:42px;padding:0 12px 0 8px}
+html body .ph #hb .hbt{font-size:.7rem;letter-spacing:.12em;white-space:nowrap}
+html body .mission{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0;padding:12px}
+html body .mission>*{grid-column:1/-1;margin:0!important;min-width:0}
+html body .mission>h2{order:1;padding-right:76px;margin:0!important}
+html body .mission>.big{order:2;font-size:1.7rem;padding-right:76px}
+html body .mission>.next{order:3}
+html body .mission>.mm2{order:6}
+html body .mm2>small,html body .mm2>.fc,html body .mm2>.mm{margin:8px 0 0!important}
+html body .mm2>.mm{border:0;padding:0;background:none}
+html body .mm2 #mpace{display:block}
+html body .mission>#ess{order:7;grid-column:1/2;min-height:48px}
+html body .mission>#prb{order:7;grid-column:2/3;min-height:48px}
+html body .mission>.again{order:8}
+html body .mission>.dm,html body .mission>.mask{grid-column:auto}
+html body #mrmore{margin:8px 0 12px}
+html body #mrmore>.d3{margin:10px 0 8px}
+</style>
+<script id="mr-org-js">(function(){
+/* Se algo (atalhos da tela inicial, conquistas…) abrir um recurso que agora fica dentro de "Mais recursos",
+   abre o grupo junto e rola até o item. */
+var G=document.getElementById("mrmore");if(!G||!window.MutationObserver)return;
+new MutationObserver(function(ms){ms.forEach(function(m){var t=m.target;
+ if(t===G||!t.open||!G.contains(t))return;
+ if(!G.open){G.open=true;setTimeout(function(){var o=G.querySelectorAll("details[open]"),x=o[o.length-1]||G;try{window.scrollTo({top:x.getBoundingClientRect().top+window.pageYOffset-175});}catch(e){}},450);}
+});}).observe(G,{attributes:true,attributeFilter:["open"],subtree:true});
+})();</script>
+</body>
 </html>
