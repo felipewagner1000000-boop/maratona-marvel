@@ -1,46 +1,8 @@
-/* Service worker da Maratona Marvel.
-   Para forçar atualização nos aparelhos, mude VERSION. */
-const VERSION = "v9";
-const CACHE = "maratona-" + VERSION;
-const FONTES = "maratona-fontes";
-const SHELL = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png"];
-
-self.addEventListener("install", (e) => {
-  e.waitUntil(
-    caches.open(CACHE).then((c) => Promise.all(SHELL.map((u) => c.add(u).catch(() => {})))).then(() => self.skipWaiting())
-  );
-});
-
-self.addEventListener("activate", (e) => {
-  e.waitUntil(
-    caches.keys()
-      .then((ks) => Promise.all(ks.filter((k) => k.startsWith("maratona-") && k !== CACHE && k !== FONTES).map((k) => caches.delete(k))))
-      .then(() => self.clients.claim())
-  );
-});
-
-// Responde do cache na hora e atualiza em segundo plano.
-function velhoEAtualiza(req, nome) {
-  return caches.open(nome).then((c) =>
-    c.match(req, { ignoreSearch: true }).then((hit) => {
-      const rede = fetch(req).then((r) => { if (r && (r.ok || r.type === "opaque")) c.put(req, r.clone()); return r; }).catch(() => hit);
-      return hit || rede;
-    })
-  );
-}
-
-self.addEventListener("fetch", (e) => {
-  const req = e.request;
-  if (req.method !== "GET") return;
-  const url = new URL(req.url);
-  if (url.hostname === "fonts.googleapis.com" || url.hostname === "fonts.gstatic.com") {
-    e.respondWith(velhoEAtualiza(req, FONTES));
-    return;
-  }
-  if (url.origin !== location.origin) return;
-  if (req.mode === "navigate") {
-    e.respondWith(velhoEAtualiza(req, CACHE).then((r) => r || caches.match("index.html")));
-    return;
-  }
-  e.respondWith(velhoEAtualiza(req, CACHE));
-});
+/* Service worker da Maratona Marvel: cache dos arquivos do app, funciona offline */
+var C="maratona-v"+"202611100442";var F=["./","index.html","style.css","app.js","data.js"];
+self.addEventListener("install",function(e){e.waitUntil(caches.open(C).then(function(c){return Promise.all(F.map(function(u){return c.add(u).catch(function(){});}));}));});
+self.addEventListener("message",function(e){if(e.data&&e.data.type==="SKIP_WAITING")self.skipWaiting();});
+self.addEventListener("activate",function(e){e.waitUntil(caches.keys().then(function(k){return Promise.all(k.filter(function(n){return n!==C&&n.indexOf("maratona-v")===0;}).map(function(n){return caches.delete(n);}));}).then(function(){return self.clients.claim();}));});
+self.addEventListener("fetch",function(e){var r=e.request;if(r.method!=="GET"||new URL(r.url).origin!==location.origin)return;
+e.respondWith(caches.open(C).then(function(c){return c.match(r,{ignoreSearch:true}).then(function(hit){var net=fetch(r).then(function(res){if(res&&res.ok)c.put(r,res.clone());return res;}).catch(function(){return hit||c.match("index.html");});return hit||net;});}));});
+self.addEventListener("notificationclick",function(e){e.notification.close();e.waitUntil(self.clients.matchAll({type:"window"}).then(function(l){return l.length?l[0].focus():self.clients.openWindow("./");}));});
