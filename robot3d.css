@@ -1,0 +1,19 @@
+/* Robô 3D: mais profundidade, perspectiva forte, giro por arraste */
+.dm{perspective:260px;touch-action:none;cursor:grab}
+.dm.rot{cursor:grabbing}
+.rh>i{transform:translateZ(calc(var(--z)*1.8))}
+.rt>i{transform:translateZ(calc(var(--z)*1.8))}
+.rv{transform:translateZ(26px)}
+.rm{transform:translateZ(26px)}
+.rc{transform:translateZ(15px)}
+.ra{transform:translateZ(0)}
+.rh1,.rh2{transform:translateZ(10px)}
+.re.l{transform:translateZ(0) rotateY(-30deg)}.re.r{transform:translateZ(0) rotateY(30deg)}
+.rh{rotate:y calc(var(--gx,0)*26deg + var(--dry,0deg))}
+.rt{rotate:y calc(var(--gx,0)*14deg + var(--dry,0deg))}
+.rh1{translate:calc((cos(var(--dry,0deg)) - 1)*-28.5px) 0 calc(sin(var(--dry,0deg))*28.5px)}
+.rh2{translate:calc((cos(var(--dry,0deg)) - 1)*28.5px) 0 calc(sin(var(--dry,0deg))*-28.5px)}
+.rh>i:first-of-type{filter:brightness(.45)}
+/* luz de borda que acompanha o giro */
+.dm .rb{filter:drop-shadow(calc(var(--dry,0deg)/-12) 3px 3px rgba(0,0,0,.35))}
+.dm::after{transform:translateX(calc(var(--dry,0deg)/3)) scaleX(calc(1 - var(--dry,0deg)/400))}
