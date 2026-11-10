@@ -17,3 +17,4 @@
 /* luz de borda que acompanha o giro */
 .dm .rb{filter:drop-shadow(calc(var(--dry,0deg)/-12) 3px 3px rgba(0,0,0,.35))}
 .dm::after{transform:translateX(calc(var(--dry,0deg)/3)) scaleX(calc(1 - var(--dry,0deg)/400))}
+.dm .rb{scale:1.3;transform-origin:50% 100%}
