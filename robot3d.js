@@ -15,7 +15,7 @@ d.addEventListener("pointermove",function(e){if(!drag)return;var dx=e.clientX-sx
   while(hist.length&&nw-hist[0][0]>2000)hist.shift();
   var sum=0;for(var i=0;i<hist.length;i++)sum+=hist[i][1];
   var rcl=document.documentElement.classList;
-  if(sum>650&&nw-dzT>10000&&!d.classList.contains("r6-diz")&&!rcl.contains("noanim")&&!rcl.contains("eco")){dzT=nw;hist=[];d.classList.add("r6-diz");setTimeout(function(){d.classList.remove("r6-diz");},2900);}
+  if(sum>650&&nw-dzT>10000&&!d.classList.contains("r6-diz")&&!rcl.contains("noanim")&&!rcl.contains("eco")){dzT=nw;hist=[];d.classList.add("r6-diz");try{var hm=document.getElementById("home"),md=document.documentElement.getAttribute("data-rfala");if(typeof window.MR_SAY==="function"&&md!=="mudo"&&!(hm&&!hm.hidden))window.MR_SAY("Tô tonto… 😵‍💫",2600);}catch(x){}setTimeout(function(){d.classList.remove("r6-diz");},2900);}
   go();});
 function up(){drag=false;d.classList.remove("rot");t=0;go();}
 /* inclinar o celular gira o robô (Android: sem pedir permissão) */

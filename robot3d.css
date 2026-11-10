@@ -3,8 +3,8 @@
 .dm.rot{cursor:grabbing}
 .rh>i{transform:translateZ(calc(var(--z)*1.8))}
 .rt>i{transform:translateZ(calc(var(--z)*1.8))}
-.rv{transform:translateZ(26px)}
-.rm{transform:translateZ(26px)}
+.rv{transform:translateZ(28px)}
+.rm{transform:translateZ(28px)}
 .rc{transform:translateZ(15px)}
 .ra{transform:translateZ(0)}
 .rh1,.rh2{transform:translateZ(10px)}
