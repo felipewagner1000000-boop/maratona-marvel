@@ -999,7 +999,7 @@ return true;}
 /* amostras de papel (WAV 24 kHz embutido em window.BKSND): decodifica na hora, sem esperar rede */
 var BKS=null,BKG={l:.9};
 function bkLoad(){if(BKS)return BKS;var D=window.BKSND;if(!D)return null;
-try{var dec=function(b){var t=atob(b),n=(t.length-44)>>1,f=new Float32Array(n),i,v;for(i=0;i<n;i++){v=t.charCodeAt(44+2*i)|(t.charCodeAt(45+2*i)<<8);if(v>32767)v-=65536;f[i]=v/32768;}return f;};
+try{var dec=function(b){var t=atob(b);if(D.fmt==="mulaw"){var nn=t.length,ff=new Float32Array(nn),ii,u,sg,ex,mg;for(ii=0;ii<nn;ii++){u=~t.charCodeAt(ii)&255;sg=u&128;ex=(u>>4)&7;mg=(((u&15)<<3)+132<<ex)-132;ff[ii]=(sg?-mg:mg)/32768;}return ff;}var n=(t.length-44)>>1,f=new Float32Array(n),i,v;for(i=0;i<n;i++){v=t.charCodeAt(44+2*i)|(t.charCodeAt(45+2*i)<<8);if(v>32767)v-=65536;f[i]=v/32768;}return f;};
 BKS={sr:D.sr,lf:D.lf.map(dec)};}catch(e){BKS=null;}return BKS;}
 function bkBuf(a,arr){if(arr.__c===a)return arr.__b;var b=a.createBuffer(1,arr.length,BKS.sr);b.copyToChannel(arr,0);arr.__c=a;arr.__b=b;return b;}
 function bkSmp(a,o,arr,t,v,rate){var s=a.createBufferSource(),g=a.createGain();s.buffer=bkBuf(a,arr);s.playbackRate.value=rate||1;g.gain.value=v;s.connect(g);g.connect(o);s.start(t);}
@@ -3525,3 +3525,64 @@ if(bar){bar.parentNode.insertBefore(pcc,bar.nextSibling);cpaint();document.addEv
 })();
 
 }catch(e){console.error("[extras2] "+(e&&e.stack))}
+/* extras3 */
+try{
+/* Extras 3: letra, Top 10, gráfico de ritmo, transferência por QR/link */
+(function(){
+function $(i){return document.getElementById(i);}
+function J(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
+function S(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function ds(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);}
+function fm(m){var h=Math.floor(m/60),r=m%60;return h?h+"h"+(r?" "+r+"min":""):r+"min";}
+function sheet(h){var sh=$("mrsheet");if(!sh)return null;sh.innerHTML='<div class="mrs"><button type="button" class="mrx" aria-label="Fechar">✕</button>'+h+'</div>';sh.hidden=false;return sh;}
+/* tamanho da letra */
+var FS=J("maratona-fs",0),root=document.documentElement;
+function fsApply(){root.classList.remove("fs1","fs2");if(FS)root.classList.add("fs"+FS);Array.prototype.forEach.call(document.querySelectorAll("#mrfs button"),function(b){b.setAttribute("aria-pressed",String(+b.dataset.s===FS));});}
+var art=document.querySelector("#cena .art");
+if(art){var dt=document.createElement("details");dt.className="plan";dt.innerHTML='<summary>🔠 Tamanho da letra</summary><div class="mrb" id="mrfs"><button type="button" data-s="0">A Normal</button><button type="button" data-s="1">A+ Grande</button><button type="button" data-s="2">A++ Muito grande</button></div>';art.insertBefore(dt,art.firstChild);
+dt.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;FS=+b.dataset.s;S("maratona-fs",FS);fsApply();});}
+fsApply();
+/* Top 10 */
+var mx=$("mx"),tp=document.createElement("div"),ch=document.createElement("div");tp.id="mrtop";ch.id="mrch";
+function top10(){var R=J("maratona-notas",{}),T=window.mrT||[],a=[],k;for(k in R)if(R[k]>0)a.push([k,R[k],T.indexOf(k)]);a.sort(function(x,y){return y[1]-x[1]||x[2]-y[2];});return a.slice(0,10);}
+function tpaint(){var a=top10();tp.innerHTML="<h4>⭐ Meu Top 10</h4>";if(!a.length){tp.insertAdjacentHTML("beforeend","<p class='pm'>Avalie títulos vistos com as estrelas para montar seu Top 10.</p>");return;}
+var ol=document.createElement("ol");ol.className="mrl";a.forEach(function(x){var li=document.createElement("li");li.textContent=x[0]+" — "+"★".repeat(x[1]);ol.appendChild(li);});tp.appendChild(ol);
+var b=document.createElement("button");b.type="button";b.className="mini";b.textContent="🖼️ Compartilhar Top 10 (imagem)";b.onclick=function(){share(a);};tp.appendChild(b);}
+function share(a){var c=document.createElement("canvas");c.width=1080;c.height=1350;var x=c.getContext("2d"),cs=getComputedStyle(root),ac=(cs.getPropertyValue("--ac")||"").trim()||"#3ddc84";
+x.fillStyle="#0b0f0c";x.fillRect(0,0,1080,1350);x.fillStyle=ac;x.fillRect(0,0,1080,10);x.fillStyle="#fff";x.font="700 64px sans-serif";x.fillText("Meu Top 10 Marvel",60,130);
+a.forEach(function(r,i){var y=250+i*105;x.fillStyle=ac;x.font="700 48px sans-serif";x.fillText(String(i+1),60,y);x.fillStyle="#fff";x.font="600 38px sans-serif";var t=r[0];while(x.measureText(t).width>760&&t.length>4)t=t.slice(0,-2);if(t!==r[0])t+="…";x.fillText(t,140,y-6);x.fillStyle=ac;x.font="32px sans-serif";x.fillText("★".repeat(r[1])+"☆".repeat(5-r[1]),140,y+32);});
+x.fillStyle="#9aa";x.font="30px sans-serif";x.fillText("Maratona Marvel",60,1300);
+c.toBlob(function(bl){if(!bl)return;var f;try{f=new File([bl],"top10-marvel.png",{type:"image/png"});}catch(e){f=null;}
+if(f&&navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],title:"Meu Top 10 Marvel"}).catch(function(){});}
+else{var u=URL.createObjectURL(bl),l=document.createElement("a");l.href=u;l.download="top10-marvel.png";document.body.appendChild(l);l.click();l.remove();setTimeout(function(){URL.revokeObjectURL(u);},4000);}},"image/png");}
+/* gráfico de ritmo */
+function wk(off){var d=new Date(),t=d.getDay()||7,a=new Date(d.getFullYear(),d.getMonth(),d.getDate()-(t-1)-7*off),b=new Date(a.getFullYear(),a.getMonth(),a.getDate()+6);return [ds(a),ds(b)];}
+function cpaint(){var T=window.mrT||[],M=window.mrM||[],D=J("maratona-datas",{}),meta=J("maratona-meta",2),W=[],i,k,mxv=meta;
+for(i=7;i>=0;i--){var w=wk(i),n=0,m=0;for(k in D)if(D[k]>=w[0]&&D[k]<=w[1]){n++;var t=T.indexOf(k);if(t>-1)m+=M[t];}W.push({l:w[0].slice(8)+"/"+w[0].slice(5,7),n:n,m:m});if(n>mxv)mxv=n;}
+var bw=30,g=8,h0=100,s='<svg viewBox="0 0 340 150" role="img" aria-label="Títulos por semana nas últimas 8 semanas" style="width:100%;max-width:420px">';
+W.forEach(function(x,j){var bh=Math.round(x.n/mxv*h0),px=10+j*(bw+g);s+='<rect x="'+px+'" y="'+(110-bh)+'" width="'+bw+'" height="'+Math.max(bh,2)+'" rx="4" fill="var(--ac,#3c3)" opacity="'+(j===7?1:.6)+'"/><text x="'+(px+bw/2)+'" y="'+(104-bh)+'" text-anchor="middle" font-size="11" fill="currentColor">'+x.n+'</text><text x="'+(px+bw/2)+'" y="126" text-anchor="middle" font-size="9" fill="currentColor">'+x.l+'</text><text x="'+(px+bw/2)+'" y="139" text-anchor="middle" font-size="8" fill="currentColor" opacity=".75">'+Math.round(x.m/60)+'h</text>';});
+var my=110-Math.round(meta/mxv*h0);s+='<line x1="6" x2="334" y1="'+my+'" y2="'+my+'" stroke="currentColor" stroke-dasharray="4 4" opacity=".7"/><text x="334" y="'+(my-3)+'" text-anchor="end" font-size="9" fill="currentColor">meta '+meta+'</text></svg>';
+var tot=W.reduce(function(a,x){return a+x.n;},0),av=(tot/8).toFixed(1),l=W[7].n,p=W[6].n,tr=l>p?"📈 acelerando":l<p?"📉 desacelerando":"➡️ no mesmo ritmo";
+ch.innerHTML="<h4>📊 Ritmo por semana</h4>"+s+"<p class='pm'>Média de "+av+" títulos/semana nas últimas 8 · "+tr+" (barra de cima: títulos; abaixo: data e horas)</p>";}
+function all(){tpaint();cpaint();}
+if(mx){var ref=$("mrsem")||mx.firstElementChild;mx.insertBefore(ch,ref.nextSibling);mx.insertBefore(tp,ch.nextSibling);all();mx.addEventListener("toggle",all);document.addEventListener("click",function(){setTimeout(all,450);});}
+/* transferência por QR/link */
+function b64(u8){var s="",i;for(i=0;i<u8.length;i++)s+=String.fromCharCode(u8[i]);return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");}
+function unb64(s){s=s.replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";var b=atob(s),u=new Uint8Array(b.length),i;for(i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u;}
+async function pipe(u8,C){var s=new C("deflate-raw"),w=s.writable.getWriter();w.write(u8);w.close();return new Uint8Array(await new Response(s.readable).arrayBuffer());}
+async function pack(){$("bg").click();var u=new TextEncoder().encode($("bk").value),z=window.CompressionStream?"z":"r";if(z==="z")u=await pipe(u,CompressionStream);return location.origin+location.pathname+"#t="+z+b64(u);}
+async function unpack(c){var u=unb64(c.slice(1));if(c.charAt(0)==="z")u=await pipe(u,DecompressionStream);return new TextDecoder().decode(u);}
+function qr(link,box){try{var q=qrcode(0,"L");q.addData(link);q.make();var n=q.getModuleCount(),sz=4,c=document.createElement("canvas"),x;c.width=c.height=(n+8)*sz;x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.fillStyle="#000";for(var r=0;r<n;r++)for(var k=0;k<n;k++)if(q.isDark(r,k))x.fillRect((k+4)*sz,(r+4)*sz,sz,sz);c.style.cssText="width:100%;max-width:300px;image-rendering:pixelated;border-radius:8px";c.setAttribute("aria-label","QR code do progresso");box.appendChild(c);return true;}catch(e){return false;}}
+var bg=$("bg"),bar=bg&&bg.parentNode;
+if(bar){var tb=document.createElement("button");tb.type="button";tb.id="mrtr";tb.textContent="📲 Transferir (QR/link)";bar.appendChild(tb);
+tb.onclick=async function(){var sh=sheet("<h3>📲 Transferir progresso</h3><p>Gerando…</p>");if(!sh)return;var link;try{link=await pack();}catch(e){sh.querySelector("p").textContent="Não foi possível gerar o link neste aparelho. Use o backup por arquivo.";return;}
+sh.querySelector("p").innerHTML="No outro aparelho, escaneie o QR com a câmera (ou abra o link). Ele vai pedir para restaurar. <b>Isso contém seu progresso: não compartilhe publicamente.</b>";var box=document.createElement("div");box.className="mrb";sh.querySelector(".mrs").appendChild(box);
+var ok=link.length<=2900&&typeof qrcode==="function"&&qr(link,box);if(!ok){var m=document.createElement("p");m.className="pm";m.textContent="Seu progresso é grande demais para um QR; use o link ou o backup por arquivo.";sh.querySelector(".mrs").appendChild(m);}
+var b2=document.createElement("div");b2.className="mrb";b2.innerHTML="<button type='button' id='mrcp'>Copiar link</button><button type='button' id='mrsl'>Compartilhar link</button>";sh.querySelector(".mrs").appendChild(b2);
+$("mrcp").onclick=function(){try{navigator.clipboard.writeText(link).then(function(){$("mrcp").textContent="Copiado ✓";});}catch(e){}};$("mrsl").onclick=function(){if(navigator.share)navigator.share({title:"Maratona Marvel",url:link}).catch(function(){});else $("mrcp").click();};};}
+if(location.hash.indexOf("#t=")===0){var code=location.hash.slice(3);setTimeout(async function(){var txt;try{txt=await unpack(code);JSON.parse(txt);}catch(e){try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}sheet("<h3>Link inválido</h3><p>Não consegui ler o progresso deste link.</p>");return;}
+var sh=sheet("<h3>📲 Progresso recebido</h3><p>Restaurar aqui? Isso <b>substitui</b> o progresso deste aparelho.</p><div class='mrb'><button type='button' id='mrrs'>Restaurar</button><button type='button' id='mrno'>Cancelar</button></div>");
+try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}$("mrno").onclick=function(){sh.hidden=true;};$("mrrs").onclick=function(){$("bk").value=txt;$("br").click();sh.hidden=true;};},1200);}
+})();
+
+}catch(e){console.error("[extras3] "+(e&&e.stack))}

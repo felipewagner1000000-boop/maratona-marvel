@@ -201,7 +201,6 @@ html.noanim .hprw .fg{transition:none}
 
 .sh{background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.38),transparent 55%),repeating-linear-gradient(115deg,rgba(255,255,255,0) 0 10px,rgba(255,255,255,.16) 12px,rgba(255,255,255,0) 15px 28px);background-size:auto,220% 220%;background-position:0 0,var(--mx,50%) var(--my,50%)}
 html.noanim .sh,html.eco .sh{background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.35),transparent 55%)}
-<style id="v8css">
 .fc{margin-top:10px;padding:10px 12px;border-radius:14px;background:rgba(0,0,0,.28);border:1px solid color-mix(in srgb,var(--ac) 35%,transparent)}
 .fc[hidden]{display:none}
 .fcm{margin:0 0 8px;font-size:.92rem;font-weight:700;line-height:1.35}
@@ -1522,3 +1521,6 @@ li:has(button.row[aria-pressed=false]) .pcs{display:none}
 #mrmeta,#mrsheet input{width:58px;min-height:36px;border-radius:8px;border:1px solid var(--ac,#3c3);background:none;color:var(--ink,#fff);font:inherit;padding:0 6px}
 #mrpcc{font-size:.8rem;margin:6px 2px;color:color-mix(in srgb,var(--ink,#fff) 85%,transparent)}
 .pcs.ond{margin-left:54px}li:has(button.row[aria-pressed=false]) .pcs.ond{display:block}
+html.fs1 main{zoom:1.12}html.fs2 main{zoom:1.25}
+#mrfs button[aria-pressed=true]{background:color-mix(in srgb,var(--ac,#3c3) 25%,transparent)}
+#mrtop h4,#mrch h4{margin:14px 0 6px}#mrch svg{color:var(--ink,#fff);display:block}
