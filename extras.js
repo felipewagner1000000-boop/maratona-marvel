@@ -21,7 +21,7 @@ function ls(k,v){try{if(v===undefined)return LS.getItem(k);LS.setItem(k,v);}catc
 document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("#bg,#bc,#bd");if(b)ls("maratona-ext-bk",String(Date.now()));},true);
 window.addEventListener("load",function(){
   var now=Date.now(),D=864e5,first=+ls("maratona-ext-first");if(!first){ls("maratona-ext-first",String(now));return;}
-  var last=Math.max(first,+ls("maratona-ext-bk")||0),shown=+ls("maratona-ext-rem")||0;
+  var last=Math.max(first,+ls("maratona-ext-bk")||0,+ls("maratona-bk-ultimo")||0),shown=+ls("maratona-ext-rem")||0;
   if(now-last>7*D&&now-shown>D){ls("maratona-ext-rem",String(now));setTimeout(function(){bar("💾 Faz mais de 7 dias sem backup do seu progresso.","Fazer backup",function(){var d=document.getElementById("ferr");if(d){d.open=true;var m=document.getElementById("mrmore");if(m)m.open=true;d.scrollIntoView({behavior:"smooth"});}},"ex-bk");},4000);}
 });
 /* 2. aviso de nova versão */
@@ -34,6 +34,15 @@ if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol)){
     document.addEventListener("visibilitychange",function(){if(!document.hidden)reg.update().catch(function(){});});
   }).catch(function(){});
 }
+/* pôsteres: só gera o da miniatura quando ela aparece na tela (abertura bem mais rápida) */
+(function(){if(!("IntersectionObserver" in window))return;
+var io=new IntersectionObserver(function(es){es.forEach(function(x){if(!x.isIntersecting)return;var im=x.target;io.unobserve(im);
+  if(im.getAttribute("data-hq")==="1")return;var li=im.closest("li"),t=li&&li.querySelector(".t"),n=t&&t.textContent.trim();
+  if(n&&window.mrPosterByTitle){var u=window.mrPosterByTitle(n,0);if(u)im.src=u;}else if((im._try=(im._try||0)+1)<20)setTimeout(function(){io.observe(im);},250);});},{rootMargin:"400px"});
+function scan(L){[].forEach.call(L.querySelectorAll("img.pos[data-pi]"),function(im){im.removeAttribute("data-pi");io.observe(im);});}
+function start(){var L=document.getElementById("list");if(!L)return;scan(L);new MutationObserver(function(){scan(L);}).observe(L,{childList:true,subtree:true});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start();
+})();
 /* 6. modais: Esc fecha, foco entra e volta, Tab fica dentro */
 var MODS={sum:"sx",pre:"prx",qz:"qx"},lastFocus={};
 function vis(el){return !el.hidden&&getComputedStyle(el).display!=="none";}

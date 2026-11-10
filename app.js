@@ -104,7 +104,7 @@ gn.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.pre
 g.items.forEach(function(i){
 var li=document.createElement("li"),b=document.createElement("button");
 b.type="button";b.className="row";b.setAttribute("aria-pressed",seen[i]?"true":"false");
-b.innerHTML='<span class="box">✓</span><span class="n">'+(ORD==="cron"?g.items.indexOf(i)+1:i+1)+'</span><span class="pw"><img class="pos" alt="" width="40" height="54" src="'+poster(i)+'"></span><span class="t"></span>'+(REC[i]?'<span class="rec">sugestão</span>':'')+'<span class="dur"></span>';
+b.innerHTML='<span class="box">✓</span><span class="n">'+(ORD==="cron"?g.items.indexOf(i)+1:i+1)+'</span><span class="pw"><img class="pos" alt="" width="40" height="54" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-pi="1"></span><span class="t"></span>'+(REC[i]?'<span class="rec">sugestão</span>':'')+'<span class="dur"></span>';
 b.querySelector(".t").textContent=T[i];b.querySelector(".dur").textContent=fmt(i);
 if(seen[i])li.className="done";
 b.addEventListener("click",function(){
