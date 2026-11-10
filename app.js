@@ -16,7 +16,7 @@ try{
 
 (function(){
 var D=[["Homem de Ferro (2008)",126,0,0,"1"],["Homem de Ferro 2 (2010)",124,0,0,"1"],["Thor (2011)",115,0,0,"sim"],["Capitão América: O Primeiro Vingador (2011)",124,0,0,"1"],["Os Vingadores (2012)",143,0,0,"2"],["Homem de Ferro 3 (2013)",130,0,0,"1"],["Thor: O Mundo Sombrio (2013)",112,0,0,"2"],["Capitão América: O Soldado Invernal (2014)",136,0,0,"2"],["Guardiões da Galáxia (2014)",121,0,0,"sim"],["Vingadores: Era de Ultron (2015)",141,0,0,"1"],["Homem-Formiga (2015)",117,0,0,"2"],["Capitão América: Guerra Civil (2016)",147,0,0,"2"],["Doutor Estranho (2016)",115,0,0,"2"],["Guardiões da Galáxia Vol. 2 (2017)",136,0,0,"5"],["Thor: Ragnarok (2017)",130,0,0,"2"],["Pantera Negra (2018)",134,0,0,"2"],["Vingadores: Guerra Infinita (2018)",149,0,0,"1"],["Homem-Formiga e a Vespa (2018)",118,0,0,"2"],["Capitã Marvel (2019)",123,0,0,"2"],["Vingadores: Ultimato (2019)",181,0,0,"não"],["Viúva Negra (2021)",134,0,0,"1"],["Falcão e o Soldado Invernal (série completa)",300,1,1,""],["WandaVision (série completa)",360,1,0,""],["Loki — temporada 1",285,1,0,""],["Shang-Chi e a Lenda dos Dez Anéis (2021)",132,0,0,"2"],["Eternos (2021)",156,0,0,"2"],["Doutor Estranho no Multiverso da Loucura (2022)",126,0,0,"2"],["Thor: Amor e Trovão (2022)",119,0,0,"2"],["Gavião Arqueiro (série completa)",280,1,0,""],["Ms. Marvel (série completa)",235,1,1,""],["Especial de Natal dos Guardiões da Galáxia (2022)",44,0,1,""],["Pantera Negra: Wakanda Para Sempre (2022)",161,0,0,"1"],["Loki — temporada 2",300,1,0,""],["Agatha: Desde Sempre (série completa)",360,1,1,""],["Homem-Formiga e a Vespa: Quantumania (2023)",125,0,0,"2"],["Guardiões da Galáxia Vol. 3 (2023)",150,0,0,"2"],["As Marvels (2023)",105,0,0,"2"],["Deadpool (2016)",108,0,0,"1"],["Deadpool 2 (2018)",119,0,0,"sim"],["Logan (2017)",137,0,0,"não"],["Deadpool & Wolverine (2024)",128,0,0,"sim"],["Capitão América: Admirável Mundo Novo (2025)",118,0,0,"sim"],["Demolidor: Renascido — temporada 1",450,1,1,""],["Thunderbolts* (2025)",127,0,0,"sim"],["Quarteto Fantástico: Primeiros Passos (2025)",115,0,0,"sim"],["X-Men (2000)",104,0,0,"não"],["X-Men 2 (2003)",134,0,0,"não"],["X-Men: O Confronto Final (2006)",104,0,1,"1"]];
-var T=D.map(function(d){return d[0];}),M=D.map(function(d){return d[1];}),SE=D.map(function(d){return d[2];}),REC=D.map(function(d){return d[3];}),PC=D.map(function(d){return d[4]||"";});
+var T=D.map(function(d){return d[0];}),M=D.map(function(d){return d[1];}),SE=D.map(function(d){return d[2];}),REC=D.map(function(d){return d[3];}),PC=D.map(function(d){return d[4]||"";});window.mrT=T;window.mrM=M;
 var OLD43=["Homem de Ferro (2008)","O Incrível Hulk (2008)","Homem de Ferro 2 (2010)","Thor (2011)","Capitão América: O Primeiro Vingador (2011)","Os Vingadores (2012)","Homem de Ferro 3 (2013)","Thor: O Mundo Sombrio (2013)","Capitão América: O Soldado Invernal (2014)","Guardiões da Galáxia (2014)","Vingadores: Era de Ultron (2015)","Homem-Formiga (2015)","Capitão América: Guerra Civil (2016)","Doutor Estranho (2016)","Guardiões da Galáxia Vol. 2 (2017)","Homem-Aranha: De Volta ao Lar (2017)","Thor: Ragnarok (2017)","Pantera Negra (2018)","Vingadores: Guerra Infinita (2018)","Homem-Formiga e a Vespa (2018)","Capitã Marvel (2019)","Vingadores: Ultimato (2019)","Homem-Aranha: Longe de Casa (2019)","WandaVision (série completa)","Loki — temporada 1","Homem-Aranha: Sem Volta para Casa (2021)","Shang-Chi e a Lenda dos Dez Anéis (2021)","Eternos (2021)","Doutor Estranho no Multiverso da Loucura (2022)","Gavião Arqueiro (série completa)","Pantera Negra: Wakanda Para Sempre (2022)","Loki — temporada 2","Homem-Formiga e a Vespa: Quantumania (2023)","As Marvels (2023)","Deadpool (2016)","Deadpool 2 (2018)","Logan (2017)","Deadpool & Wolverine (2024)","Capitão América: Admirável Mundo Novo (2025)","Thunderbolts* (2025)","Quarteto Fantástico: Primeiros Passos (2025)","X-Men (2000)","X-Men 2 (2003)"];
 function toIdx(o){var r={},k,i;for(k in o){if(!o[k])continue;i=/^\d+$/.test(k)?T.indexOf(OLD43[+k]):T.indexOf(k);if(i>-1)r[i]=o[k];}return r;}
 function toKey(o){var r={},i;for(i in o)if(o[i])r[T[i]]=o[i];return r;}
@@ -52,7 +52,7 @@ function streak(){var d={},k,ks,prev=-9,run=0,best=0,t,a,td;for(k in dts)if(dts[
 function dbr(v){var a=String(v).split("-");return a.length===3?a[2]+"/"+a[1]+"/"+a[0]:"";}
 function saveR(){try{localStorage.setItem("maratona-notas",JSON.stringify(toKey(rate)));}catch(e){}}
 function saveA(){try{localStorage.setItem("maratona-conq",JSON.stringify(ach));}catch(e){}}
-var G=[{n:"Saga do Infinito",a:0,b:19},{n:"Saga do Multiverso",a:20,b:36},{n:"Deadpool e Wolverine",a:37,b:40},{n:"Fase recente",a:41,b:44},{n:"X-Men clássicos",a:45,b:47}];
+var G=[{n:"Saga do Infinito",a:0,b:19},{n:"Saga do Multiverso",a:20,b:36},{n:"Deadpool e Wolverine",a:37,b:40},{n:"Fase recente",a:41,b:44},{n:"X-Men clássicos",a:45,b:47}];window.mrG=G;
 function $(id){return document.getElementById(id);}
 var ul=$("list"),cnt=$("cnt"),pb=$("pb"),rs=$("rs"),rsTimer=0;
 var WNOW="",WKEY="maratona-assistindo";try{WNOW=localStorage.getItem(WKEY)||"";}catch(e){}
@@ -212,6 +212,10 @@ var vo=$("vo");function voLabel(){vo.textContent=VIB?"📳 Vibração: ligada":"
 vo.addEventListener("click",function(){VIB=!VIB;try{localStorage.setItem("maratona-vib",VIB?"1":"0");}catch(e){}voLabel();$("vs").textContent="";if(VIB)buzz(80);});
 sm.addEventListener("click",function(){SOM=!SOM;try{localStorage.setItem("maratona-som",SOM?"1":"0");}catch(e){}smLabel();if(SOM)tone(660,.1,"square",.06);});
 var AL=[
+{id:"n_meta",e:"🎯",n:"Meta semanal cumprida",ok:function(c){try{return window.mrMetaOk();}catch(e){return false;}}},
+{id:"n_pos",e:"🎞️",n:"10 cenas pós-créditos",ok:function(c){try{return window.mrPosN()>=10;}catch(e){return false;}}},
+{id:"s_sem",e:"🔥",n:"5 títulos em 7 dias",ok:function(c){try{return window.mrSemN()>=5;}catch(e){return false;}}},
+{id:"q_saga",e:"🗺️",n:"70% de acertos em 3 sagas",ok:function(c){try{return window.mrQSOk();}catch(e){return false;}}},
 {id:"a1",e:"🎬",n:"Primeiro filme",ok:function(c){return c.n>=1;}},
 {id:"a2",e:"🍿",n:"10 títulos",ok:function(c){return c.n>=10;}},
 {id:"a3",e:"⚡",n:"Metade da lista",ok:function(c){return c.n>=Math.ceil(T.length/2);}},
@@ -586,7 +590,7 @@ function qPts(g,k){var base=10*(g.lv+1),el=(Date.now()-g.t0)/1000,bonus=Math.max
 function qAns(v){var g=QG,k,box=$("qbody"),bs,i,b,mi,before=qLevel(),ok,up,fb,pts=0,x,last,gift=0;
 if(!g||g.lock)return;g.lock=true;quizStop();k=g.cur;ok=v===k.corr;
 qMark(g,k);g.tot++;if(g.type!==2){QRC.push(k.m+":"+k.q+":"+k.v);if(QRC.length>24)QRC.shift();}
-QSTAT[k.m]=QSTAT[k.m]||[0,0];QSTAT[k.m][1]++;
+QSTAT[k.m]=QSTAT[k.m]||[0,0];QSTAT[k.m][1]++;try{if(window.mrQS)window.mrQS(k.q,ok);}catch(e){}
 if(ok){pts=qPts(g,k);g.pts+=pts;QSTAT[k.m][0]++;QZ++;QST++;g.ok++;if(g.type===3&&g.ok%10===0){g.f5++;g.sk++;gift=1;}if(QST>QBEST)QBEST=QST;if(QST>g.bst)g.bst=QST;mi=QMISS.indexOf(k.q);if(mi>-1)QMISS.splice(mi,1);qSave("maratona-quiz",String(QZ));sfxAch();}
 else{QST=0;if(QMISS.indexOf(k.q)<0)QMISS.push(k.q);g.miss.push(k.q);if(g.type===1)g.lives--;sfxTick(false);}
 qSave("maratona-qstat",QSTAT);qSaveM();
@@ -3472,3 +3476,52 @@ setInterval(check,30000);document.addEventListener("visibilitychange",function()
 })();
 
 }catch(e){console.error("[extras]",e)}
+/* extras2 */
+try{
+/* Extras 2: quiz por saga/recordes, resumo semanal e metas, onde parei, contador de pós-créditos */
+(function(){
+function $(i){return document.getElementById(i);}
+function J(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
+function S(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function N(k){try{return parseInt(localStorage.getItem(k)||"0",10)||0;}catch(e){return 0;}}
+function fm(m){var h=Math.floor(m/60),r=m%60;return h?h+"h"+(r?" "+r+"min":""):r+"min";}
+function ds(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);}
+function sagaOf(i){var G=window.mrG||[],j;for(j=0;j<G.length;j++)if(i>=G[j].a&&i<=G[j].b)return G[j].n;return null;}
+/* 1. quiz por saga */
+window.mrQS=function(q,ok){if(typeof q!=="number")return;var n=sagaOf(q);if(!n)return;var o=J("maratona-qsaga",{});o[n]=o[n]||[0,0];o[n][1]++;if(ok)o[n][0]++;S("maratona-qsaga",o);};
+window.mrQSOk=function(){var o=J("maratona-qsaga",{}),k,c=0;for(k in o)if(o[k][1]>=5&&o[k][0]/o[k][1]>=.7)c++;return c>=3;};
+var qc=document.querySelector("#quizb .qzc"),qp=document.createElement("div");qp.id="mrqp";
+function qpaint(){var o=J("maratona-qsaga",{}),h="<h4>🏅 Recordes e estatísticas</h4><ul class='mrl'><li>🔥 Maior sequência de acertos: <b>"+N("maratona-qrec")+"</b></li><li>🎯 Melhor partida: <b>"+N("maratona-qpb")+" pts</b></li><li>❤️ Recorde de sobrevivência: <b>"+N("maratona-qsurv")+"</b></li><li>✅ Total de acertos: <b>"+N("maratona-quiz")+"</b></li></ul>",k,ks=Object.keys(o),w=null;
+h+="<h4>🗂️ Acertos por saga</h4>";
+if(!ks.length)h+="<p class='pm'>Responda perguntas para ver seu desempenho por saga (conta a partir desta versão).</p>";
+else{ks.forEach(function(n){var p=Math.round(o[n][0]/o[n][1]*100);if(o[n][1]>=5&&(!w||p<w[0]))w=[p,n];h+="<div class='mrg'><span>"+n+"</span><i style='--p:"+p+"%'></i><b>"+p+"% <small>("+o[n][1]+")</small></b></div>";});
+if(w&&w[0]<80)h+="<p class='pm'>🎯 Para treinar: <b>"+w[1]+"</b> ("+w[0]+"%). Use “Rever o que errei” no quiz.</p>";}
+qp.innerHTML=h;}
+if(qc){qc.appendChild(qp);qpaint();var qb=$("quizb");qb.addEventListener("toggle",qpaint);qb.addEventListener("click",function(){setTimeout(qpaint,400);});}
+/* 2. resumo semanal e metas */
+function week(off){var d=new Date(),t=d.getDay()||7,a=new Date(d.getFullYear(),d.getMonth(),d.getDate()-(t-1)-7*off),b=new Date(a.getFullYear(),a.getMonth(),a.getDate()+6);return [ds(a),ds(b)];}
+function tally(w){var D=J("maratona-datas",{}),T=window.mrT||[],M=window.mrM||[],n=0,m=0,k,i;for(k in D){if(D[k]>=w[0]&&D[k]<=w[1]){n++;i=T.indexOf(k);if(i>-1)m+=M[i];}}return [n,m];}
+window.mrSemN=function(){var D=J("maratona-datas",{}),v=[],k,best=0;for(k in D)if(D[k])v.push(D[k]);v.sort();v.forEach(function(x,i){var a=x.split("-"),t=Date.UTC(+a[0],+a[1]-1,+a[2]),c=0,j;for(j=i;j<v.length;j++){var b=v[j].split("-");if(Date.UTC(+b[0],+b[1]-1,+b[2])-t<=6*864e5)c++;}if(c>best)best=c;});return best;};
+window.mrMetaOk=function(){return (J("maratona-meta-hist",[])||[]).length>0;};
+var mx=$("mx"),mp=document.createElement("div");mp.id="mrsem";
+function spaint(){var w0=week(0),w1=week(1),a=tally(w0),b=tally(w1),meta=J("maratona-meta",2),pc=Math.min(100,Math.round(a[0]/meta*100)),dif=a[0]-b[0];
+mp.innerHTML="<h4>📆 Resumo da semana (seg–dom)</h4><p><b>"+a[0]+"</b> título"+(a[0]===1?"":"s")+" · <b>"+fm(a[1])+"</b> assistidos"+(b[0]||a[0]?" <small>("+(dif>0?"+"+dif:dif)+" vs. semana passada)</small>":"")+"</p><div class='mrg'><span>🎯 Meta: <input id='mrmeta' type='number' min='1' max='20' value='"+meta+"' aria-label='Meta de títulos por semana'> por semana</span><i style='--p:"+pc+"%'></i><b>"+Math.min(a[0],99)+"/"+meta+"</b></div>";
+var inp=$("mrmeta");if(inp)inp.onchange=function(){S("maratona-meta",Math.max(1,Math.min(20,+inp.value||2)));spaint();};
+var h=J("maratona-meta-hist",[]);if(a[0]>=meta&&h.indexOf(w0[0])<0){h.push(w0[0]);S("maratona-meta-hist",h);var t=$("toast");if(t){t.textContent="🎯 Meta da semana cumprida!";t.className="show";setTimeout(function(){t.className="";},3200);}}}
+if(mx){mx.insertBefore(mp,mx.firstElementChild.nextSibling);spaint();mx.addEventListener("toggle",spaint);}
+/* 3. onde parei (séries) + contador de pós-créditos */
+var OND=J("maratona-onde",{});
+function dress2(){Array.prototype.forEach.call(document.querySelectorAll("#list li:not([data-on])"),function(li){var b=li.querySelector("button.row");if(!b||li.classList.contains("gh"))return;li.dataset.on="1";var d=b.querySelector(".dur");if(!d||d.textContent.indexOf("📺")<0)return;
+var t=b.querySelector(".t").textContent,x=document.createElement("button");x.type="button";x.className="pcs ond";function p(){x.textContent=OND[t]?"📺 Parei em "+OND[t]:"📺 Onde parei?";}p();
+x.onclick=function(){var m=/T(\d+)\s*E(\d+)/.exec(OND[t]||"")||[0,"1","1"],sh=$("mrsheet");if(!sh)return;sh.innerHTML="<div class='mrs'><button type='button' class='mrx' aria-label='Fechar'>✕</button><h3>📺 Onde parei</h3><p class='mrt'></p><div class='mrb'><label>Temporada <input id='mrt1' type='number' min='1' value='"+m[1]+"'></label><label>Episódio <input id='mrt2' type='number' min='1' value='"+m[2]+"'></label></div><div class='mrb'><button type='button' id='mrsv'>Salvar</button><button type='button' id='mrcl'>Limpar</button></div></div>";sh.hidden=false;sh.querySelector(".mrt").textContent=t;
+$("mrsv").onclick=function(){OND[t]="T"+(+$("mrt1").value||1)+" E"+(+$("mrt2").value||1);S("maratona-onde",OND);p();sh.hidden=true;};$("mrcl").onclick=function(){delete OND[t];S("maratona-onde",OND);p();sh.hidden=true;};};
+b.parentNode.insertBefore(x,b.nextSibling);});}
+var ul=$("list");if(ul&&window.MutationObserver){new MutationObserver(function(){dress2();}).observe(ul,{childList:true});}dress2();
+var bar=document.querySelector(".top .bar"),pcc=document.createElement("div");pcc.id="mrpcc";
+function cpaint(){var POS=J("maratona-pos",{}),seen=0,x=0;Array.prototype.forEach.call(document.querySelectorAll("#list li button.row"),function(b){if(b.getAttribute("aria-pressed")==="true"){seen++;if(POS[b.querySelector(".t").textContent])x++;}});
+pcc.textContent="🎞️ Pós-créditos: "+x+" de "+seen+" títulos vistos"+(seen>=5&&x===seen?" 🏅 Colecionador!":"");}
+window.mrPosN=function(){return Object.keys(J("maratona-pos",{})).length;};
+if(bar){bar.parentNode.insertBefore(pcc,bar.nextSibling);cpaint();document.addEventListener("click",function(){setTimeout(function(){cpaint();spaint();},400);});if(ul&&window.MutationObserver)new MutationObserver(cpaint).observe(ul,{attributes:true,subtree:true,attributeFilter:["aria-pressed"]});}
+})();
+
+}catch(e){console.error("[extras2] "+(e&&e.stack))}

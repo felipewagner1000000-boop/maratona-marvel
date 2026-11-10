@@ -1516,3 +1516,9 @@ body{padding-bottom:calc(68px + env(safe-area-inset-bottom,0px))}
 .pcs[aria-pressed=true]{background:color-mix(in srgb,var(--ac,#3c3) 25%,transparent);border-style:solid}
 li:has(button.row[aria-pressed=false]) .pcs{display:none}
 .pm,.rnote,#home small{color:color-mix(in srgb,var(--ink,#fff) 82%,transparent)}
+#mrqp h4,#mrsem h4{margin:14px 0 6px}.mrl{padding-left:18px;margin:4px 0}.mrl li{margin:3px 0}
+.mrg{display:grid;grid-template-columns:1fr 64px auto;gap:8px;align-items:center;margin:6px 0;font-size:.85rem}
+.mrg i{height:8px;border-radius:6px;background:linear-gradient(90deg,var(--ac,#3c3) var(--p,0%),color-mix(in srgb,var(--ink,#fff) 18%,transparent) 0)}
+#mrmeta,#mrsheet input{width:58px;min-height:36px;border-radius:8px;border:1px solid var(--ac,#3c3);background:none;color:var(--ink,#fff);font:inherit;padding:0 6px}
+#mrpcc{font-size:.8rem;margin:6px 2px;color:color-mix(in srgb,var(--ink,#fff) 85%,transparent)}
+.pcs.ond{margin-left:54px}li:has(button.row[aria-pressed=false]) .pcs.ond{display:block}
