@@ -434,7 +434,7 @@ $("smin").value=SES;
 $("smin").addEventListener("input",function(){var v=parseInt(this.value,10);if(v>=10&&v<=900){SES=v;try{localStorage.setItem("maratona-sessao",String(v));}catch(e){}renderSession();}});
 function essLbl(){$("ess").textContent=ESS?"🛤️ Meta: só o essencial (toque para ver tudo)":"📚 Meta: lista completa (toque para só o essencial)";$("ess").setAttribute("aria-pressed",ESS?"true":"false");}
 $("ess").addEventListener("click",function(){ESS=!ESS;try{localStorage.setItem("maratona-ess",ESS?"1":"0");}catch(e){}essLbl();count();sfxTick(ESS);});essLbl();
-function bkStr(){return JSON.stringify({v:1,seen:toKey(seen),rate:toKey(rate),ach:ach,q:QZ,hrs:HRS,ord:ORD,tema:TEMA,fonte:FONTE,fav:fav,nts:nts,dts:dts,ess:ESS,mis:MIS,old:OLDS});}
+function bkStr(){return JSON.stringify({v:1,seen:toKey(seen),rate:toKey(rate),ach:ach,q:QZ,hrs:HRS,ord:ORD,tema:TEMA,fonte:FONTE,fav:fav,nts:nts,dts:dts,ess:ESS,mis:MIS,old:OLDS,loja:(window.__lojaExport?window.__lojaExport():undefined)});}
 function bkRem(){var s=$("bks"),t=0,d,due;try{t=parseInt(localStorage.getItem("maratona-bk-ultimo")||"0",10)||0;}catch(e){}d=t?Math.floor((Date.now()-t)/864e5):-1;due=total()>0&&(d<0||d>=7);s.textContent=due?"💾 Backup do progresso ⚠️":"💾 Backup do progresso";if(due&&!$("bs").textContent)$("bs").textContent=d<0?"Você ainda não fez backup. Baixe um arquivo para não perder seu progresso.":"Último backup há "+d+" dias. Baixe um arquivo novo.";}
 function bkMark(){try{localStorage.setItem("maratona-bk-ultimo",String(Date.now()));}catch(e){}bkRem();}
 $("bg").addEventListener("click",function(){$("bk").value=bkStr();$("bk").select();$("bs").textContent="Código gerado. Copie e guarde em um lugar seguro.";bkMark();});
@@ -446,7 +446,7 @@ $("br").addEventListener("click",function(){
 try{
 var o=JSON.parse($("bk").value);if(!o||o.v!==1)throw 0;
 seen=toIdx(o.seen||{});rate=toIdx(o.rate||{});ach=o.ach||{};QZ=o.q|0;if(o.hrs>0)HRS=o.hrs;if(o.ord)ORD=o.ord;if(TEMAS[o.tema])TEMA=o.tema;if(o.fonte){FONTE=o.fonte;try{localStorage.setItem("maratona-fonte",FONTE);}catch(e){}applyFont();}
-fav=o.fav||{};nts=o.nts||{};dts=o.dts||{};if(o.mis){MIS=o.mis;saveMis();}OLDS=o.old||{};saveOld();ESS=!!o.ess;try{localStorage.setItem("maratona-ess",ESS?"1":"0");}catch(e){}essLbl();save();saveR();saveA();saveX();
+fav=o.fav||{};nts=o.nts||{};dts=o.dts||{};if(o.mis){MIS=o.mis;saveMis();}OLDS=o.old||{};saveOld();if(o.loja&&window.__lojaImport)window.__lojaImport(o.loja);ESS=!!o.ess;try{localStorage.setItem("maratona-ess",ESS?"1":"0");}catch(e){}essLbl();save();saveR();saveA();saveX();
 try{localStorage.setItem("maratona-quiz",String(QZ));localStorage.setItem("maratona-horas",String(HRS));localStorage.setItem("maratona-ordem",ORD);localStorage.setItem("maratona-tema",TEMA);}catch(e){}
 $("hrs").value=HRS;markOrd();applyTheme();build();$("bs").textContent="Progresso restaurado ✅";
 }catch(e){$("bs").textContent="Código inválido. Cole o código completo.";}

@@ -1,0 +1,21 @@
+/* Lojinha do robô */
+#hloja{display:block;margin:10px auto 0;padding:10px 16px;border-radius:12px;border:1px solid var(--ac,#39ff14);background:rgba(0,0,0,.35);color:#fff;font:700 .9rem system-ui,sans-serif;cursor:pointer}
+#loja{position:fixed;inset:0;z-index:2147483000;background:#050a07;color:#fff;overflow:auto;padding:calc(12px + env(safe-area-inset-top,0px)) 14px calc(24px + env(safe-area-inset-bottom,0px));font:15px/1.35 system-ui,sans-serif}
+#loja[hidden]{display:none}
+#loja .lh{display:flex;align-items:center;gap:10px;justify-content:space-between}
+#loja h2{margin:0;font-size:1.15rem}
+#loja .lc{background:#0b2a14;border:1px solid var(--ac,#39ff14);border-radius:20px;padding:4px 12px;font-weight:800}
+#loja .lx{background:none;border:0;color:#fff;font-size:1.3rem;padding:6px 10px}
+#loja .lp{height:150px;display:flex;align-items:flex-end;justify-content:center;position:relative;margin:6px 0;border-radius:14px;background:radial-gradient(ellipse at 50% 70%,rgba(57,255,20,.18),transparent 70%)}
+#loja .lp .dm{position:relative!important;right:auto!important;bottom:auto!important;left:auto!important;top:auto!important;translate:none!important;margin:0 auto;animation:none}
+#loja h3{margin:14px 0 6px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac,#39ff14)}
+#loja .li{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid rgba(255,255,255,.12);border-radius:12px;margin-bottom:6px;background:rgba(255,255,255,.04)}
+#loja .li .ic{font-size:1.6rem;width:34px;text-align:center}
+#loja .li .nm{flex:1}
+#loja .li button{min-width:96px;padding:8px 10px;border-radius:10px;border:0;font-weight:800;background:var(--ac,#39ff14);color:#000}
+#loja .li button.off{background:#2a3a30;color:#8fa;opacity:.7}
+#loja .li button.on{background:#fff;color:#000}
+#loja .lt{width:100%;margin-top:10px;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:none;color:#fff}
+.lj-pop{position:fixed;right:16px;bottom:calc(120px + env(safe-area-inset-bottom,0px));z-index:99998;font:800 1rem system-ui,sans-serif;color:#ffd54a;text-shadow:0 0 8px #000;pointer-events:none;animation:ljp 1.6s ease-out forwards}
+@keyframes ljp{from{transform:translateY(0);opacity:1}to{transform:translateY(-46px);opacity:0}}
+.ljl{position:absolute;pointer-events:none}
