@@ -30,3 +30,13 @@
 .dm.q-on .pq.hit{animation:pqh .6s ease-out}
 @keyframes pqb{to{transform:translateY(-5px) rotate(4deg)}}
 @keyframes pqh{0%{transform:scale(1)}40%{transform:translateY(-12px) scale(1.35)}100%{transform:none}}
+
+/* mãos: esferas (palma, 3 dedos, polegar) */
+.rh1,.rh2{transform-style:preserve-3d;overflow:visible}
+.rh1::after,.rh2::after{inset:4px;opacity:.55}
+.hf{position:absolute;display:block;width:5px;height:5px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#fff 0 12%,#dfe8ee 30%,#9db0bc 60%,#4c5d69);box-shadow:0 1px 2px rgba(0,0,0,.45);pointer-events:none}
+.hf.f1{left:.5px;top:9.5px;transform:translateZ(1px)}
+.hf.f2{left:3.8px;top:11px;transform:translateZ(2px)}
+.hf.f3{left:7.2px;top:9.5px;transform:translateZ(1px)}
+.hf.th{left:10.6px;top:2.5px;width:4.6px;height:4.6px;transform:translateZ(3px)}
+.hf.th.hr{left:-3.2px}

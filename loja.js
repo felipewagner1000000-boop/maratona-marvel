@@ -24,8 +24,21 @@ var IT=[
 ,{id:"medalha",n:"Medalha dourada",i:"🏅",p:35,slot:"neck",on:"rt",mk:function(p){L(p,"left:11px;top:2px;width:14px;height:6px;background:linear-gradient(90deg,#e53935 50%,#1e88e5 50%);clip-path:polygon(0 0,100% 0,60% 100%,40% 100%)",[13],0);L(p,"left:13px;top:8px;width:10px;height:10px;background:radial-gradient(circle at 35% 30%,#fff3b0,#f9a825 70%);border-radius:50%;border:1px solid #b36b00",[14],0);}}
 ,{id:"asas",n:"Asas de anjo",i:"🪽",p:70,slot:"body",on:"rt",mk:function(p){[["-30px","-1"],["32px","1"]].forEach(function(a){L(p,"left:"+a[0]+";top:-14px;width:34px;height:36px;background:linear-gradient(135deg,#fff,#b3e5fc);border-radius:"+(a[1]==="-1"?"90% 10% 60% 10%":"10% 90% 10% 60%")+";transform-origin:50% 100%",[-14,-12,-10],1);});}}
 ,{id:"escudo",n:"Escudo estrelado",i:"🛡️",p:55,slot:"hand",on:"rt",mk:function(p){L(p,"left:-34px;top:2px;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle,#1565c0 0 32%,#fff 33% 45%,#c62828 46% 70%,#fff 71% 82%,#c62828 83%)",[14,15],0);L(p,"left:-27px;top:9px;width:12px;height:12px;background:#fff;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)",[16],0);}}
+,{id:"tiara",n:"Tiara de princesa",g:"f",i:"👸",p:50,slot:"head",on:"rh",mk:function(p){L(p,"left:8px;top:-7px;width:40px;height:10px;border:2px solid #e3e9ed;border-bottom:0;border-radius:20px 20px 0 0",R(10,22,3),0);L(p,"left:25px;top:-13px;width:6px;height:7px;background:#ff4081;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)",[22,23],0);[["14px","-10px"],["37px","-10px"]].forEach(function(a){L(p,"left:"+a[0]+";top:"+a[1]+";width:4px;height:4px;background:#b3e5fc;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)",[22],0);});}}
+,{id:"laco",n:"Laço de cabelo",g:"f",i:"🎀",p:30,slot:"head",on:"rh",mk:function(p){L(p,"left:26px;top:-13px;width:11px;height:13px;background:#ff5fa2;clip-path:polygon(100% 50%,0 0,0 100%)",[2,4,6],1);L(p,"left:37px;top:-13px;width:11px;height:13px;background:#ff5fa2;clip-path:polygon(0 50%,100% 0,100% 100%)",[2,4,6],1);L(p,"left:35px;top:-9px;width:4px;height:5px;background:#d81b60;border-radius:2px",[7],0);}}
+,{id:"flor",n:"Flor no cabelo",g:"f",i:"🌸",p:30,slot:"head",on:"rh",mk:function(p){L(p,"left:12px;top:-6px;width:5px;height:5px;background:#ffd54a;border-radius:50%;box-shadow:0 -5px 0 1px #ff80ab,5px 0 0 1px #ff80ab,0 5px 0 1px #ff80ab,-5px 0 0 1px #ff80ab",[18,19],0);}}
+,{id:"cilios",n:"Cílios longos",g:"f",i:"👁️",p:25,slot:"face",on:"rh",mk:function(p){[[7,13,-38],[9,10,-22],[11,8,-6],[45,13,38],[43,10,22],[41,8,6]].forEach(function(a){L(p,"left:"+a[0]+"px;top:"+a[1]+"px;width:6px;height:2px;background:#111;border-radius:1px;rotate:"+a[2]+"deg",[32],0);});}}
+,{id:"batom",n:"Batom",g:"f",i:"💄",p:20,slot:"face",on:"rh",mk:function(p){L(p,"left:22px;top:34px;width:12px;height:6px;background:linear-gradient(#f06292,#c2185b);border-radius:50% 50% 60% 60%",[31,32],0);}}
+,{id:"colar",n:"Colar de pérolas",g:"f",i:"📿",p:35,slot:"neck",on:"rt",mk:function(p){[[6,3],[10,5],[14,6.5],[18,7],[22,6.5],[26,5],[30,3]].forEach(function(a){L(p,"left:"+a[0]+"px;top:"+a[1]+"px;width:4px;height:4px;background:radial-gradient(circle at 35% 30%,#fff,#e8dfe6 60%,#b9aab5);border-radius:50%",[14],0);});}}
+,{id:"tutu",n:"Saia de bailarina",g:"f",i:"🩰",p:55,slot:"waist",on:"rt",mk:function(p){L(p,"left:-9px;top:13px;width:54px;height:13px;background:radial-gradient(circle at 50% 0,#ff9ec2,#ec6a99);border-radius:8px 8px 50% 50%",R(-9,11,4),1);}}
+,{id:"cowboy",n:"Chapéu de cowboy",g:"m",i:"🤠",p:40,slot:"head",on:"rh",mk:function(p){L(p,"left:-7px;top:-4px;width:70px;height:6px;background:#8d5a2b;border-radius:3px",R(-22,22,4),1);L(p,"left:12px;top:-21px;width:32px;height:18px;background:linear-gradient(#b87a3f,#8d5a2b);border-radius:9px 9px 0 0",R(-12,12,3),1);L(p,"left:12px;top:-7px;width:32px;height:3px;background:#3e2a14",[13],0);}}
+,{id:"obra",n:"Capacete de obra",g:"m",i:"👷",p:35,slot:"head",on:"rh",mk:function(p){L(p,"left:5px;top:-14px;width:46px;height:18px;background:linear-gradient(#ffee58,#f9a825);border-radius:23px 23px 2px 2px",R(-16,16,3),1);L(p,"left:23px;top:-18px;width:10px;height:6px;background:#fbc02d;border-radius:3px 3px 0 0",R(-14,14,4),1);L(p,"left:8px;top:2px;width:40px;height:3px;background:#f9a825",R(20,28,2),0);}}
+,{id:"barba",n:"Barba",g:"m",i:"🧔",p:30,slot:"face",on:"rh",mk:function(p){L(p,"left:14px;top:33px;width:28px;height:13px;background:linear-gradient(#4a3426,#2b1a10);border-radius:2px 2px 14px 14px",[30,31,32],0);}}
+,{id:"aviador",n:"Óculos aviador",g:"m",i:"😎",p:35,slot:"face",on:"rh",mk:function(p){["8px","29px"].forEach(function(x){L(p,"left:"+x+";top:12px;width:19px;height:15px;background:linear-gradient(135deg,rgba(80,120,90,.85),rgba(10,30,20,.95));border:2px solid #d4af37;border-radius:4px 4px 12px 12px",[31,32],0);});L(p,"left:26px;top:16px;width:4px;height:2px;background:#d4af37",[32],0);}}
+,{id:"gravatal",n:"Gravata longa",g:"m",i:"👔",p:30,slot:"neck",on:"rt",mk:function(p){L(p,"left:16px;top:0px;width:5px;height:4px;background:#1565c0;border-radius:1px",[14],0);L(p,"left:15px;top:4px;width:7px;height:15px;background:linear-gradient(#1976d2,#0d47a1);clip-path:polygon(15% 0,85% 0,100% 80%,50% 100%,0 80%)",[14],0);}}
+,{id:"cinturao",n:"Cinturão de herói",g:"m",i:"🥋",p:40,slot:"waist",on:"rt",mk:function(p){L(p,"left:-1px;top:15px;width:38px;height:5px;background:linear-gradient(#ffca28,#ff8f00);border-radius:2px",R(-10,12,2),1);L(p,"left:14px;top:13.5px;width:9px;height:8px;background:#e53935;border:1px solid #ffd54a;border-radius:2px",[13,14],0);}}
 ];
-var SL=[["head","Cabeça"],["face","Rosto"],["neck","Pescoço"],["body","Costas"],["hand","Mão"]];
+var SL=[["head","Cabeça"],["face","Rosto"],["neck","Pescoço"],["waist","Cintura"],["body","Costas"],["hand","Mão"]];
 function find(id){return IT.filter(function(x){return x.id===id;})[0];}
 function apply(d){if(!d)return;[].forEach.call(d.querySelectorAll(".ljl"),function(e){e.remove();});
   IT.forEach(function(it){if(eq[it.slot]===it.id&&own[it.id]){var p=d.querySelector("."+it.on);if(p)it.mk(p);}});}
@@ -81,6 +94,19 @@ function draw(){var W=720,H=900,cv=document.createElement("canvas");cv.width=W;c
   if(e("cachecol")){rr(c,-20,48,40,7,3.5);c.fillStyle="#2e7d32";c.fill();c.fillStyle="#c8e6c9";for(var q=-18;q<18;q+=7)c.fillRect(q,48,2,7);rr(c,6,52,7,18,2);c.fillStyle="#2e7d32";c.fill();}
   if(e("medalha")){pg(c,[[-4,52],[4,52],[2,62],[-2,62]],"#1e88e5");c.beginPath();c.arc(0,66,6,0,7);c.fillStyle="#f9a825";c.fill();}
   if(e("escudo")){[13,10,6,3].forEach(function(r,i){c.beginPath();c.arc(-40,66,r,0,7);c.fillStyle=["#c62828","#fff","#c62828","#1565c0"][i];c.fill();});}
+  if(e("tiara")){c.strokeStyle="#e3e9ed";c.lineWidth=2;c.beginPath();c.arc(0,4,19,Math.PI*1.08,Math.PI*1.92);c.stroke();pg(c,[[0,-17],[3,-13],[0,-9],[-3,-13]],"#ff4081");}
+  if(e("laco")){pg(c,[[7,-5],[-2,-12],[-2,2]],"#ff5fa2");pg(c,[[7,-5],[16,-12],[16,2]],"#ff5fa2");c.beginPath();c.arc(7,-5,2.6,0,7);c.fillStyle="#d81b60";c.fill();}
+  if(e("flor")){[[0,-5],[5,0],[0,5],[-5,0]].forEach(function(q){c.beginPath();c.arc(-14+q[0],-2+q[1],3.2,0,7);c.fillStyle="#ff80ab";c.fill();});c.beginPath();c.arc(-14,-2,2.6,0,7);c.fillStyle="#ffd54a";c.fill();}
+  if(e("cilios")){c.strokeStyle="#111";c.lineWidth=1.3;[-1,1].forEach(function(s){for(var k=0;k<3;k++){c.beginPath();c.moveTo(s*(14+k*2.2),12+k*1.2);c.lineTo(s*(19+k*2.6),7+k*.2);c.stroke();}});}
+  if(e("batom")){c.beginPath();c.ellipse(0,37,6,3,0,0,7);c.fillStyle="#e91e63";c.fill();}
+  if(e("colar")){c.fillStyle="#f3ecf1";[-12,-8,-4,0,4,8,12].forEach(function(x){c.beginPath();c.arc(x,53+Math.abs(x)*-.08+ (6-Math.abs(x))*.3,2.1,0,7);c.fill();});}
+  if(e("tutu")){c.beginPath();c.ellipse(0,76,27,8,0,0,7);c.fillStyle="#ec6a99";c.fill();}
+  if(e("cowboy")){c.beginPath();c.ellipse(0,-2,34,4,0,0,7);c.fillStyle="#8d5a2b";c.fill();rr(c,-16,-20,32,18,8);c.fillStyle="#a06a36";c.fill();c.fillStyle="#3e2a14";c.fillRect(-16,-6,32,3);}
+  if(e("obra")){c.beginPath();c.arc(0,2,23,Math.PI,0);c.fillStyle="#fbc02d";c.fill();c.fillStyle="#f9a825";c.fillRect(-23,1,46,3);}
+  if(e("barba")){rr(c,-14,33,28,13,6);c.fillStyle="#3a2518";c.fill();}
+  if(e("aviador")){c.strokeStyle="#d4af37";c.lineWidth=2;[-1,1].forEach(function(s){rr(c,s>0?2:-21,13,19,15,6);c.fillStyle="rgba(20,50,35,.9)";c.fill();c.stroke();});}
+  if(e("gravatal")){pg(c,[[0,53],[-3,52],[-3.5,70],[0,74],[3.5,70],[3,52]],"#1565c0");}
+  if(e("cinturao")){c.fillStyle="#ffb300";c.fillRect(-18,70,36,5);c.fillStyle="#e53935";c.fillRect(-4,69,8,7);}
   c.restore();
   c.font="600 24px system-ui,sans-serif";c.fillStyle="#9fe8a6";c.textAlign="center";c.fillText("Vingadores: Doutor Destino · 17 de dezembro",360,H-60);
   return cv;}
@@ -97,7 +123,7 @@ function render(){
   var h='<div class="lh"><h2>🛍️ Lojinha do robô</h2><span class="lc" id="ljc">🪙 '+coins+'</span><button class="lx" type="button" id="ljx" aria-label="Fechar">✕</button></div><div class="lp" id="ljp"></div><p style="margin:0;opacity:.75;font-size:.85rem">Ganhe 🪙 '+PER+' a cada resposta certa no quiz.</p>';
   SL.forEach(function(sl){h+='<h3>'+sl[1]+'</h3>';IT.filter(function(x){return x.slot===sl[0];}).forEach(function(it){
     var o=own[it.id],e=eq[it.slot]===it.id,btn=!o?'<button type="button" data-a="buy" data-i="'+it.id+'" class="'+(coins<it.p?"off":"")+'">Comprar 🪙 '+it.p+'</button>':'<button type="button" data-a="eq" data-i="'+it.id+'" class="'+(e?"on":"")+'">'+(e?"Tirar":"Equipar")+'</button>';
-    h+='<div class="li"><span class="ic" aria-hidden="true">'+it.i+'</span><span class="nm">'+it.n+'</span>'+btn+'</div>';});});
+    h+='<div class="li"><span class="ic" aria-hidden="true">'+it.i+'</span><span class="nm">'+it.n+(it.g==="f"?' <small style="opacity:.7">♀</small>':it.g==="m"?' <small style="opacity:.7">♂</small>':'')+'</span>'+btn+'</div>';});});
   h+='<button type="button" class="lt" data-a="share">📸 Compartilhar meu robô</button><button type="button" class="lt" data-a="clr">Tirar tudo do robô</button>';
   m.innerHTML=h;var pv=document.getElementById("ljp"),d=document.querySelector("body>.dm")||document.querySelector(".dm:not(#ljp .dm)");
   if(d&&pv){prev=d.cloneNode(true);prev.removeAttribute("id");prev.setAttribute("style","");apply(prev);pv.appendChild(prev);}
