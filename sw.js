@@ -1,5 +1,5 @@
 /* Service worker da Maratona Marvel: cache dos arquivos do app, funciona offline */
-var C="maratona-v202611102100"+"202611100442";var F=["./","index.html","style.css","app.js","data.js","qr.js","extras.js","robot3d.js","robot3d.css","loja.js","loja.css","quizbot.js","icon.png","manifest.webmanifest"];
+var C="maratona-v202611110010"+"202611100442";var F=["./","index.html","style.css","app.js","data.js","qr.js","extras.js","robot3d.js","robot3d.css","loja.js","loja.css","quizbot.js","icon.png","manifest.webmanifest"];
 self.addEventListener("install",function(e){e.waitUntil(caches.open(C).then(function(c){return Promise.all(F.map(function(u){return c.add(u).catch(function(){});}));}));});
 self.addEventListener("message",function(e){if(e.data&&e.data.type==="SKIP_WAITING")self.skipWaiting();});
 self.addEventListener("activate",function(e){e.waitUntil(caches.keys().then(function(k){return Promise.all(k.filter(function(n){return n!==C&&n.indexOf("maratona-")===0;}).map(function(n){return caches.delete(n);}));}).then(function(){return self.clients.claim();}));});

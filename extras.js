@@ -34,15 +34,19 @@ if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol)){
     document.addEventListener("visibilitychange",function(){if(!document.hidden)reg.update().catch(function(){});});
   }).catch(function(){});
 }
+window.mrPosSrc=function(im){if(!im)return "";var s=im.src||"";if(s.indexOf("data:image/gif")===0){var ix=im.getAttribute("data-ix"),u=ix!=null&&window.mrPosterByIdx?window.mrPosterByIdx(+ix,0):"";if(u){im.src=u;return u;}}return s;};
 /* pôsteres: só gera o da miniatura quando ela aparece na tela (abertura bem mais rápida) */
 (function(){if(!("IntersectionObserver" in window))return;
 var io=new IntersectionObserver(function(es){es.forEach(function(x){if(!x.isIntersecting)return;var im=x.target;io.unobserve(im);
-  if(im.getAttribute("data-hq")==="1")return;var li=im.closest("li"),t=li&&li.querySelector(".t"),n=t&&t.textContent.trim();
-  if(n&&window.mrPosterByTitle){var u=window.mrPosterByTitle(n,0);if(u)im.src=u;}else if((im._try=(im._try||0)+1)<20)setTimeout(function(){io.observe(im);},250);});},{rootMargin:"400px"});
+  if(im.getAttribute("data-hq")==="1")return;var ix=im.getAttribute("data-ix"),u=ix!=null&&window.mrPosterByIdx?window.mrPosterByIdx(+ix,0):"";
+  if(u)im.src=u;else if((im._try=(im._try||0)+1)<20)setTimeout(function(){io.observe(im);},250);});},{rootMargin:"400px"});
 function scan(L){[].forEach.call(L.querySelectorAll("img.pos[data-pi]"),function(im){im.removeAttribute("data-pi");io.observe(im);});}
 function start(){var L=document.getElementById("list");if(!L)return;scan(L);new MutationObserver(function(){scan(L);}).observe(L,{childList:true,subtree:true});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start();
 })();
+/* garante que nenhum pôster fique em branco: depois que a página abriu, gera os que faltam, um por vez */
+window.addEventListener("load",function(){setTimeout(function(){var tk=setInterval(function(){if(document.hidden)return;
+  var im=document.querySelector('img.pos[src^="data:image/gif"]');if(!im){return;}window.mrPosSrc(im);},90);},2500);});
 /* 6. modais: Esc fecha, foco entra e volta, Tab fica dentro */
 var MODS={sum:"sx",pre:"prx",qz:"qx"},lastFocus={};
 function vis(el){return !el.hidden&&getComputedStyle(el).display!=="none";}
