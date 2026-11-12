@@ -264,6 +264,24 @@ gEls.forEach(function(g,gi){var any=false,raw=gEls.length>1&&(g.n in FCOL?!!FCOL
 g.items.forEach(function(i){var ok=(!QS||norm(T[i]).indexOf(QS)>-1)&&(FL==="all"||(FL==="todo"&&!seen[i])||(FL==="done"&&seen[i])||(FL==="path"&&PATH.indexOf(i)>-1)||(FL==="fav"&&fav[T[i]]))&&(FASE<0||(i>=G[FASE].a&&i<=G[FASE].b));els[i].li.hidden=!ok||col;if(ok)any=true;});
 g.li.hidden=!any;g.li.classList.toggle("col",col);if(g.li.firstChild.setAttribute)g.li.firstChild.setAttribute("aria-expanded",col?"false":"true");});}
 window.mrOpen=function(li){gEls.forEach(function(g){if(g.items.some(function(i){return els[i]&&els[i].li===li;})&&g.n){FCOL[g.n]=false;try{localStorage.setItem("maratona-fases-abertas",JSON.stringify(FCOL));}catch(e){typeof __mrE=="function"&&__mrE(e)}}});apply();};
+/* v13: contador "Mostrando X de N", recolher/expandir sagas e aviso quando o filtro não acha nada */
+(function(){var mm=$("mrmore");if(!mm||!mm.parentNode)return;
+var row=document.createElement("div");row.id="lrow";row.className="lrow";
+row.innerHTML='<span id="lcnt" role="status" aria-live="polite"></span><button type="button" id="lcol" class="lbtn" hidden></button><button type="button" id="lclr" class="lbtn" hidden>Limpar filtros</button>';
+mm.parentNode.insertBefore(row,mm);
+var lc=$("lcnt"),bc=$("lcol"),bl=$("lclr");
+function okIdx(i){return (!QS||norm(T[i]).indexOf(QS)>-1)&&(FL==="all"||(FL==="todo"&&!seen[i])||(FL==="done"&&seen[i])||(FL==="path"&&PATH.indexOf(i)>-1)||(FL==="fav"&&fav[T[i]]))&&(FASE<0||(i>=G[FASE].a&&i<=G[FASE].b));}
+function upd(){var n=0,t=0;els.forEach(function(e,i){if(!e)return;t++;if(okIdx(i))n++;});
+var f=!!QS||FL!=="all"||FASE>=0;
+lc.textContent=n===0?"Nenhum título encontrado com esses filtros":(f?"Mostrando "+n+" de "+t+" títulos":t+" títulos na lista");
+lc.classList.toggle("vz",n===0);bl.hidden=!f;
+var multi=gEls.length>1;bc.hidden=!multi||f;
+if(multi){var all=gEls.every(function(g){return g.raw;});bc.textContent=all?"▾ Expandir sagas":"▴ Recolher sagas";bc.dataset.m=all?"open":"close";}}
+var _ap=apply;apply=function(){_ap.apply(this,arguments);try{upd();}catch(e){typeof __mrE=="function"&&__mrE(e)}};
+bc.addEventListener("click",function(){var open=bc.dataset.m==="open";gEls.forEach(function(g){if(g.n)FCOL[g.n]=!open;});try{localStorage.setItem("maratona-fases-abertas",JSON.stringify(FCOL));}catch(e){typeof __mrE=="function"&&__mrE(e)}apply();});
+bl.addEventListener("click",function(){QS="";$("q").value="";FL="all";FASE=-1;$("fase").value="-1";for(var x=0;x<chips.length;x++)chips[x].className=chips[x].getAttribute("data-f")==="all"?"on":"";apply();});
+try{upd();}catch(e){typeof __mrE=="function"&&__mrE(e)}
+})();
 $("q").addEventListener("input",function(){QS=norm(this.value.trim());apply();});
 var chips=document.querySelectorAll(".chips button");
 for(var ci=0;ci<chips.length;ci++)(function(b){b.addEventListener("click",function(){FL=b.getAttribute("data-f");for(var x=0;x<chips.length;x++)chips[x].className=chips[x]===b?"on":"";apply();});})(chips[ci]);
@@ -2369,7 +2387,7 @@ function chk(){try{if(typeof rkIdx!=="function"||typeof xpNow!=="function"||type
   var t=D.createElement("div");t.className="mrtoast";t.textContent=RANKS[i][2]+" Novo rank: "+RANKS[i][1];B.appendChild(t);if(t.animate&&!off()){var a=t.animate([{opacity:0,transform:"translateY(-14px) scale(.8)"},{opacity:1,transform:"none",offset:.15},{opacity:1,offset:.85},{opacity:0}],{duration:3200,easing:"cubic-bezier(.34,1.56,.64,1)"});a.onfinish=function(){t.remove();};}else setTimeout(function(){t.remove();},3200);
   try{if(navigator.vibrate)navigator.vibrate([40,30,80]);}catch(e){typeof __mrE=="function"&&__mrE(e)}}
  prev=i;}catch(e){typeof __mrE=="function"&&__mrE(e)}}
-chk();setInterval(chk,1500);
+chk();setInterval(function(){if(!document.hidden)chk();},1500);
 window.__mrRankTest=function(){confetti();};
 /* ---- 5. FLIP: poster voa ate o card 3D ---- */
 if(ul){ul.addEventListener("click",function(e){var p=e.target.closest&&e.target.closest(".pos");if(!p||off())return;
@@ -3404,7 +3422,7 @@ function sessCheck(){var t=nowTitle(),old=null,done=false,sv,mn;
   sess=false;d.removeAttribute("data-sess");try{localStorage.removeItem(KSS);}catch(e){typeof __mrE=="function"&&__mrE(e)}sessT="";
   setTimeout(function(){sayLater(done?pick(["Acabou! O que achou? Dá uma nota ⭐","Sessão completa! Valeu a pipoca 🍿"]):"Sessão encerrada 😌",{pri:true,imp:true,key:"sessend",cd:5000},4);if(done)confetti(10);},done?3800:1200);}
  else if(sess&&!sessRem){mn=RT[sessT]||120;if(Date.now()-sessS>(mn+5)*60000){sessRem=true;say("Acabou o filme? Marca como visto ✅ e dá uma nota ⭐",{pri:true,imp:true,key:"sessrem",cd:600000});}}}
-setInterval(sessCheck,2500);setTimeout(sessCheck,1500);
+setInterval(function(){if(!document.hidden)sessCheck();},2500);setTimeout(sessCheck,1500);
 })();
 
 }catch(e){console.error("[mr-robot-core]",e)}
@@ -3448,7 +3466,7 @@ nav.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)
 if(t==="l"){var f=document.querySelector(".top");(f||$("list")).scrollIntoView({block:"start"});}
 else if(t==="a")agora();else if(t==="q")open("quizb");else if(t==="x")open("mx");else rapido();});
 var hm=$("home");function vis(){if(!hm)return;var s=getComputedStyle(hm);nav.hidden=!(s.display==="none"||s.visibility==="hidden"||hm.hidden||s.opacity==="0"||s.pointerEvents==="none");}
-if(hm&&window.MutationObserver){new MutationObserver(vis).observe(hm,{attributes:true});}vis();setInterval(vis,1500);
+if(hm&&window.MutationObserver){new MutationObserver(vis).observe(hm,{attributes:true});}vis();setInterval(function(){if(!document.hidden)vis();},3000);
 /* cena pós-créditos por título */
 var POS=J("maratona-pos",{});
 function dress(){Array.prototype.forEach.call(document.querySelectorAll("#list li:not([data-pc])"),function(li){var b=li.querySelector("button.row");if(!b||li.classList.contains("gh"))return;li.dataset.pc="1";

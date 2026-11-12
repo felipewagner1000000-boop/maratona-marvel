@@ -1561,3 +1561,10 @@ html body .ph #hb .hbt::after{content:"INÍCIO";font-size:.7rem;letter-spacing:.
 }
 /* botão da Lojinha (criado pelo loja.js) logo abaixo de "Entrar na maratona" */
 html body .hin>#hloja{order:9;margin:0 0 12px;width:100%;box-sizing:border-box;min-height:44px}
+/* v13: linha de contagem + recolher sagas + limpar filtros */
+html body .lrow{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:2px 0 10px;min-height:36px}
+html body .lrow #lcnt{flex:1 1 auto;min-width:0;color:var(--muted);font-size:.85rem}
+html body .lrow #lcnt.vz{color:var(--ink);font-weight:700}
+html body .lrow .lbtn{flex:none;min-height:36px;padding:0 14px;border-radius:99px;border:1px solid color-mix(in srgb,var(--ac) 45%,var(--line));background:color-mix(in srgb,var(--ink) 4%,var(--card));color:var(--ink);font:inherit;font-size:.8rem;font-weight:600;cursor:pointer}
+html body .lrow .lbtn:active{transform:scale(.96)}
+html body .lrow .lbtn[hidden]{display:none}

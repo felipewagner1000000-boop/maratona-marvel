@@ -44,9 +44,13 @@ function scan(L){[].forEach.call(L.querySelectorAll("img.pos[data-pi]"),function
 function start(){var L=document.getElementById("list");if(!L)return;scan(L);new MutationObserver(function(){scan(L);}).observe(L,{childList:true,subtree:true});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start();
 })();
-/* garante que nenhum pôster fique em branco: depois que a página abriu, gera os que faltam, um por vez */
-window.addEventListener("load",function(){setTimeout(function(){var tk=setInterval(function(){if(document.hidden)return;
-  var im=document.querySelector('img.pos[src^="data:image/gif"]');if(!im){return;}window.mrPosSrc(im);},90);},2500);});
+/* garante que nenhum pôster fique em branco: gera os que faltam, um por vez; o laço só roda enquanto houver pôster em branco */
+window.addEventListener("load",function(){setTimeout(function(){var tk=0,SEL='img.pos[src^="data:image/gif"]:not([data-giveup])';
+function run(){if(tk)return;tk=setInterval(function(){if(document.hidden)return;
+  var im=document.querySelector(SEL);if(!im){clearInterval(tk);tk=0;return;}
+  im._g=(im._g||0)+1;if(im._g>40){im.setAttribute("data-giveup","1");return;}window.mrPosSrc(im);},90);}
+run();var L=document.getElementById("list");if(L&&window.MutationObserver)new MutationObserver(run).observe(L,{childList:true,subtree:true});
+},2500);});
 /* 6. modais: Esc fecha, foco entra e volta, Tab fica dentro */
 var MODS={sum:"sx",pre:"prx",qz:"qx"},lastFocus={};
 function vis(el){return !el.hidden&&getComputedStyle(el).display!=="none";}
