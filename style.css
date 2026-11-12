@@ -1554,7 +1554,7 @@ html body #mrmore>.d3{margin:10px 0 8px}
 #ferr .dz #rs{box-sizing:border-box;width:100%;min-height:44px;border-radius:12px;border:1px solid color-mix(in srgb,#ff6b6b 60%,transparent);background:transparent;color:#ff8f8f;font-weight:700}
 #ferr .dz #rs:active{transform:scale(.98)}
 /* celulares estreitos: botão de início com rótulo curto */
-@media (max-width:380px){
+@media (max-width:430px){
 html body .ph h1{font-size:1.15rem}
 html body .ph #hb .hbt{font-size:0;letter-spacing:0}
 html body .ph #hb .hbt::after{content:"INÍCIO";font-size:.7rem;letter-spacing:.12em}
