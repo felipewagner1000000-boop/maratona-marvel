@@ -1273,51 +1273,6 @@ html.noanim .rcap b,html.noanim .rsb,html.noanim .rbk,html.noanim .rzz b,html.no
 
 /* mr-org */
 
-/* ===== Reorganização das telas 1 (início) e 2 (lista) ===== */
-/* --- Tela 1: início --- */
-html body .hin{display:flex;flex-direction:column;align-items:stretch}
-html body .hin>*{order:50}
-html body .hin>#hban{order:1;width:74%;margin:0 auto 4px}
-html body .hin>#hk{order:2}
-html body .hin>#hgr{order:3;margin:0 0 2px}
-html body .hin>h2{order:4;font-size:1.55rem;margin:4px 0 2px}
-html body .hin>#hmsg{order:5;margin:0 0 10px}
-html body .hin>.cd{order:6;margin-bottom:10px}
-html body .hin>#hph{order:7;margin:0 0 10px}
-html body .hin>#hnx{order:8}
-html body .hin>#hgo{order:9;margin:0 0 12px}
-html body .hin>#hpr{order:10}
-html body .hin>#hch{order:11}
-html body .hin>#hwk{order:12}
-html body .hin>#hbk{order:13}
-html body .hin>#hsw{order:14}
-html body .hin>#hpg{order:15}
-html body .hin>#hbi{order:16}
-html body .hin>.hsc{order:17}
-html body .hin>.d3.hm{order:18;margin:14px 0 0}
-html body .hin>#hmais{order:19}
-/* --- Tela 2: lista --- */
-html body main{padding-top:12px}
-html body .ph{display:flex;align-items:center;gap:10px;margin:0 0 6px}
-html body .ph h1{flex:none;margin:0;font-size:1.3rem}
-html body .ph #hb{flex:1;width:auto;min-width:0;margin:0;min-height:42px;padding:0 12px 0 8px}
-html body .ph #hb .hbt{font-size:.7rem;letter-spacing:.12em;white-space:nowrap}
-html body .mission{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0;padding:12px}
-html body .mission>*{grid-column:1/-1;margin:0!important;min-width:0}
-html body .mission>h2{order:1;padding-right:76px;margin:0!important}
-html body .mission>.big{order:2;font-size:1.7rem;padding-right:76px}
-html body .mission>.next{order:3}
-html body .mission>.mm2{order:6}
-html body .mm2>small,html body .mm2>.fc,html body .mm2>.mm{margin:8px 0 0!important}
-html body .mm2>.mm{border:0;padding:0;background:none}
-html body .mm2 #mpace{display:block}
-html body .mission>#ess{order:7;grid-column:1/2;min-height:48px}
-html body .mission>#prb{order:7;grid-column:2/3;min-height:48px}
-html body .mission>.again{order:8}
-html body .mission>.dm,html body .mission>.mask{grid-column:auto}
-html body #mrmore{margin:8px 0 12px}
-html body #mrmore>.d3{margin:10px 0 8px}
-
 /* mr-robot-css */
 /* ===== Robô (bloco único): fala só fora da tela de início, expressões, física, falas, confete, gestos e humor ===== */
 /* ===== Robô (integrado): fala só fora da tela de início, expressões, física, mais mensagens, confete e gestos ===== */
@@ -1524,3 +1479,83 @@ li:has(button.row[aria-pressed=false]) .pcs{display:none}
 html.fs1 main{zoom:1.12}html.fs2 main{zoom:1.25}
 #mrfs button[aria-pressed=true]{background:color-mix(in srgb,var(--ac,#3c3) 25%,transparent)}
 #mrtop h4,#mrch h4{margin:14px 0 6px}#mrch svg{color:var(--ink,#fff);display:block}
+
+/* ===== v12 · organização final das telas 1 (início) e 2 (lista) ===== */
+/* botão de som: canto superior direito, livre de menus e da barra de abas */
+html body #sfab{left:auto;bottom:auto;right:12px;top:calc(10px + env(safe-area-inset-top,0px));width:40px;height:40px}
+html body #sfab svg{width:21px;height:21px}
+
+/* --- Tela 1: início (de cima para baixo: identidade → contagem → próximo → entrar → atalhos → progresso → detalhes) --- */
+html body .hin{display:flex;flex-direction:column;align-items:stretch}
+html body .hin>*{order:50}
+html body .hin>#hban{order:1;width:70%;margin:0 auto 2px}
+html body .hin>#hk{order:2}
+html body .hin>#hgr{order:3;margin:0 0 2px}
+html body .hin>h2{order:4;font-size:1.55rem;margin:4px 0 2px}
+html body .hin>#hmsg{order:5;margin:0 0 10px}
+html body .hin>.cd{order:6;margin-bottom:10px}
+html body .hin>#hph{order:7;margin:0 0 12px}
+html body .hin>#hnx{order:8;text-align:left;margin:0 0 12px}
+html body .hin>#hgo{order:9;margin:0 0 12px;position:sticky;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:6}
+html body .hin>.hsc{order:10;margin:0 0 12px}
+html body .hin>.hch{order:11;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 12px}
+html body .hin>#hpr{order:12;margin:0 0 8px}
+html body .hin>#hpace,html body .hin>#hfc{order:13;margin:0 0 8px;text-align:left}
+html body .hin>#hwk{order:14}
+html body .hin>#hbk{order:15}
+html body .hin>#hsw{order:16}
+html body .hin>#hpg{order:17}
+html body .hin>#hbi{order:18}
+html body .hin>#hmais{order:19;margin:6px 0 12px}
+html body .hin>.d3.hm{order:20;margin:4px 0 8px}
+/* atalhos em uma linha só (4 colunas) */
+html body .home .hsc{grid-template-columns:repeat(4,1fr);gap:8px}
+html body .home .hsc button{min-height:72px;padding:10px 2px;gap:0;font-size:.8rem;border-radius:16px}
+html body .home .hsc .ic{font-size:1.45rem;line-height:1.2}
+/* ritmo necessário (agora visível) */
+html body .home #hpace{padding:10px 14px;font-size:.88rem;line-height:1.4}
+html body .home #hpace small{display:block;margin-bottom:2px;color:var(--muted)}
+
+/* --- Tela 2: lista (cabeçalho → missão → progresso e busca → continuar/filtros → recursos → lista) --- */
+html body main{padding-top:12px}
+html body .ph{display:flex;align-items:center;gap:10px;margin:0 0 8px;padding-right:50px}
+html body .ph h1{flex:none;margin:0;font-size:1.3rem}
+html body .ph #hb{flex:1;width:auto;min-width:0;margin:0;min-height:42px;padding:0 12px 0 8px}
+html body .ph #hb .hbt{font-size:.7rem;letter-spacing:.12em;white-space:nowrap}
+/* missão: dias → assista agora → metas → ritmo */
+html body .mission{display:grid;grid-template-columns:1fr;gap:8px;margin:6px 0 10px;padding:14px 12px 12px}
+html body .mission>*{grid-column:1/-1;margin:0!important;min-width:0}
+html body .mission>h2{order:1;padding-right:76px}
+html body .mission>.big{order:2;font-size:1.7rem;padding-right:76px}
+html body .mission>.next{order:3}
+html body .mission>#ess{order:4;min-height:46px}
+html body .mission>#prb{order:5;min-height:46px}
+html body .mission>.mm2{order:6}
+html body .mission>.again{order:7}
+html body .mission>.again[hidden]{display:none!important}
+html body .mission .next .na{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+html body .mission .next .na button{width:100%;min-height:46px;margin:0;line-height:1.2}
+html body .mm2>small,html body .mm2>.fc,html body .mm2>.mm{margin:8px 0 0!important}
+html body .mm2>.mm{border:0;padding:0;background:none}
+html body .mm2 #mpace{display:block}
+/* barra fixa: contagem + progresso + busca + filtros rápidos */
+html body .top .stat{padding-right:48px;margin-bottom:6px}
+html body .top .bar{margin-right:48px}
+/* continuar → fase → ordem, uma coluna, largura total */
+html body .filters{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0 10px}
+html body .filters #cont{order:1;width:100%}
+html body .filters #fase{order:2;width:100%;max-width:100%}
+html body .filters #ordem.ochips{order:3;width:100%!important;max-width:100%;flex-wrap:nowrap!important}
+html body #mrmore{margin:6px 0 12px}
+html body #mrmore>.d3{margin:10px 0 8px}
+/* zona de perigo (Limpar tudo) */
+#ferr .dz{margin:12px 0 4px;padding:12px;border:1px dashed color-mix(in srgb,#ff6b6b 55%,var(--line));border-radius:14px}
+#ferr .dz small{display:block;margin-bottom:8px;color:var(--muted);font-size:.8rem;line-height:1.4}
+#ferr .dz #rs{box-sizing:border-box;width:100%;min-height:44px;border-radius:12px;border:1px solid color-mix(in srgb,#ff6b6b 60%,transparent);background:transparent;color:#ff8f8f;font-weight:700}
+#ferr .dz #rs:active{transform:scale(.98)}
+/* celulares estreitos: botão de início com rótulo curto */
+@media (max-width:380px){
+html body .ph h1{font-size:1.15rem}
+html body .ph #hb .hbt{font-size:0;letter-spacing:0}
+html body .ph #hb .hbt::after{content:"INÍCIO";font-size:.7rem;letter-spacing:.12em}
+}
