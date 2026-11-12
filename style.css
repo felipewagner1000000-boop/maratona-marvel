@@ -1559,3 +1559,5 @@ html body .ph h1{font-size:1.15rem}
 html body .ph #hb .hbt{font-size:0;letter-spacing:0}
 html body .ph #hb .hbt::after{content:"INÍCIO";font-size:.7rem;letter-spacing:.12em}
 }
+/* botão da Lojinha (criado pelo loja.js) logo abaixo de "Entrar na maratona" */
+html body .hin>#hloja{order:9;margin:0 0 12px;width:100%;box-sizing:border-box;min-height:44px}
