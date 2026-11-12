@@ -28,7 +28,7 @@ window.addEventListener("load",function(){
 if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol)){
   var reloading=false;navigator.serviceWorker.addEventListener("controllerchange",function(){if(reloading)return;reloading=true;location.reload();});
   navigator.serviceWorker.ready.then(function(reg){
-    function show(w){bar("✨ Nova versão da Maratona disponível.","Atualizar",function(){(w||reg.waiting)&&(w||reg.waiting).postMessage({type:"SKIP_WAITING"});},"ex-up");}
+    function show(){/* o aviso visual é o do app.js (#upd); aqui só fica o reload automático quando a nova versão assume */}
     if(reg.waiting&&navigator.serviceWorker.controller)show(reg.waiting);
     reg.addEventListener("updatefound",function(){var w=reg.installing;if(!w)return;w.addEventListener("statechange",function(){if(w.state==="installed"&&navigator.serviceWorker.controller)show(w);});});
     document.addEventListener("visibilitychange",function(){if(!document.hidden)reg.update().catch(function(){});});

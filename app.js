@@ -2286,7 +2286,7 @@ var s=document.createElement("style");s.textContent="#upd{position:fixed;left:50
 e.querySelector("button").onclick=function(){if(w){try{w.postMessage({type:"SKIP_WAITING"});}catch(x){}}setTimeout(function(){location.reload();},700);};}
 navigator.serviceWorker.getRegistration().then(function(r){if(!r)return;if(r.waiting&&had)show(r.waiting);r.addEventListener("updatefound",function(){var n=r.installing;if(!n)return;n.addEventListener("statechange",function(){if(n.state==="installed"&&navigator.serviceWorker.controller)show(r.waiting||n);});});try{r.update();}catch(e){typeof __mrE=="function"&&__mrE(e)}});
 document.addEventListener("visibilitychange",function(){if(!document.hidden)navigator.serviceWorker.getRegistration().then(function(r){if(r)try{r.update();}catch(e){typeof __mrE=="function"&&__mrE(e)}});});
-navigator.serviceWorker.addEventListener("controllerchange",function(){if(had)show(null);});})();
+})();
 }catch(e){console.error("[mr-update]",e)}
 /* sw-js */
 try{
