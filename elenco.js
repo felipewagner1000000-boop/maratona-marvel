@@ -50,6 +50,14 @@
     sec.setAttribute("aria-labelledby", "dch");
     sec.appendChild(el("h2", "🎭 Elenco confirmado de Doomsday", "dch"));
     sec.appendChild(el("p", total + " atores com nome confirmado pela Marvel (anúncio oficial, CinemaCon e trailer). Estreia em " + E.estreia + ". Atualizado em " + E.atualizado + ".")).className = "dcn";
+    /* pôster com o elenco (arquivo elenco-doomsday.webp); se o arquivo não existir, some sem quebrar nada */
+    var a = el("a"), im = el("img");
+    a.href = "elenco-doomsday.webp"; a.target = "_blank"; a.rel = "noopener"; a.className = "dpost";
+    a.setAttribute("aria-label", "Abrir o pôster do elenco em tamanho grande");
+    im.src = "elenco-doomsday.webp"; im.loading = "lazy"; im.decoding = "async"; im.width = 1080; im.height = 2744;
+    im.alt = "Pôster com os " + total + " atores confirmados de Vingadores: Doutor Destino e seus papéis, por grupo";
+    im.onerror = function () { if (a.parentNode) a.parentNode.removeChild(a); };
+    a.appendChild(im); sec.appendChild(a);
     E.grupos.concat([E.reportados]).forEach(function (g) {
       sec.appendChild(el("h3", g[0]));
       sec.appendChild(lista(g[1]));
