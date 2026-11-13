@@ -83,3 +83,22 @@
 html.noanim .rg,html.eco .rg,html.noanim .rsd::after,html.eco .rsd::after,html.noanim .rled,html.eco .rled,html.noanim .rck,html.eco .rck,html.noanim .rcap::after,html.eco .rcap::after,html.noanim .rbrow,html.eco .rbrow,html.noanim .rjet,html.eco .rjet,html.noanim .rh1::before,html.eco .rh1::before,html.noanim .rh2::before,html.eco .rh2::before{animation:none!important}
 html.eco .rjet,html.eco .rh1::before,html.eco .rh2::before{display:none}
 @media (prefers-reduced-motion:reduce){.rg,.rsd::after,.rled,.rck,.rcap::after,.rbrow,.rjet,.rh1::before,.rh2::before{animation:none!important}}
+
+/* ===== Robô v3: forma lisa (sem listras de "barril") =====
+   As fatias do meio perdem a borda e ganham o mesmo degradê vertical (nada de riscos ao girar),
+   as de trás ficam menores (cabeça arredondada, estilo cápsula) e a parte de trás fica mais curta.
+   A frente (rosto, viseira, acessórios da loja) continua exatamente no mesmo lugar. */
+.rh>i,.rt>i{--t:calc((var(--b,1) - .55)/.45)}
+.rt>i{--t:calc((var(--b,1) - .6)/.4)}
+.rh>i{transform:translateZ(calc(max(var(--z),0px)*1.8 + min(var(--z),0px)*1.1))}
+.rh>i:not(:last-of-type),.rt>i:not(:last-of-type){
+  border:0;outline:0;
+  scale:calc(1 - .2*(1 - var(--t))*(1 - var(--t)));
+  background:linear-gradient(180deg,#f1f6f9 0%,#c4d1da 26%,#8fa2ae 62%,#566a77 100%);
+  box-shadow:none;filter:none
+}
+.rt>i:not(:last-of-type){background:linear-gradient(180deg,#c9d6de 0%,#8397a4 55%,#46586a 100%)}
+/* atrás: mais escuro, só um pouco (antes era quase preto e dava o aspecto de tubo) */
+.rh>i:first-of-type,.rt>i:first-of-type{filter:brightness(.62)}
+/* aro de luz verde onde a frente encontra o corpo */
+.rh>i:nth-last-of-type(2){box-shadow:0 0 0 1px color-mix(in srgb,var(--ac,#39ff14) 45%,transparent),0 0 8px color-mix(in srgb,var(--ac,#39ff14) 35%,transparent)}
