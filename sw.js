@@ -3,7 +3,7 @@
    - trilha sonora (ost-1..6.m4a): baixa inteira em segundo plano na 1ª vez que toca e depois toca offline
    - fontes do Google escolhidas nas configurações: guardadas ao usar a 1ª vez e funcionam offline
    Os caches "mm-trilha" e "mm-fontes" não são apagados a cada versão, para não baixar de novo. */
-var C = "maratona-v202611130200";
+var C = "maratona-v202611131400";
 var F = ["./", "index.html", "style.min.css", "app.min.js", "data.js", "qr.js", "extras.min.js", "elenco.js", "elenco-doomsday.webp",
   "robot3d.min.js", "robot3d.min.css", "loja.min.js", "loja.min.css", "quizbot.min.js",
   "icon.png", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "manifest.webmanifest"];

@@ -56,12 +56,14 @@
     a.setAttribute("aria-label", "Abrir o pôster do elenco em tamanho grande");
     im.src = "elenco-doomsday.webp"; im.loading = "lazy"; im.decoding = "async"; im.width = 1080; im.height = 2744;
     im.alt = "Pôster com os " + total + " atores confirmados de Vingadores: Doutor Destino e seus papéis, por grupo";
-    im.onerror = function () { if (a.parentNode) a.parentNode.removeChild(a); };
+    var det = el("details"); det.className = "dtxt"; det.appendChild(el("summary", "Ver lista em texto"));
+    im.onerror = function () { if (a.parentNode) a.parentNode.removeChild(a); det.open = true; };
     a.appendChild(im); sec.appendChild(a);
     E.grupos.concat([E.reportados]).forEach(function (g) {
-      sec.appendChild(el("h3", g[0]));
-      sec.appendChild(lista(g[1]));
+      det.appendChild(el("h3", g[0]));
+      det.appendChild(lista(g[1]));
     });
+    sec.appendChild(det);
     sec.appendChild(el("p", "Ainda sem confirmação oficial: " + E.ainda + ". A Marvel costuma guardar surpresas, então a lista pode crescer.")).className = "dcn";
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", montar); else montar();

@@ -1587,3 +1587,8 @@ html body .lrow .lbtn[hidden]{display:none}
 @property --fly{syntax:"<number>";inherits:false;initial-value:0}
 #dcast .dpost{display:block;margin:12px 0 6px}
 #dcast .dpost img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
+#dcast details.dtxt{margin-top:10px}
+#dcast details.dtxt>summary{cursor:pointer;list-style:none;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font-weight:600;font-size:.92rem}
+#dcast details.dtxt>summary::-webkit-details-marker{display:none}
+#dcast details.dtxt>summary::before{content:"▸ ";color:var(--ac)}
+#dcast details.dtxt[open]>summary::before{content:"▾ "}
