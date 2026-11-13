@@ -39,3 +39,57 @@
 .lj-pop{position:fixed;right:16px;bottom:calc(120px + env(safe-area-inset-bottom,0px));z-index:99998;font:800 1rem system-ui,sans-serif;color:#ffd54a;text-shadow:0 0 8px #000;pointer-events:none;animation:ljp 1.6s ease-out forwards}
 @keyframes ljp{from{transform:translateY(0);opacity:1}to{transform:translateY(-46px);opacity:0}}
 .ljl{position:absolute;pointer-events:none}
+
+/* ===== Lojinha v2: cartões por raridade, prova, confete, animações dos acessórios ===== */
+#loja .lp{height:196px;background:radial-gradient(ellipse at 50% 75%,rgba(57,255,20,.22),transparent 68%),radial-gradient(circle at 20% 20%,rgba(255,255,255,.05),transparent 40%);border:1px solid rgba(255,255,255,.07);overflow:hidden}
+#loja .lp::after{content:"";position:absolute;left:50%;bottom:10px;width:120px;height:14px;margin-left:-60px;border-radius:50%;background:radial-gradient(ellipse,rgba(57,255,20,.45),transparent 70%);pointer-events:none}
+#loja .lspin{position:absolute;right:8px;top:8px;z-index:4;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.45);color:#fff;font-size:1.05rem}
+#loja .ltry{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 8px;padding:6px 10px;border-radius:10px;background:rgba(255,213,74,.12);border:1px dashed #ffd54a;font-size:.85rem}
+#loja .ltry[hidden]{display:none}
+#loja .ltry button{border:0;border-radius:8px;padding:4px 10px;background:#ffd54a;color:#000;font-weight:800}
+#loja .lcol{display:flex;align-items:center;gap:10px;margin:8px 0 0;font-size:.8rem;opacity:.9}
+#loja .lbar{flex:1;height:8px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
+#loja .lbar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#39ff14,#ffd54a,#c084fc);transition:width .5s}
+#loja .lgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#loja .lk{position:relative;display:flex;flex-direction:column;gap:8px;padding:8px;border-radius:16px;border:1.5px solid color-mix(in srgb,var(--rc) 55%,transparent);background:linear-gradient(160deg,color-mix(in srgb,var(--rc) 16%,#0a120d),#08100b 70%);overflow:hidden}
+#loja .lk.eq{box-shadow:0 0 0 2px var(--rc),0 0 16px color-mix(in srgb,var(--rc) 55%,transparent)}
+#loja .lk.try{outline:2px dashed #ffd54a;outline-offset:2px}
+#loja .lk.r4::before{content:"";position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent 0 70%,rgba(255,213,74,.35) 80%,transparent 90%);animation:ljsh 4s linear infinite;pointer-events:none}
+#loja .lk.r3::before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 40%,rgba(192,132,252,.22) 50%,transparent 60%);background-size:250% 100%;animation:ljsw 3.4s ease-in-out infinite;pointer-events:none}
+#loja .lkh{position:relative;z-index:1;display:grid;place-items:center;height:78px;border:0;border-radius:12px;background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--rc) 28%,transparent),transparent 70%);color:inherit;padding:0}
+#loja .lki{font-size:2.3rem;filter:drop-shadow(0 3px 5px rgba(0,0,0,.6))}
+#loja .lk.r4 .lki,#loja .lk.r3 .lki{animation:ljbob 2.2s ease-in-out infinite alternate}
+#loja .lkr{position:absolute;left:4px;top:2px;font:800 .62rem system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--rc)}
+#loja .lke{position:absolute;right:2px;bottom:2px;font:800 .62rem system-ui,sans-serif;color:#04120a;background:var(--rc);border-radius:99px;padding:1px 7px}
+#loja .lke.b{background:rgba(255,255,255,.18);color:#fff}
+#loja .lkn{position:relative;z-index:1;font-size:.84rem;font-weight:700;line-height:1.2;min-height:2.1em}
+#loja .lkn em{font-style:normal;opacity:.7;font-size:.8em}
+#loja .lk>button[data-a=buy],#loja .lk>button[data-a=eq]{position:relative;z-index:1;padding:9px 6px;border-radius:10px;border:0;font-weight:800;font-size:.85rem;background:var(--rc);color:#000}
+#loja .lk>button.off{background:#26352b;color:#8fd9a0;opacity:.85}
+#loja .lk>button.on{background:#fff;color:#000}
+@keyframes ljsh{to{transform:rotate(360deg)}}
+@keyframes ljsw{0%{background-position:130% 0}60%,100%{background-position:-30% 0}}
+@keyframes ljbob{to{transform:translateY(-4px) scale(1.06)}}
+.ljcf{position:absolute;left:50%;top:55%;width:7px;height:7px;border-radius:2px;background:var(--c);pointer-events:none;z-index:5;animation:ljcf .95s cubic-bezier(.2,.8,.3,1) forwards}
+@keyframes ljcf{from{transform:translate(0,0) rotate(0);opacity:1}to{transform:translate(var(--x),calc(var(--y) + 40px)) rotate(540deg);opacity:0}}
+/* acessórios 3D: brilho, flutuar, asas, capa, orelha, giro */
+.ljl.ljs{animation:ljs 1.8s ease-in-out infinite;filter:drop-shadow(0 0 3px #fff)}
+@keyframes ljs{0%,100%{scale:.15;opacity:0}50%{scale:1;opacity:1}}
+.ljl.ljg{animation:ljg 2.2s ease-in-out infinite alternate}
+@keyframes ljg{from{filter:brightness(.92)}to{filter:brightness(1.4) saturate(1.2)}}
+.ljl.ljf{animation:ljf 2.6s ease-in-out infinite alternate}
+@keyframes ljf{from{translate:0 0}to{translate:0 -3px}}
+.ljl.ljwL{animation:ljwl 1.4s ease-in-out infinite alternate}
+.ljl.ljwR{animation:ljwr 1.4s ease-in-out infinite alternate}
+@keyframes ljwl{from{rotate:z -9deg}to{rotate:z 7deg}}
+@keyframes ljwr{from{rotate:z 9deg}to{rotate:z -7deg}}
+.ljl.ljc{animation:ljcp 2.1s ease-in-out infinite alternate}
+@keyframes ljcp{from{rotate:x -2deg}to{rotate:x 7deg}}
+.ljl.lje{animation:ljear 4s ease-in-out infinite}
+@keyframes ljear{0%,82%,100%{rotate:z 0deg}88%{rotate:z -14deg}94%{rotate:z 6deg}}
+.ljl.ljspin{animation:ljrot 9s linear infinite}
+.ljl.ljspin2{animation:ljrot 6s linear infinite reverse}
+@keyframes ljrot{to{rotate:z 360deg}}
+html.noanim .ljl,html.eco .ljl,html.noanim #loja *,html.eco #loja *{animation:none!important}
+@media (prefers-reduced-motion:reduce){.ljl,#loja *{animation:none!important}}
+.ljl.ljf.ljg{animation:ljf 2.6s ease-in-out infinite alternate,ljg 2.2s ease-in-out infinite alternate}

@@ -10,7 +10,13 @@ for(var m=1;m<2;m++){var f=m/2,n=it[k].cloneNode(false);n.style.cssText="--z:"+(
 d.classList.add("flat");
 /* mãos de verdade: palma + 3 dedos + polegar (esferas), presas ao braço */
 ["rh1","rh2"].forEach(function(c,k){var h=d.querySelector("."+c);if(!h||h.querySelector(".hf"))return;
-  [["f1","hf"],["f2","hf"],["f3","hf"],["th","hf"]].forEach(function(a){var u=document.createElement("u");u.className=a[0]+" "+a[1]+(k?" hr":"");h.appendChild(u);});});
+  [["f1","hf"],["f2","hf"],["f3","hf"],["f4","hf"],["th","hf"]].forEach(function(a){var u=document.createElement("u");u.className=a[0]+" "+a[1]+(k?" hr":"");h.appendChild(u);});});
+/* peças novas: anel de energia no peito, ombreiras com luz, luzes nas bochechas, tampas nas laterais da cabeça e jato de energia embaixo */
+(function(){var rt=d.querySelector(".rt"),rh=d.querySelector(".rh"),rb=d.querySelector(".rb");
+function mk(par,cls){if(!par)return;var k=cls.split(" ").pop();if(par.querySelector("."+k))return;var n=document.createElement("u");n.className=cls;n.setAttribute("aria-hidden","true");par.appendChild(n);}
+mk(rt,"rg");mk(rt,"rsd rsl");mk(rt,"rsd rsr");mk(rt,"rled");
+mk(rh,"rck ckl");mk(rh,"rck ckr");mk(rh,"rcap capl");mk(rh,"rcap capr");mk(rh,"rbrow");
+mk(rb,"rjet");})();
 var hist=[],dzT=0,a=0,t=0,sx=0,st=0,drag=false,moved=false,raf=0,tilt=0,base=null;
 var ls0=null;function set(){var v=Math.round(a*2)/2;if(v===ls0)return;ls0=v;d.style.setProperty("--dry",v.toFixed(1)+"deg");d.classList.toggle("flat",Math.abs(v)<1.6&&!drag);}
 function tg(){return drag?t:tilt;}

@@ -43,3 +43,43 @@
 
 /* robô de frente: esconde as fatias do meio (ver robot3d.js) */
 .dm.flat .rh>i:not(.k),.dm.flat .rt>i:not(.k){display:none}
+
+/* ===== Robô v2: mais peças, mais brilho e mais vida ===== */
+.rg,.rsd,.rled,.rck,.rcap,.rbrow,.rjet{position:absolute;display:block;pointer-events:none}
+/* anel de energia girando em volta do núcleo do peito */
+.rg{left:9px;top:3px;width:20px;height:20px;border-radius:50%;border:2px solid transparent;border-top-color:#39ff14;border-bottom-color:#7dffb0;box-shadow:0 0 8px rgba(57,255,20,.6),inset 0 0 6px rgba(57,255,20,.35);transform:translateZ(20px);animation:rgs 3.2s linear infinite}
+@keyframes rgs{to{rotate:z 360deg}}
+/* ombreiras com luz */
+.rsd{top:-2px;width:9px;height:9px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#fff 0 12%,#dfe8ee 28%,#9db0bc 58%,#42535f);box-shadow:0 2px 3px rgba(0,0,0,.45);transform:translateZ(8px)}
+.rsd::after{content:"";position:absolute;left:3px;top:3px;width:3px;height:3px;border-radius:50%;background:#39ff14;box-shadow:0 0 5px #39ff14;animation:rpl 2.4s ease-in-out infinite alternate}
+.rsl{left:-5px}.rsr{right:-5px}
+/* LEDs do peito */
+.rled{left:12px;bottom:2px;width:12px;height:2px;border-radius:2px;background:repeating-linear-gradient(90deg,#39ff14 0 2px,transparent 2px 4px);transform:translateZ(18px);animation:rled 1.6s steps(3) infinite}
+@keyframes rled{0%{opacity:1}50%{opacity:.35}100%{opacity:.8}}
+/* bochechas: luzinhas que piscam de leve */
+.rck{top:30px;width:4px;height:4px;border-radius:50%;background:#39ff14;box-shadow:0 0 6px #39ff14;transform:translateZ(30px);opacity:.8;animation:rpl 3s ease-in-out infinite alternate}
+.ckl{left:5px}.ckr{right:5px;animation-delay:.9s}
+/* tampas laterais da cabeça (aparecem ao girar) */
+.rcap{top:12px;width:7px;height:20px;border-radius:4px;background:linear-gradient(90deg,#fafafa,#9aa7b0 55%,#4c5d69);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25),0 1px 3px rgba(0,0,0,.4)}
+.capl{left:-5px;transform:translateZ(0) rotateY(-70deg)}
+.capr{right:-5px;transform:translateZ(0) rotateY(70deg)}
+.rcap::after{content:"";position:absolute;left:2px;top:7px;width:3px;height:6px;border-radius:2px;background:#39ff14;box-shadow:0 0 6px #39ff14;animation:rpl 2s ease-in-out infinite alternate}
+/* sobrancelha de luz: acende mais forte no quiz */
+.rbrow{left:12px;top:5px;width:32px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(57,255,20,.7),transparent);transform:translateZ(29px);opacity:.55}
+.dm.q-on .rbrow{opacity:1;animation:rpl .9s ease-in-out infinite alternate}
+/* jato de energia sob o robô */
+.rjet{left:50%;bottom:-6px;width:34px;height:12px;margin-left:-17px;border-radius:50%;background:radial-gradient(ellipse,rgba(57,255,20,.75),rgba(57,255,20,.18) 55%,transparent 72%);filter:blur(1px);transform:translateZ(-4px);animation:rjf .9s ease-in-out infinite alternate}
+@keyframes rjf{from{opacity:.55;scale:.8 .8}to{opacity:1;scale:1.15 1.2}}
+@keyframes rpl{from{opacity:.45}to{opacity:1}}
+/* olhos com brilho e mãos com 4 dedos */
+.dm .rv span b{filter:drop-shadow(0 0 3px #39ff14)}
+.hf.f4{left:10.6px;top:8.6px;width:4.4px;height:4.4px;transform:translateZ(1px)}
+.hf.th{left:14px}
+.hf.th.hr{left:-6.4px}
+.hf.f4{left:11px}
+.rh1::before,.rh2::before{content:"";position:absolute;left:3px;top:6px;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle,rgba(57,255,20,.55),transparent 70%);animation:rpl 2.6s ease-in-out infinite alternate;pointer-events:none}
+/* giro: as luzes novas acompanham o brilho e somem no modo leve */
+.dm.rot .rg{animation-duration:1.2s}
+html.noanim .rg,html.eco .rg,html.noanim .rsd::after,html.eco .rsd::after,html.noanim .rled,html.eco .rled,html.noanim .rck,html.eco .rck,html.noanim .rcap::after,html.eco .rcap::after,html.noanim .rbrow,html.eco .rbrow,html.noanim .rjet,html.eco .rjet,html.noanim .rh1::before,html.eco .rh1::before,html.noanim .rh2::before,html.eco .rh2::before{animation:none!important}
+html.eco .rjet,html.eco .rh1::before,html.eco .rh2::before{display:none}
+@media (prefers-reduced-motion:reduce){.rg,.rsd::after,.rled,.rck,.rcap::after,.rbrow,.rjet,.rh1::before,.rh2::before{animation:none!important}}
