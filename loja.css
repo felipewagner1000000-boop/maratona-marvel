@@ -1,17 +1,37 @@
 /* Lojinha do robô */
-#hloja{display:block;margin:10px auto 0;padding:10px 16px;border-radius:12px;border:1px solid var(--ac,#39ff14);background:rgba(0,0,0,.35);color:#fff;font:700 .9rem system-ui,sans-serif;cursor:pointer}
+#hloja{display:flex;align-items:center;gap:10px;width:100%;margin:10px 0 0;padding:10px 14px;border-radius:14px;border:1px solid var(--ac,#39ff14);background:rgba(0,0,0,.35);color:#fff;font:700 .95rem system-ui,sans-serif;cursor:pointer;text-align:left}
+#hloja .hi{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--ac,#39ff14);color:#04120a;flex:none}
+#hloja .hn{flex:1}
+#hloja .hc{background:rgba(255,255,255,.1);border-radius:999px;padding:3px 11px;font-size:.88rem}
 #loja{position:fixed;inset:0;z-index:2147483000;background:#050a07;color:#fff;overflow:auto;padding:calc(12px + env(safe-area-inset-top,0px)) 14px calc(24px + env(safe-area-inset-bottom,0px));font:15px/1.35 system-ui,sans-serif}
 #loja[hidden]{display:none}
-#loja .lh{display:flex;align-items:center;gap:10px;justify-content:space-between}
+#loja .lh{display:flex;align-items:center;gap:10px}
+#loja .lbag{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--ac,#39ff14);color:#04120a;flex:none}
+#loja .lh h2{flex:1;min-width:0}
 #loja h2{margin:0;font-size:1.15rem}
 #loja .lc{background:#0b2a14;border:1px solid var(--ac,#39ff14);border-radius:20px;padding:4px 12px;font-weight:800}
 #loja .lx{background:none;border:0;color:#fff;font-size:1.3rem;padding:6px 10px}
-#loja .lp{height:150px;display:flex;align-items:flex-end;justify-content:center;position:relative;margin:6px 0;border-radius:14px;background:radial-gradient(ellipse at 50% 70%,rgba(57,255,20,.18),transparent 70%)}
+#loja .lstick{position:sticky;top:calc(-12px - env(safe-area-inset-top,0px));z-index:3;background:#050a07;padding:calc(12px + env(safe-area-inset-top,0px)) 0 8px;margin-top:2px}
+#loja .lp{height:176px;display:flex;align-items:center;justify-content:center;position:relative;overflow:visible;margin:0 0 8px;padding-top:14px;border-radius:14px;background:radial-gradient(ellipse at 50% 70%,rgba(57,255,20,.18),transparent 70%)}
+#loja .ltabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 0}
+#loja .ltabs::-webkit-scrollbar{display:none}
+#loja .ltabs button{flex:none;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:#d7e6dc;font:700 .85rem system-ui,sans-serif}
+#loja .ltabs button.on{background:var(--ac,#39ff14);border-color:var(--ac,#39ff14);color:#04120a}
+#loja .ltabs i{font-style:normal;margin-left:4px;opacity:.8}
+#loja .lhint{margin:6px 0 10px;opacity:.75;font-size:.85rem}
+#loja .lemp{margin:18px 4px;opacity:.7;text-align:center}
 #loja .lp .dm{position:relative!important;right:auto!important;bottom:auto!important;left:auto!important;top:auto!important;translate:none!important;margin:0 auto;animation:none}
 #loja h3{margin:14px 0 6px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac,#39ff14)}
 #loja .li{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid rgba(255,255,255,.12);border-radius:12px;margin-bottom:6px;background:rgba(255,255,255,.04)}
 #loja .li .ic{font-size:1.6rem;width:34px;text-align:center}
-#loja .li .nm{flex:1}
+#loja .li .nm{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+#loja .li .nm b{font-weight:600}
+#loja .li .nm em{font-style:normal;opacity:.7;font-size:.8em}
+#loja .li .st{opacity:.65;font-size:.75rem}
+#loja .li .st.ok{color:var(--ac,#39ff14);opacity:1}
+#loja .li.eq{border-color:var(--ac,#39ff14);background:rgba(57,255,20,.08)}
+#loja .lfoot{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+#loja .lfoot .lt{margin-top:0}
 #loja .li button{min-width:96px;padding:8px 10px;border-radius:10px;border:0;font-weight:800;background:var(--ac,#39ff14);color:#000}
 #loja .li button.off{background:#2a3a30;color:#8fa;opacity:.7}
 #loja .li button.on{background:#fff;color:#000}

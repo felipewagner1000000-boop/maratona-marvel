@@ -23,7 +23,7 @@ var IT=[
 ,{id:"nerd",n:"Óculos de nerd",i:"🤓",p:25,slot:"face",on:"rh",mk:function(p){["9px","29px"].forEach(function(x){L(p,"left:"+x+";top:13px;width:18px;height:14px;border:2px solid #ff7043;border-radius:50%;background:rgba(255,255,255,.08)",[31,32],0);});L(p,"left:26px;top:19px;width:4px;height:2px;background:#ff7043",[32],0);}}
 ,{id:"medalha",n:"Medalha dourada",i:"🏅",p:35,slot:"neck",on:"rt",mk:function(p){L(p,"left:11px;top:2px;width:14px;height:6px;background:linear-gradient(90deg,#e53935 50%,#1e88e5 50%);clip-path:polygon(0 0,100% 0,60% 100%,40% 100%)",[13],0);L(p,"left:13px;top:8px;width:10px;height:10px;background:radial-gradient(circle at 35% 30%,#fff3b0,#f9a825 70%);border-radius:50%;border:1px solid #b36b00",[14],0);}}
 ,{id:"asas",n:"Asas de anjo",i:"🪽",p:70,slot:"body",on:"rt",mk:function(p){[["-30px","-1"],["32px","1"]].forEach(function(a){L(p,"left:"+a[0]+";top:-14px;width:34px;height:36px;background:linear-gradient(135deg,#fff,#b3e5fc);border-radius:"+(a[1]==="-1"?"90% 10% 60% 10%":"10% 90% 10% 60%")+";transform-origin:50% 100%",[-14,-12,-10],1);});}}
-,{id:"escudo",n:"Escudo estrelado",i:"🛡️",p:55,slot:"hand",on:"rt",mk:function(p){L(p,"left:-34px;top:2px;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle,#1565c0 0 32%,#fff 33% 45%,#c62828 46% 70%,#fff 71% 82%,#c62828 83%)",[14,15],0);L(p,"left:-27px;top:9px;width:12px;height:12px;background:#fff;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)",[16],0);}}
+,{id:"escudo",n:"Escudo estrelado",i:"🛡️",p:55,slot:"hand",on:"rt",mk:function(p){L(p,"left:-26px;top:4px;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle,#1565c0 0 32%,#fff 33% 45%,#c62828 46% 70%,#fff 71% 82%,#c62828 83%)",[14,15],0);L(p,"left:-19px;top:11px;width:12px;height:12px;background:#fff;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)",[16],0);}}
 ,{id:"tiara",n:"Tiara de princesa",g:"f",i:"👸",p:50,slot:"head",on:"rh",mk:function(p){L(p,"left:8px;top:-7px;width:40px;height:10px;border:2px solid #e3e9ed;border-bottom:0;border-radius:20px 20px 0 0",R(10,22,3),0);L(p,"left:25px;top:-13px;width:6px;height:7px;background:#ff4081;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)",[22,23],0);[["14px","-10px"],["37px","-10px"]].forEach(function(a){L(p,"left:"+a[0]+";top:"+a[1]+";width:4px;height:4px;background:#b3e5fc;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)",[22],0);});}}
 ,{id:"laco",n:"Laço de cabelo",g:"f",i:"🎀",p:30,slot:"head",on:"rh",mk:function(p){L(p,"left:26px;top:-13px;width:11px;height:13px;background:#ff5fa2;clip-path:polygon(100% 50%,0 0,0 100%)",[2,4,6],1);L(p,"left:37px;top:-13px;width:11px;height:13px;background:#ff5fa2;clip-path:polygon(0 50%,100% 0,100% 100%)",[2,4,6],1);L(p,"left:35px;top:-9px;width:4px;height:5px;background:#d81b60;border-radius:2px",[7],0);}}
 ,{id:"flor",n:"Flor no cabelo",g:"f",i:"🌸",p:30,slot:"head",on:"rh",mk:function(p){L(p,"left:12px;top:-6px;width:5px;height:5px;background:#ffd54a;border-radius:50%;box-shadow:0 -5px 0 1px #ff80ab,5px 0 0 1px #ff80ab,0 5px 0 1px #ff80ab,-5px 0 0 1px #ff80ab",[18,19],0);}}
@@ -45,7 +45,7 @@ function apply(d){if(!d)return;[].forEach.call(d.querySelectorAll(".ljl"),functi
 function applyAll(){[].forEach.call(document.querySelectorAll(".dm"),apply);}
 /* ---- moedas ---- */
 function pop(t){var e=document.createElement("div");e.className="lj-pop";e.textContent=t;document.body.appendChild(e);setTimeout(function(){e.remove();},1700);}
-function lbl(){var b=document.getElementById("hloja");if(b)b.textContent="🛍️ Lojinha · 🪙 "+coins;var c=document.getElementById("ljc");if(c)c.textContent="🪙 "+coins;}
+function lbl(){var b=document.getElementById("hloja");if(b)b.innerHTML='<span class="hi">'+BAG+'</span><span class="hn">Lojinha</span><span class="hc">🪙 '+coins+'</span>';var c=document.getElementById("ljc");if(c)c.textContent="🪙 "+coins;}
 function add(n){coins+=n;s(KC,coins);lbl();pop("+"+n+" 🪙");}
 var KG="maratona-loja-ganhos",gan=g(KG,null);
 function keysOf(k){try{return Object.keys(JSON.parse(localStorage.getItem(k)||"{}")||{});}catch(e){return [];}}
@@ -119,14 +119,26 @@ function build(){
   m=document.createElement("div");m.id="loja";m.hidden=true;m.setAttribute("role","dialog");m.setAttribute("aria-modal","true");m.setAttribute("aria-label","Lojinha do robô");
   document.body.appendChild(m);
 }
+var BAG='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h12l1 12H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>';
+var tab="head";
 function render(){
-  var h='<div class="lh"><h2>🛍️ Lojinha do robô</h2><span class="lc" id="ljc">🪙 '+coins+'</span><button class="lx" type="button" id="ljx" aria-label="Fechar">✕</button></div><div class="lp" id="ljp"></div><p style="margin:0;opacity:.75;font-size:.85rem">Ganhe 🪙 '+PER+' a cada resposta certa no quiz.</p>';
-  SL.forEach(function(sl){h+='<h3>'+sl[1]+'</h3>';IT.filter(function(x){return x.slot===sl[0];}).forEach(function(it){
+  var mine=IT.filter(function(x){return own[x.id];}).length;
+  var h='<div class="lh"><span class="lbag">'+BAG+'</span><h2>Lojinha do robô</h2><span class="lc" id="ljc">🪙 '+coins+'</span><button class="lx" type="button" id="ljx" aria-label="Fechar">✕</button></div>';
+  h+='<div class="lstick"><div class="lp" id="ljp"></div><div class="ltabs" role="tablist" aria-label="Categorias">';
+  SL.forEach(function(sl){h+='<button type="button" role="tab" data-a="tab" data-t="'+sl[0]+'" aria-selected="'+(tab===sl[0])+'" class="'+(tab===sl[0]?"on":"")+'">'+sl[1]+'</button>';});
+  h+='<button type="button" role="tab" data-a="tab" data-t="mine" aria-selected="'+(tab==="mine")+'" class="'+(tab==="mine"?"on":"")+'">Meus <i>'+mine+'</i></button></div></div>';
+  h+='<p class="lhint">Ganhe 🪙 '+PER+' a cada resposta certa no quiz.</p>';
+  var list=(tab==="mine"?IT.filter(function(x){return own[x.id];}):IT.filter(function(x){return x.slot===tab;})).slice();
+  list.sort(function(a,b){var ea=eq[a.slot]===a.id?0:own[a.id]?1:2,eb=eq[b.slot]===b.id?0:own[b.id]?1:2;return ea-eb||a.p-b.p;});
+  if(!list.length)h+='<p class="lemp">Você ainda não comprou nada. Escolha uma categoria acima 🛍️</p>';
+  list.forEach(function(it){
     var o=own[it.id],e=eq[it.slot]===it.id,btn=!o?'<button type="button" data-a="buy" data-i="'+it.id+'" class="'+(coins<it.p?"off":"")+'">Comprar 🪙 '+it.p+'</button>':'<button type="button" data-a="eq" data-i="'+it.id+'" class="'+(e?"on":"")+'">'+(e?"Tirar":"Equipar")+'</button>';
-    h+='<div class="li"><span class="ic" aria-hidden="true">'+it.i+'</span><span class="nm">'+it.n+(it.g==="f"?' <small style="opacity:.7">♀</small>':it.g==="m"?' <small style="opacity:.7">♂</small>':'')+'</span>'+btn+'</div>';});});
-  h+='<button type="button" class="lt" data-a="share">📸 Compartilhar meu robô</button><button type="button" class="lt" data-a="clr">Tirar tudo do robô</button>';
+    var st=e?'<small class="st ok">✓ Equipado</small>':o?'<small class="st">Comprado</small>':'';
+    h+='<div class="li'+(e?" eq":"")+'"><span class="ic" aria-hidden="true">'+it.i+'</span><span class="nm"><b>'+it.n+(it.g==="f"?' <em>♀</em>':it.g==="m"?' <em>♂</em>':'')+'</b>'+st+'</span>'+btn+'</div>';});
+  h+='<div class="lfoot"><button type="button" class="lt" data-a="share">📸 Compartilhar meu robô</button><button type="button" class="lt" data-a="clr">Tirar tudo do robô</button></div>';
   m.innerHTML=h;var pv=document.getElementById("ljp"),d=document.querySelector("body>.dm")||document.querySelector(".dm:not(#ljp .dm)");
   if(d&&pv){prev=d.cloneNode(true);prev.removeAttribute("id");prev.setAttribute("style","");apply(prev);pv.appendChild(prev);}
+  var tb=m.querySelector(".ltabs"),on=tb&&tb.querySelector(".on");if(on)tb.scrollLeft=on.offsetLeft-(tb.clientWidth-on.offsetWidth)/2;
 }
 function open(){if(!m)build();render();m.hidden=false;var x=document.getElementById("ljx");x&&x.focus();document.documentElement.style.overflow="hidden";}
 function close(){if(m)m.hidden=true;document.documentElement.style.overflow="";var b=document.getElementById("hloja");b&&b.focus();}
@@ -134,6 +146,7 @@ document.addEventListener("click",function(e){var t=e.target;if(!t.closest)retur
   if(t.closest("#hloja")){open();return;}
   if(!m||m.hidden)return;if(t.closest("#ljx")){close();return;}
   var b=t.closest("button[data-a]");if(!b)return;var a=b.getAttribute("data-a"),it=find(b.getAttribute("data-i"));
+  if(a==="tab"){tab=b.getAttribute("data-t");render();m.scrollTop=0;return;}
   if(a==="buy"&&it){if(coins<it.p){pop("Faltam "+(it.p-coins)+" 🪙");return;}coins-=it.p;own[it.id]=1;eq[it.slot]=it.id;s(KC,coins);s(KO,own);s(KE,eq);party("Ficou demais! ✨");}
   else if(a==="eq"&&it){if(eq[it.slot]===it.id)delete eq[it.slot];else eq[it.slot]=it.id;s(KE,eq);}
   else if(a==="clr"){eq={};s(KE,eq);}

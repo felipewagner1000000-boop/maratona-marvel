@@ -40,3 +40,6 @@
 .hf.f3{left:7.2px;top:9.5px;transform:translateZ(1px)}
 .hf.th{left:10.6px;top:2.5px;width:4.6px;height:4.6px;transform:translateZ(3px)}
 .hf.th.hr{left:-3.2px}
+
+/* robô de frente: esconde as fatias do meio (ver robot3d.js) */
+.dm.flat .rh>i:not(.k),.dm.flat .rt>i:not(.k){display:none}
