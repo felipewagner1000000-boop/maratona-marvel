@@ -246,7 +246,7 @@ function apply(d,tr){if(!d)return;[].forEach.call(d.querySelectorAll(".ljl"),fun
   IT.forEach(function(it){var on=tr&&tr.slot===it.slot?tr.id===it.id:(eq[it.slot]===it.id&&own[it.id]);if(on){var p=d.querySelector("."+it.on);if(p)it.mk(p);}});}
 function applyAll(){[].forEach.call(document.querySelectorAll(".dm"),function(d){apply(d);});}
 /* ---- moedas ---- */
-function pop(t){var e=document.createElement("div");e.className="lj-pop";e.textContent=t;document.body.appendChild(e);setTimeout(function(){e.remove();},1700);}
+function pop(t){var n=document.querySelectorAll(".lj-pop").length,e=document.createElement("div");e.className="lj-pop";e.setAttribute("role","status");e.style.marginTop=Math.min(n,3)*36+"px";e.textContent=t;document.body.appendChild(e);setTimeout(function(){e.remove();},1700);}
 function lbl(){var b=document.getElementById("hloja");if(b)b.innerHTML='<span class="hi">'+BAG+'</span><span class="hn">Lojinha</span><span class="hc">🪙 '+coins+'</span>';var c=document.getElementById("ljc");if(c)c.textContent="🪙 "+coins;}
 function add(n){coins+=n;s(KC,coins);lbl();pop("+"+n+" 🪙");}
 var KG="maratona-loja-ganhos",gan=g(KG,null);
@@ -360,7 +360,7 @@ function build(){
   document.body.appendChild(m);
 }
 var BAG='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h12l1 12H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>';
-var tab="head",tr=null,spin=0;
+var tab="head",tr=null,spin=0,ask=null,KL="maratona-loja-looks",lk=g(KL,[null,null,null]);if(!Array.isArray(lk))lk=[null,null,null];
 function ownN(){return IT.filter(function(x){return own[x.id];}).length;}
 function render(){
   var mine=ownN(),tot=IT.length,pc=Math.round(mine/tot*100);
@@ -378,18 +378,19 @@ function render(){
   h+='<details class="lway"'+(wayOpen?' open':'')+'><summary>Como ganhar moedas 🪙</summary><ul><li>🧠 +'+PER+' por resposta certa no quiz</li><li>🎬 +3 por filme marcado como visto</li><li>🏁 +10 a cada 5 filmes vistos</li><li>🏆 +15 por conquista nova</li><li>🎯 +'+MPREMIO+' ao acertar '+META+' no quiz no mesmo dia</li><li>🔥 +5 a +20 por dia ao abrir o app (quanto mais dias seguidos, mais moedas)</li></ul></details>';
   h+='<button type="button" class="lbox'+(coins<BOXP?' off':'')+'" data-a="box"><b>🎁 Caixa surpresa</b><span>🪙 '+BOXP+'</span><small>Um item aleatório que você ainda não tem. Pode vir até Mítico!</small></button>';
   h+='<p class="lhint">Toque no cartão para <b>provar</b> antes de comprar.</p>';
+  h+='<div class="llooks" role="group" aria-label="Looks salvos">';[0,1,2].forEach(function(i){h+=lk[i]?'<span class="llk"><button type="button" data-a="lk" data-n="'+i+'">🎭 Look '+(i+1)+'</button><button type="button" class="llx" data-a="lkx" data-n="'+i+'" aria-label="Apagar look '+(i+1)+'">✕</button></span>':'<button type="button" class="llk e" data-a="lk" data-n="'+i+'">💾 Salvar look '+(i+1)+'</button>';});h+='<button type="button" class="llk" data-a="dice">🎲 Sortear look</button></div>';
   var list=(tab==="mine"?IT.filter(function(x){return own[x.id];}):IT.filter(function(x){return x.slot===tab;})).slice();
   list.sort(function(a,b){var ea=eq[a.slot]===a.id?0:own[a.id]?1:2,eb=eq[b.slot]===b.id?0:own[b.id]?1:2;return ea-eb||a.r-b.r||a.p-b.p;});
   if(!list.length)h+='<p class="lemp">Você ainda não comprou nada. Escolha uma categoria acima 🛍️</p>';
   h+='<div class="lgrid">';
   list.forEach(function(it){
     var o=own[it.id],e=eq[it.slot]===it.id,t=tr&&tr.id===it.id,rr=RAR[it.r||1];
-    var btn=!o?'<button type="button" data-a="buy" data-i="'+it.id+'" style="--pg:'+Math.min(100,Math.round(coins/it.p*100))+'%" class="'+(coins<it.p?"off":"")+'">'+(coins<it.p?'Faltam '+(it.p-coins)+' 🪙':'Comprar 🪙 '+it.p)+'</button>':'<button type="button" data-a="eq" data-i="'+it.id+'" class="'+(e?"on":"")+'">'+(e?"Tirar":"Equipar")+'</button>';
+    var btn=!o?'<button type="button" data-a="buy" data-i="'+it.id+'" style="--pg:'+Math.min(100,Math.round(coins/it.p*100))+'%" class="'+(coins<it.p?"off":ask===it.id?"cf":"")+'">'+(coins<it.p?'Faltam '+(it.p-coins)+' 🪙':ask===it.id?'Confirmar ✓ 🪙 '+it.p:'Comprar 🪙 '+it.p)+'</button>':'<button type="button" data-a="eq" data-i="'+it.id+'" class="'+(e?"on":"")+'">'+(e?"Tirar":"Equipar")+'</button>';
     h+='<div class="lk r'+(it.r||1)+(e?" eq":"")+(t?" try":"")+'" style="--rc:'+rr[1]+'">'
      +'<button type="button" class="lkh" data-a="try" data-i="'+it.id+'" aria-label="Provar '+it.n+'"><span class="lkr">'+rr[0]+'</span><span class="lki" aria-hidden="true">'+it.i+'</span>'+(e?'<small class="lke">✓ Equipado</small>':o?'<small class="lke b">Comprado</small>':'')+'</button>'
      +'<b class="lkn">'+it.n+(it.g==="f"?' <em>♀</em>':it.g==="m"?' <em>♂</em>':'')+'</b>'+btn+'</div>';});
   h+='</div>';
-  h+='<div class="lfoot"><button type="button" class="lt" data-a="share">📸 Compartilhar meu robô</button><button type="button" class="lt" data-a="clr">Tirar tudo do robô</button></div>';
+  h+='<div class="lfoot"><button type="button" class="lbt" data-a="share">📸 Compartilhar meu robô</button><button type="button" class="lbt" data-a="clr">Tirar tudo do robô</button></div>';
   m.innerHTML=h;var pv=document.getElementById("ljp"),d=document.querySelector("body>.dm")||document.querySelector(".dm:not(#ljp .dm)");
   if(d&&pv){prev=d.cloneNode(true);prev.removeAttribute("id");prev.setAttribute("style","");prev.classList.remove("flat","q-on","mood","hop");apply(prev,tr);pv.insertBefore(prev,pv.firstChild);prevDrag(prev);}
   var tb=m.querySelector(".ltabs"),on=tb&&tb.querySelector(".on");if(on)tb.scrollLeft=on.offsetLeft-(tb.clientWidth-on.offsetWidth)/2;
@@ -413,24 +414,27 @@ function close(){tr=null;spin=0;cancelAnimationFrame(spRaf);if(m)m.hidden=true;d
 document.addEventListener("click",function(e){var t=e.target;if(!t.closest)return;
   if(t.closest("#hloja")){open();return;}
   if(!m||m.hidden)return;if(t.closest("#ljx")){close();return;}
-  var b=t.closest("button[data-a]");if(!b)return;var a=b.getAttribute("data-a"),it=find(b.getAttribute("data-i"));
+  var b=t.closest("button[data-a]");if(!b)return;var a=b.getAttribute("data-a"),it=find(b.getAttribute("data-i"));if(a!=="buy")ask=null;
   if(a==="tab"){tab=b.getAttribute("data-t");render();m.scrollTop=0;return;}
   if(a==="try"&&it){tr=(tr&&tr.id===it.id)?null:{id:it.id,slot:it.slot};var y0=m.scrollTop;render();m.scrollTop=y0;if(spin)autoSpin();return;}
   if(a==="untry"){tr=null;var y1=m.scrollTop;render();m.scrollTop=y1;return;}
   if(a==="spin"){spin=spin?0:1;if(spin)autoSpin();else{cancelAnimationFrame(spRaf);setA(0);}return;}
   if(a==="box"){var w=caixa();if(!w)return;party((w.r>=5?"MÍTICO! 🔥 ":w.r===4?"LENDÁRIO! 👑 ":w.r===3?"ÉPICO! 💜 ":"Olha o que veio! 🎁 ")+"✨");pop("🎁 "+w.i+" "+w.n);applyAll();var y3=m.scrollTop;render();m.scrollTop=y3;lbl();burst();if(spin)autoSpin();return;}
-  if(a==="buy"&&it){if(coins<it.p){pop("Faltam "+(it.p-coins)+" 🪙");return;}coins-=it.p;own[it.id]=1;eq[it.slot]=it.id;tr=null;s(KC,coins);s(KO,own);s(KE,eq);party((it.r>=5?"MÍTICO! 🔥 ":it.r===4?"LENDÁRIO! 👑 ":it.r===3?"ÉPICO! 💜 ":"Ficou demais! ")+"✨");applyAll();var y2=m.scrollTop;render();m.scrollTop=y2;lbl();burst();if(spin)autoSpin();return;}
+  if(a==="buy"&&it){if(coins<it.p){pop("Faltam "+(it.p-coins)+" 🪙");return;}if(it.p>=150&&ask!==it.id){ask=it.id;var yq=m.scrollTop;render();m.scrollTop=yq;return;}ask=null;coins-=it.p;own[it.id]=1;eq[it.slot]=it.id;tr=null;s(KC,coins);s(KO,own);s(KE,eq);party((it.r>=5?"MÍTICO! 🔥 ":it.r===4?"LENDÁRIO! 👑 ":it.r===3?"ÉPICO! 💜 ":"Ficou demais! ")+"✨");applyAll();var y2=m.scrollTop;render();m.scrollTop=y2;lbl();burst();if(spin)autoSpin();return;}
   else if(a==="eq"&&it){if(eq[it.slot]===it.id)delete eq[it.slot];else eq[it.slot]=it.id;s(KE,eq);}
+  else if(a==="lk"){var i2=+b.getAttribute("data-n");if(lk[i2]){var L2=lk[i2];eq={};Object.keys(L2).forEach(function(k){if(own[L2[k]])eq[k]=L2[k];});s(KE,eq);pop("🎭 Look "+(i2+1)+" aplicado");}else{if(!Object.keys(eq).length){pop("Equipe algo antes de salvar 🎩");return;}lk[i2]=Object.assign({},eq);s(KL,lk);pop("💾 Look "+(i2+1)+" salvo");}}
+  else if(a==="lkx"){lk[+b.getAttribute("data-n")]=null;s(KL,lk);}
+  else if(a==="dice"){var ne={};SL.forEach(function(sl){var ps=IT.filter(function(x){return x.slot===sl[0]&&own[x.id];});if(ps.length&&Math.random()<.65)ne[sl[0]]=ps[Math.floor(Math.random()*ps.length)].id;});eq=ne;s(KE,eq);pop("🎲 Look novo!");}
   else if(a==="clr"){eq={};s(KE,eq);}
   else if(a==="share"){share();return;}
   applyAll();var y=m.scrollTop;render();m.scrollTop=y;lbl();});
 document.addEventListener("toggle",function(e){var t=e.target;if(t&&t.classList&&t.classList.contains("lway"))wayOpen=t.open;},true);
-document.addEventListener("keydown",function(e){if(e.key==="Escape"&&m&&!m.hidden)close();});
+document.addEventListener("keydown",function(e){if(!m||m.hidden)return;if(e.key==="Escape"){close();return;}if(e.key!=="Tab")return;var f=[].filter.call(m.querySelectorAll("button,summary"),function(x){return !x.disabled&&x.offsetParent!==null;});if(!f.length)return;var a0=f[0],z=f[f.length-1];if(e.shiftKey&&(document.activeElement===a0||!m.contains(document.activeElement))){e.preventDefault();z.focus();}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a0.focus();}});
 /* ---- botão na tela inicial ---- */
 function btn(){var go=document.getElementById("hgo");if(!go||document.getElementById("hloja"))return;var b=document.createElement("button");b.type="button";b.id="hloja";go.parentNode.insertBefore(b,go.nextSibling);lbl();}
 /* backup/restauração do app inclui a lojinha */
-window.__lojaExport=function(){return {c:coins,o:own,e:eq,d:dia,q:miss,k:g(KK,null)};};
-window.__lojaImport=function(o){if(!o)return;coins=+o.c||0;own=o.o||{};eq=o.e||{};if(o.d){dia=o.d;s(KD,dia);}if(o.q){miss=o.q;s(KM,miss);}if(o.k!=null)s(KK,o.k);s(KC,coins);s(KO,own);s(KE,eq);applyAll();lbl();};
+window.__lojaExport=function(){return {c:coins,o:own,e:eq,d:dia,q:miss,k:g(KK,null),l:lk};};
+window.__lojaImport=function(o){if(!o)return;coins=+o.c||0;own=o.o||{};eq=o.e||{};if(o.d){dia=o.d;s(KD,dia);}if(o.q){miss=o.q;s(KM,miss);}if(o.k!=null)s(KK,o.k);if(Array.isArray(o.l)){lk=o.l;s(KL,lk);}s(KC,coins);s(KO,own);s(KE,eq);applyAll();lbl();};
 function init(){if(!gan){gan={f:keysOf("maratona-marvel"),c:keysOf("maratona-conq")};s(KG,gan);}
   var wel=g("maratona-loja-bonus",null)==null;marco(localStorage.getItem("maratona-marvel")||"{}");missaoHoje();setTimeout(bonusDiario,wel?3400:1800);
   if(wel){s("maratona-loja-bonus",1);coins+=30;s(KC,coins);setTimeout(function(){pop("+30 🪙 de boas-vindas");lbl();},1500);}}

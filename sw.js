@@ -3,9 +3,9 @@
    - trilha sonora (ost-1..6.m4a): baixa inteira em segundo plano na 1ª vez que toca e depois toca offline
    - fontes do Google escolhidas nas configurações: guardadas ao usar a 1ª vez e funcionam offline
    Os caches "mm-trilha" e "mm-fontes" não são apagados a cada versão, para não baixar de novo. */
-var C = "maratona-v202611132230";
+var C = "maratona-v202611140021";
 var F = ["./", "index.html", "style.min.css", "app.min.js", "data.js", "qr.js", "extras.min.js", "elenco.js", "elenco-doomsday.webp",
-  "robot3d.min.js", "robot3d.min.css", "loja.min.js", "loja.min.css", "quizbot.min.js",
+  "robot3d.min.js", "robot3d.min.css", "loja.min.js", "loja.min.css", "quizbot.min.js", "robo-extra.min.js", "robo-extra.min.css",
   "icon.png", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "manifest.webmanifest"];
 var TRILHA = "mm-trilha", FONTES = "mm-fontes";
 var RE_OST = /\/ost-\d\.m4a$/;
@@ -66,8 +66,9 @@ self.addEventListener("fetch", function (e) {
   if (RE_OST.test(u.pathname)) return trilha(e, r);
   e.respondWith(caches.open(C).then(function (c) {
     return c.match(r, { ignoreSearch: true }).then(function (hit) {
-      var net = fetch(r).then(function (res) { if (res && res.ok) c.put(r, res.clone()); return res; })
+      var net = fetch(r).then(function (res) { if (res && res.status === 200 && res.type === "basic") c.put(r, res.clone()).catch(function () {}); return res; })
         .catch(function () { return hit || c.match("index.html"); });
+      if (hit) e.waitUntil(net.then(function () {}, function () {}));
       return hit || net;
     });
   }));

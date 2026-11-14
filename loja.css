@@ -31,13 +31,13 @@
 #loja .li .st.ok{color:var(--ac,#39ff14);opacity:1}
 #loja .li.eq{border-color:var(--ac,#39ff14);background:rgba(57,255,20,.08)}
 #loja .lfoot{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-#loja .lfoot .lt{margin-top:0}
+#loja .lfoot .lbt{margin-top:0}
 #loja .li button{min-width:96px;padding:8px 10px;border-radius:10px;border:0;font-weight:800;background:var(--ac,#39ff14);color:#000}
 #loja .li button.off{background:#2a3a30;color:#8fa;opacity:.7}
 #loja .li button.on{background:#fff;color:#000}
-#loja .lt{width:100%;margin-top:10px;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:none;color:#fff}
-.lj-pop{position:fixed;right:16px;bottom:calc(120px + env(safe-area-inset-bottom,0px));z-index:99998;font:800 1rem system-ui,sans-serif;color:#ffd54a;text-shadow:0 0 8px #000;pointer-events:none;animation:ljp 1.6s ease-out forwards}
-@keyframes ljp{from{transform:translateY(0);opacity:1}to{transform:translateY(-46px);opacity:0}}
+#loja .lbt{min-height:44px;width:100%;margin-top:10px;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:none;color:#fff}
+.lj-pop{position:fixed;left:0;right:0;width:max-content;max-width:90vw;margin-inline:auto;top:calc(76px + env(safe-area-inset-top,0px));z-index:99998;padding:6px 14px;border-radius:999px;background:rgba(5,12,8,.92);border:1px solid rgba(255,213,74,.5);font:800 .95rem system-ui,sans-serif;color:#ffd54a;pointer-events:none;animation:ljp 1.7s ease-out forwards}
+@keyframes ljp{0%{transform:translateY(10px);opacity:0}12%{transform:translateY(0);opacity:1}80%{opacity:1}100%{transform:translateY(-12px);opacity:0}}
 .ljl{position:absolute;pointer-events:none}
 
 /* ===== Lojinha v2: cartões por raridade, prova, confete, animações dos acessórios ===== */
@@ -119,3 +119,14 @@ html.noanim .ljl,html.eco .ljl,html.noanim #loja *,html.eco #loja *{animation:no
 #loja .lk.r5 .lki{animation:ljbob 2.2s ease-in-out infinite alternate}
 #loja .lk.r5 .lkn{background:linear-gradient(90deg,#ff80ab,#ffd54a,#7dffb0);-webkit-background-clip:text;background-clip:text;color:transparent}
 #loja .lk>button.off{background:linear-gradient(90deg,color-mix(in srgb,var(--rc) 42%,#26352b) var(--pg,0%),#26352b var(--pg,0%))}
+
+/* v2: looks salvos, confirmação de compra, foco visível */
+#loja .llooks{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+#loja .llk{display:inline-flex;border-radius:10px;overflow:hidden}
+#loja .llooks button{min-height:40px;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.05);color:#fff;font:600 .85rem system-ui,sans-serif}
+#loja .llk>button:first-child{border-radius:10px 0 0 10px}
+#loja .llk .llx{border-radius:0 10px 10px 0;border-left:0;padding:8px 11px;color:#ff8a80}
+#loja .llk.e{border-style:dashed}
+#loja .lk button.cf{background:#ffd54a;color:#1a1200;font-weight:800}
+#loja button:focus-visible,#loja summary:focus-visible{outline:2px solid #39ff14;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.lj-pop{animation:ljpr 1.7s linear forwards}@keyframes ljpr{0%,100%{opacity:0}10%,85%{opacity:1}}}
