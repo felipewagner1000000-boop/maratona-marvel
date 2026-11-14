@@ -242,7 +242,7 @@ var IT=[
 var SL=[["head","Cabeça"],["face","Rosto"],["neck","Pescoço"],["chest","Peito"],["waist","Cintura"],["body","Costas"],["hand","Mão"],["aura","Aura"]];
 function find(id){return IT.filter(function(x){return x.id===id;})[0];}
 /* tr = item sendo "provado" (não comprado) só no prévia da loja */
-function apply(d,tr){if(!d)return;[].forEach.call(d.querySelectorAll(".ljl"),function(e){e.remove();});
+function apply(d,tr){if(!d)return;try{if(window.__r3dApply){window.__r3dApply(d,IT.filter(function(it){return tr&&tr.slot===it.slot?tr.id===it.id:(eq[it.slot]===it.id&&own[it.id]);}).map(function(it){return it.id;}));}}catch(e){}[].forEach.call(d.querySelectorAll(".ljl"),function(e){e.remove();});
   IT.forEach(function(it){var on=tr&&tr.slot===it.slot?tr.id===it.id:(eq[it.slot]===it.id&&own[it.id]);if(on){var p=d.querySelector("."+it.on);if(p)it.mk(p);}});}
 function applyAll(){[].forEach.call(document.querySelectorAll(".dm"),function(d){apply(d);});}
 /* ---- moedas ---- */
