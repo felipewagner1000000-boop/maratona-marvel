@@ -1,0 +1,11 @@
+{
+  "name": "maratona-marvel",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bash tools/build.sh",
+    "check": "node tools/check.mjs",
+    "test": "python3 tests/smoke_ui.py"
+  },
+  "devDependencies": { "clean-css-cli": "^5.6.3", "terser": "^5.31.0" }
+}
