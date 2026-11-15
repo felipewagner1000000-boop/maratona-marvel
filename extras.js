@@ -26,7 +26,8 @@ window.addEventListener("load",function(){
 });
 /* 2. aviso de nova versão */
 if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol)){
-  var reloading=false;navigator.serviceWorker.addEventListener("controllerchange",function(){if(reloading)return;reloading=true;location.reload();});
+  var reloading=false,had=!!navigator.serviceWorker.controller; /* na 1ª visita (sem versão anterior) o controllerchange não precisa recarregar */
+  navigator.serviceWorker.addEventListener("controllerchange",function(){if(!had){had=true;return;}if(reloading)return;reloading=true;location.reload();});
   navigator.serviceWorker.ready.then(function(reg){
     function show(){/* o aviso visual é o do app.js (#upd); aqui só fica o reload automático quando a nova versão assume */}
     if(reg.waiting&&navigator.serviceWorker.controller)show(reg.waiting);
