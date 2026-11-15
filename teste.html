@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Teste do robô 3D</title>
+<style>body{background:#111;color:#eee;font:15px/1.5 sans-serif;padding:14px}
+.ok{color:#5f5}.no{color:#f66}.in{color:#fc6}pre{white-space:pre-wrap;word-break:break-word;background:#222;padding:8px;border-radius:6px}</style></head>
+<body><h2>Teste do robô 3D</h2><div id="o"></div>
+<script>
+var o=document.getElementById("o");
+function L(t,c){var d=document.createElement("div");d.className=c||"in";d.textContent=t;o.appendChild(d);}
+function chk(){
+  try{var cv=document.createElement("canvas");var gl=cv.getContext("webgl2")||cv.getContext("webgl");
+    L(gl?"1) WebGL: funciona":"1) WebGL: NÃO funciona neste aparelho/navegador",gl?"ok":"no");}catch(e){L("1) WebGL erro: "+e.message,"no");}
+  L("Endereço: "+location.href);
+  var base=location.href.replace(/[^\/]*$/,"");
+  fetch(base+"robo.glb?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.arrayBuffer().then(function(b){
+    L("2) robo.glb: status "+r.status+", "+(b.byteLength/1048576).toFixed(2)+" MB (o novo tem 2,41 MB)",r.status==200&&b.byteLength>2300000&&b.byteLength<2500000?"ok":"no");});
+  }).catch(function(e){L("2) robo.glb erro: "+e.message,"no");});
+  fetch(base+"robot3d.min.js?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.text().then(function(t){
+    L("3) robot3d.min.js: status "+r.status+", "+Math.round(t.length/1024)+" KB (esperado: ~714 KB)",r.status==200?"ok":"no");
+    L("   versão com aviso de erro: "+(t.indexOf("ERRO 3D")>-1?"SIM (arquivo novo)":"NÃO (ainda é o arquivo antigo no GitHub)"),t.indexOf("ERRO 3D")>-1?"ok":"no");
+  });}).catch(function(e){L("3) robot3d.min.js erro: "+e.message,"no");});
+  fetch(base+"index.html?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.text().then(function(t){
+    var m=t.match(/robot3d\.min\.js[^"']*/);
+    L("4) index.html chama: "+(m?m[0]:"NÃO chama o robot3d.min.js (index antigo!)"),m?"ok":"no");
+    L("   tem o robô 3D (div .dm): "+(/class="dm"/.test(t)?"sim":"não"),/class="dm"/.test(t)?"ok":"no");
+  });}).catch(function(e){L("4) index.html erro: "+e.message,"no");});
+  fetch(base+"Marvel.html",{method:"HEAD",cache:"no-store"}).then(function(r){
+    L("5) Marvel.html (arquivo velho) existe no repositório: "+(r.status==200?"SIM, apague ele":"não"),r.status==200?"no":"ok");
+  }).catch(function(){});
+  if(navigator.serviceWorker)navigator.serviceWorker.getRegistrations().then(function(rs){L("6) service workers ativos: "+rs.length+" "+rs.map(function(x){return x.scope}).join(" "));});
+  if(window.caches)caches.keys().then(function(k){L("7) caches: "+(k.join(", ")||"nenhum"));});
+}
+chk();
+</script></body></html>
