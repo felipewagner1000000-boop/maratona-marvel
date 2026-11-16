@@ -1592,3 +1592,29 @@ html body .lrow .lbtn[hidden]{display:none}
 #dcast details.dtxt>summary::-webkit-details-marker{display:none}
 #dcast details.dtxt>summary::before{content:"▸ ";color:var(--ac)}
 #dcast details.dtxt[open]>summary::before{content:"▾ "}
+
+/* ===== v15 · organização das telas =====
+   Mesma lógica nas duas: contagem → próximo título → progresso/ritmo → atalhos → extras. */
+/* Início */
+html body .hin>#hnx{order:8}
+html body .hin>#hgo{order:9}
+html body .hin>#hbk{order:10}
+html body .hin>#hpr{order:11}
+html body .hin>#hpace,html body .hin>#hfc{order:12}
+html body .hin>.hch{order:13}
+html body .hin>.hsc{order:14}
+html body .hin>#hloja{order:15}
+html body .hin>#hwk{order:16}
+html body .hin>#hsw{order:17}
+html body .hin>#hpg{order:18}
+html body .hin>#hbi{order:19}
+html body .hin>#hmais{order:20}
+html body .hin>.d3.hm,html body .hin>section.d3{order:21}
+/* Lojinha: o contador de moedas herdava o estilo de cartão (.hc) e ficava por cima do nome */
+html body .hin>#hloja{display:flex;align-items:center;justify-content:center;gap:10px}
+html body #hloja .hc{display:inline-flex;align-items:center;margin:0;width:auto;min-height:0;padding:3px 10px;border-radius:99px;font-size:.85rem;font-weight:700}
+html body #hloja .hi,html body #hloja .hn{display:inline-flex;align-items:center;margin:0}
+/* Principal: o botão de continuar vem antes dos filtros */
+.filters>#cont{order:1}
+.filters>#ordem{order:2}
+.filters>#fase{order:3}
