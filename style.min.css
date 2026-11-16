@@ -25,3 +25,25 @@ html body #hloja .hi,html body #hloja .hn{display:inline-flex;align-items:center
 .filters>#cont{order:1}
 .filters>#ordem{order:2}
 .filters>#fase{order:3}
+
+/* ===== v16 · organização mais compacta ===== */
+/* Início: progresso + ritmo + previsão viram um único cartão */
+html body .hin>#hpr{margin:0;border-radius:16px 16px 0 0;border-bottom-color:transparent}
+html body .hin>#hpace,html body .hin>#hfc{margin:0;border-radius:0;border-top:1px dashed var(--line);padding:9px 14px;font-size:.82rem;line-height:1.4}
+html body .hin>#hpace:has(+#hfc[hidden]),html body .hin>#hfc:not([hidden]){border-radius:0 0 16px 16px}
+html body .hin>#hfc:not([hidden]){margin-bottom:14px}
+html body .hin>#hpace:has(+#hfc[hidden]){margin-bottom:14px}
+html body .hin>#hpace small,html body .hin>#hfc small{display:block;margin-bottom:2px;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;opacity:.8}
+/* sequência e meta do dia na mesma linha */
+html body .hin>.hch{flex-wrap:nowrap;justify-content:stretch;gap:8px;margin:0 0 14px}
+html body .hin>.hch>span{flex:1 1 auto;min-width:0;padding:6px 10px;font-size:.78rem;line-height:1.25;text-align:center;white-space:normal}
+html body .hin>.hch>#hday{flex:0 0 auto}
+html body .hin>.hch>#hdb:empty{display:none}
+/* grupos com respiro entre eles */
+html body .hin>.hsc{margin-bottom:8px}
+html body .hin>#hloja{margin-bottom:16px}
+/* Principal: Meta e Resumo lado a lado */
+html body .mission{grid-template-columns:1fr 1fr}
+html body .mission>#ess,html body .mission>#prb{grid-column:auto;min-height:56px;padding-inline:8px}
+html body .mission>#ess .hbt,html body .mission>#prb .hbt{font-size:.8rem;line-height:1.2}
+html body .mission>#ess .hbi,html body .mission>#prb .hbi{flex:none;width:32px;height:32px}
